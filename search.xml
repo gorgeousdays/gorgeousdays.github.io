@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>hexo:Local change and remote server change</title>
+      <link href="/2020/08/03/hexo-Local-change-and-remote-server-change/"/>
+      <url>/2020/08/03/hexo-Local-change-and-remote-server-change/</url>
+      
+        <content type="html"><![CDATA[<p>Sometimes，we made some changes in local environment. But when we push our changes to remote server,nothing happened.</p><p>We have to use</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line"></span><br><span class="line">hexo g</span><br><span class="line"></span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure><p> <strong><em>hexo clean</em></strong> is used to clear cache file（ db.json ）and generated static files (public). </p><p> In some cases, especially after a theme change, you may need  to run the command if you find that your changes to the site are not  taking effect anyway. </p><p>If you meet some problem and you don’t know how to solve it. Just try</p><p><strong><em>hexo clean</em></strong>.</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>how to build level 3 title in latex</title>
       <link href="/2020/08/02/how-to-build-level-3-title-in-latex/"/>
       <url>/2020/08/02/how-to-build-level-3-title-in-latex/</url>
