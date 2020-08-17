@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>A c++ problem</title>
+      <link href="/2020/08/17/A-c-problem/"/>
+      <url>/2020/08/17/A-c-problem/</url>
+      
+        <content type="html"><![CDATA[<p> Recently, I thought of a problem I encountered when I first started learning C + + .</p><p>What will happen if  <strong>cout</strong> combine with <strong><em>++</em></strong>  ？</p><p>I tried it and got the follow answer.</p><p><img src="/2020/08/17/A-c-problem/1.png"></p><p>I expected the output is 3455567 .However,this outputwas completely different from what I had expected.</p><p>Maybe this was because the Code editor. </p><p>I replaced the devcpp  with vs.</p><p>But nothing changed.</p><p>Maybe this was due to  Compiler.</p><p>I ran the codes on mac,now get the answer what i needed.  </p><p><img src="/2020/08/17/A-c-problem/2.png"></p><p>And i got the answer.</p><p> In the environment of windows 10 or 7 ,my Compiler was gcc 4.9.2 .and whatever use devc++ or vscode. The answer was same,3455567.</p><p>But,in the environment of Mac ,my Compiler was clang 11.0.3,and vs gave the answer 3455677.</p><p>Maybe the different answer was due to different Compiler.</p><p>But Why? </p><p>I didn’t get some useful message. I hope i can talk about this next time.</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>hexo:Local change and remote server change</title>
       <link href="/2020/08/03/hexo-Local-change-and-remote-server-change/"/>
       <url>/2020/08/03/hexo-Local-change-and-remote-server-change/</url>
