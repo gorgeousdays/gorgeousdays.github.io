@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="1.保留字符12% # $ % ^ &amp; _ &amp;#123; &amp;#125; ~ \% 对于上述保留字符 采用转义字符“\”来实现输出   2.希腊字母   希腊字母小写、大写 LaTeX形式 希腊字母小写、大写 LaTeX形式    α   A \alpha A μ  N \mu N   β  B \beta B ξ  Ξ \xi \Xi   γ  Γ \gamma \Gamma o O o">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LaTeX中常用字符与运算符的输入">
+<meta property="og:url" content="http://yoursite.com/2020/08/26/LaTeX%E4%B8%AD%E5%B8%B8%E7%94%A8%E5%AD%97%E7%AC%A6%E4%B8%8E%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E8%BE%93%E5%85%A5/index.html">
+<meta property="og:site_name" content="gorgeousdays">
+<meta property="og:description" content="1.保留字符12% # $ % ^ &amp; _ &amp;#123; &amp;#125; ~ \% 对于上述保留字符 采用转义字符“\”来实现输出   2.希腊字母   希腊字母小写、大写 LaTeX形式 希腊字母小写、大写 LaTeX形式    α   A \alpha A μ  N \mu N   β  B \beta B ξ  Ξ \xi \Xi   γ  Γ \gamma \Gamma o O o">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-08-26T11:10:37.000Z">
+<meta property="article:modified_time" content="2020-08-26T11:11:23.915Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/08/26/LaTeX%E4%B8%AD%E5%B8%B8%E7%94%A8%E5%AD%97%E7%AC%A6%E4%B8%8E%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E8%BE%93%E5%85%A5/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>LaTeX中常用字符与运算符的输入 | gorgeousdays</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">gorgeousdays</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/26/LaTeX%E4%B8%AD%E5%B8%B8%E7%94%A8%E5%AD%97%E7%AC%A6%E4%B8%8E%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E8%BE%93%E5%85%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="gorgeousdays">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          LaTeX中常用字符与运算符的输入
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-26 19:10:37 / 修改时间：19:11:23" itemprop="dateCreated datePublished" datetime="2020-08-26T19:10:37+08:00">2020-08-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LaTeX%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">LaTeX学习笔记</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h4 id="1-保留字符"><a href="#1-保留字符" class="headerlink" title="1.保留字符"></a>1.保留字符</h4><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% # $ % ^ &amp; _ &#123; &#125; ~ \</span></span><br><span class="line"><span class="comment">% 对于上述保留字符 采用转义字符“\”来实现输出 </span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-希腊字母"><a href="#2-希腊字母" class="headerlink" title="2.希腊字母"></a>2.希腊字母</h4><table>
+<thead>
+<tr>
+<th>希腊字母小写、大写</th>
+<th>LaTeX形式</th>
+<th>希腊字母小写、大写</th>
+<th>LaTeX形式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>α   <strong><em>A</em></strong></td>
+<td>\alpha A</td>
+<td>μ  <strong><em>N</em></strong></td>
+<td>\mu N</td>
+</tr>
+<tr>
+<td>β  <strong><em>B</em></strong></td>
+<td>\beta B</td>
+<td>ξ  Ξ</td>
+<td>\xi \Xi</td>
+</tr>
+<tr>
+<td>γ  Γ</td>
+<td>\gamma \Gamma</td>
+<td><strong>o</strong> <strong><em>O</em></strong></td>
+<td>o O</td>
+</tr>
+<tr>
+<td>δ  Δ</td>
+<td>\delta \ Delta</td>
+<td>π  Π</td>
+<td>\pi  \Pi</td>
+</tr>
+<tr>
+<td>ϵ  ε  <strong><em>E</em></strong></td>
+<td>\epsilon E</td>
+<td>ρ  ϱ  <strong><em>P</em></strong></td>
+<td>\rho P</td>
+</tr>
+<tr>
+<td>ζ  <strong><em>Z</em></strong></td>
+<td>\zeta Z</td>
+<td>σ  Σ</td>
+<td>\sigma \Sigma</td>
+</tr>
+<tr>
+<td>η  <strong><em>H</em></strong></td>
+<td>\eta H</td>
+<td>τ  <strong><em>T</em></strong></td>
+<td>\tau T</td>
+</tr>
+<tr>
+<td>θ  ϑ  Θ</td>
+<td>\theta \Theta</td>
+<td>υ  Υ</td>
+<td>\upsilon \Upsilon</td>
+</tr>
+<tr>
+<td>ι  <strong><em>I</em></strong></td>
+<td>\iota I</td>
+<td>ϕ  φ  Φ</td>
+<td>\phi \Phi</td>
+</tr>
+<tr>
+<td>κ  <strong><em>K</em></strong></td>
+<td>\kappa K</td>
+<td>χ   <strong><em>X</em></strong></td>
+<td>\chi X</td>
+</tr>
+<tr>
+<td>λ  Λ</td>
+<td>\lambda \Lambda</td>
+<td>ψ  Ψ</td>
+<td>\psi \Psi</td>
+</tr>
+<tr>
+<td>μ  <strong><em>M</em></strong></td>
+<td>\mu M</td>
+<td>ω  Ω</td>
+<td>\omega  \Omega</td>
+</tr>
+</tbody></table>
+<h4 id="3-集合相关"><a href="#3-集合相关" class="headerlink" title="3.集合相关"></a>3.集合相关</h4><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">mathbb</span><span class="string">&#123;R&#125;</span></span> <span class="comment">%特殊集合符号R 还有\mathbb&#123;z&#125;和\mathbb&#123;N&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">subset</span></span>  <span class="comment">%真包含⊂  \supset表示反方向⊃</span></span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">subseteq</span></span>  <span class="comment">%包含 ⊆</span></span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">in</span></span>  <span class="comment">%属于∈  %\notin表示不属于</span></span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">cap</span></span>  <span class="comment">%交集  ∩</span></span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">cup</span></span>  <span class="comment">%并集  ∪</span></span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">mid</span></span>  <span class="comment">% |</span></span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">neg</span></span>  <span class="comment">%集合中非  ¬</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="4-二元运算符"><a href="#4-二元运算符" class="headerlink" title="4.二元运算符"></a>4.二元运算符</h4><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">ge</span></span> <span class="comment">%  ≥</span></span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">le</span></span> <span class="comment">%  ≤</span></span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">equiv</span></span> <span class="comment">%  ≡</span></span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">approx</span></span>  <span class="comment">%  ≈</span></span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">cdot</span></span>  <span class="comment">%  ⋅</span></span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">pm</span></span>  <span class="comment">%  ±</span></span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">div</span></span>  <span class="comment">%  ÷</span></span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">frac</span><span class="string">&#123;&#125;</span><span class="string">&#123;&#125;</span></span> <span class="comment">%分数运算</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="5-大尺寸运算符"><a href="#5-大尺寸运算符" class="headerlink" title="5.大尺寸运算符"></a>5.大尺寸运算符</h4><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%\sum求和符合  \prod求积符号</span></span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;equation&#125;</span></span></span><br><span class="line">    p = <span class="tag">\<span class="name">sum</span></span>_&#123;n=1&#125;^Na_n </span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;equation&#125;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">%\int表示积分符号</span></span><br><span class="line"><span class="formula">$ <span class="tag">\<span class="name">int</span></span>_&#123;1&#125;^&#123;<span class="tag">\<span class="name">infty</span></span>&#125; $</span> <span class="comment">%\infty表示无穷</span></span><br><span class="line"><span class="formula">$ <span class="tag">\<span class="name">int</span></span>_&#123;E&#125; fdx $</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%\lim表示极限符号</span></span><br><span class="line"><span class="formula">$ <span class="tag">\<span class="name">lim</span></span>_&#123;n<span class="tag">\<span class="name">to</span></span> 0&#125; $</span></span><br><span class="line"><span class="formula">$ <span class="tag">\<span class="name">lim</span></span><span class="tag">\<span class="name">limits</span></span>_&#123;n<span class="tag">\<span class="name">to</span></span> <span class="tag">\<span class="name">infty</span></span>&#125;<span class="tag">\<span class="name">int</span></span>_&#123;E&#125;f_n dx <span class="tag">\<span class="name">geq</span></span> <span class="tag">\<span class="name">int</span></span>_&#123;E&#125;gdx $</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="6-其它符号"><a href="#6-其它符号" class="headerlink" title="6.其它符号"></a>6.其它符号</h4><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%箭头符号</span></span><br><span class="line"><span class="tag">\<span class="name">leftarrow</span></span>  <span class="comment">%  往左箭头 或者用\gets</span></span><br><span class="line"><span class="tag">\<span class="name">rightarrow</span></span>  <span class="comment">%  往右箭头 或者用\to</span></span><br><span class="line"><span class="tag">\<span class="name">longleftarrow</span></span>  <span class="comment">%  往右加长箭头</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%下列点的输出可用于矩阵</span></span><br><span class="line"><span class="tag">\<span class="name">dots</span></span>  <span class="comment">%  三点横向排列 或者用\cdots</span></span><br><span class="line"><span class="tag">\<span class="name">vdots</span></span>  <span class="comment">%  三点竖向排列</span></span><br><span class="line"><span class="tag">\<span class="name">ddtos</span></span>  <span class="comment">%  三点斜向排列</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%下列符号用于证明</span></span><br><span class="line"><span class="tag">\<span class="name">forall</span></span>  <span class="comment">%    任意∀</span></span><br><span class="line"><span class="tag">\<span class="name">exists</span></span>  <span class="comment">%    存在∃</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%导数相关</span></span><br><span class="line"><span class="tag">\<span class="name">partial</span></span> x  <span class="comment">%  偏导符号</span></span><br><span class="line"><span class="tag">\<span class="name">mathrm</span><span class="string">&#123;d&#125;</span></span> x  <span class="comment">%  求导符号</span></span><br><span class="line">x^&#123;’&#125;  <span class="comment">%  撇形式的求导符号</span></span><br><span class="line"><span class="tag">\<span class="name">dot</span></span> x  <span class="comment">%  点形式的求导符号 \ddot表示2个点 \dddot表示三个点 几个d就是几个点</span></span><br><span class="line"><span class="tag">\<span class="name">nabla</span></span> f  <span class="comment">%  全微分算子</span></span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/08/26/LaTeX%E8%BE%93%E5%87%BA%E5%9B%BE%E8%A1%A8/" rel="prev" title="LaTeX输出图表">
+      <i class="fa fa-chevron-left"></i> LaTeX输出图表
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E4%BF%9D%E7%95%99%E5%AD%97%E7%AC%A6"><span class="nav-number">1.</span> <span class="nav-text">1.保留字符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%B8%8C%E8%85%8A%E5%AD%97%E6%AF%8D"><span class="nav-number">2.</span> <span class="nav-text">2.希腊字母</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E9%9B%86%E5%90%88%E7%9B%B8%E5%85%B3"><span class="nav-number">3.</span> <span class="nav-text">3.集合相关</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E4%BA%8C%E5%85%83%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">4.</span> <span class="nav-text">4.二元运算符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E5%A4%A7%E5%B0%BA%E5%AF%B8%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="nav-number">5.</span> <span class="nav-text">5.大尺寸运算符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-%E5%85%B6%E5%AE%83%E7%AC%A6%E5%8F%B7"><span class="nav-number">6.</span> <span class="nav-text">6.其它符号</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt=""
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name"></p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/gorgeousdays" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;gorgeousdays" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:uundefined28@gmail.com" title="E-Mail → mailto:uundefined28@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
