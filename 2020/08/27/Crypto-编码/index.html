@@ -28,7 +28,7 @@
 <meta property="og:description" content="1.hex解码:https:&#x2F;&#x2F;www.bejson.com&#x2F;convert&#x2F;ox2str&#x2F; 字符串转化为编码 12s&#x3D;&quot;flag&quot;print s.encode(&quot;hex&quot;)  编码转化为字符串 1print hex(num)[2:-1].decode(&quot;hex&quot;)  在解题过程中，一般使用PyCrypto库中的long_to_">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-08-27T09:12:17.000Z">
-<meta property="article:modified_time" content="2020-08-27T09:13:36.073Z">
+<meta property="article:modified_time" content="2020-08-28T13:56:53.989Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://yoursite.com/2020/08/27/Crypto-%E7%BC%96%E7%A0%81/">
@@ -204,10 +204,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-08-27 17:12:17 / 修改时间：17:13:36" itemprop="dateCreated datePublished" datetime="2020-08-27T17:12:17+08:00">2020-08-27</time>
+              <time title="创建时间：2020-08-27 17:12:17" itemprop="dateCreated datePublished" datetime="2020-08-27T17:12:17+08:00">2020-08-27</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-08-28 21:56:53" itemprop="dateModified" datetime="2020-08-28T21:56:53+08:00">2020-08-28</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -281,6 +287,50 @@
 <h4 id="12-社会主义核心价值观编码"><a href="#12-社会主义核心价值观编码" class="headerlink" title="12.社会主义核心价值观编码"></a>12.社会主义核心价值观编码</h4><p>特点:含有社会主义核心价值观24字</p>
 <p>解码:<a target="_blank" rel="noopener" href="https://atool.vip/corevalue/">https://atool.vip/corevalue/</a></p>
 <p>密文：诚信自由公正爱国爱国敬业民主友善爱国平等敬业公正敬业友善公正友善爱国公正友善自由诚信文明友善自由文明友善爱国自由诚信民主诚信平等诚信富强民主诚信自由公正爱国民主诚信富强诚信平等友善爱国平等友善自由诚信自由爱国敬业诚信自由平等爱国平等友善自由爱国<br>明文：我喜欢信息安全</p>
+<h4 id="13-Ascii码"><a href="#13-Ascii码" class="headerlink" title="13.Ascii码"></a>13.Ascii码</h4><p>特点:进制数表示字符</p>
+<p>解码:Ascii码与进制互转 <a target="_blank" rel="noopener" href="http://ctf.ssleye.com/jinzhi.html">http://ctf.ssleye.com/jinzhi.html</a></p>
+<h4 id="14-shellcode编码"><a href="#14-shellcode编码" class="headerlink" title="14.shellcode编码"></a>14.shellcode编码</h4><p>特点: 利用软件漏洞而执行的代码，shellcode为16进制的机器码</p>
+<p>解码:参考 <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_35519254/article/details/52957007">https://blog.csdn.net/qq_35519254/article/details/52957007</a></p>
+<h4 id="15-Quoted-printable编码"><a href="#15-Quoted-printable编码" class="headerlink" title="15.Quoted-printable编码"></a>15.Quoted-printable编码</h4><p>特点:QP 编码用于表示含有大量对应可打印字符的数组 如=CD=F8=C9=CF,=C3=B3=D2=</p>
+<p>解码:<a target="_blank" rel="noopener" href="http://web.chacuo.net/charsetquotedprintable">http://web.chacuo.net/charsetquotedprintable</a></p>
+<h4 id="16-XXencode编码"><a href="#16-XXencode编码" class="headerlink" title="16.XXencode编码"></a>16.XXencode编码</h4><p>特点:一种二进制到文字的编码!它跟UUEncode以及Base64编码方法很类似</p>
+<p>解码:<a target="_blank" rel="noopener" href="http://web.chacuo.net/charsetxxencode">http://web.chacuo.net/charsetxxencode</a></p>
+<p>17.Escape/Unescape编码</p>
+<p>特点:所有的空格符、标点符号、特殊字符以及其他非ASCII字符都将被转化成%xx格式的字符编码xx等于该字符在字符集表里面的编码的16进制数字)。</p>
+<p>解码:<a target="_blank" rel="noopener" href="http://www.metools.info/master/m46.html">http://www.metools.info/master/m46.html</a></p>
+<p>源文本:The</p>
+<p>编码后:%u0054%u0068%u0065</p>
+<p>18.HTML实体编码</p>
+<p>特点: 例如想要在HTML中插入空格，可以使用实体：&amp;nbsp；</p>
+<p>解码:<a target="_blank" rel="noopener" href="http://www.toolzl.com/tools/htmlende.html">http://www.toolzl.com/tools/htmlende.html</a></p>
+<p>19.敲击码(Tap code)</p>
+<p>特点:是一种以非常简单的方式对文本信息进行编码的方法。</p>
+<p>敲击码表:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#!shell</span><br><span class="line">  1  2  3  4  5</span><br><span class="line">1 A  B C&#x2F;K D  E</span><br><span class="line">2 F  G  H  I  J </span><br><span class="line">3 L  M  N  O  P</span><br><span class="line">4 Q  R  S  T  U</span><br><span class="line">5 V  W  X  Y  Z</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>源文本</th>
+<th>F</th>
+<th>O</th>
+<th>X</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>位置</td>
+<td>2,1</td>
+<td>3,4</td>
+<td>5,3</td>
+</tr>
+<tr>
+<td>敲击码</td>
+<td>..  .</td>
+<td>…  ….</td>
+<td>…..  …</td>
+</tr>
+</tbody></table>
+<p>解码:<a target="_blank" rel="noopener" href="http://ctf.ssleye.com/tapcode.html">http://ctf.ssleye.com/tapcode.html</a></p>
 
     </div>
 
@@ -358,7 +408,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-hex"><span class="nav-number">1.</span> <span class="nav-text">1.hex</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-url%E7%BC%96%E7%A0%81"><span class="nav-number">2.</span> <span class="nav-text">2.url编码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E8%8E%AB%E5%B0%94%E6%96%AF%E7%94%B5%E7%A0%81"><span class="nav-number">3.</span> <span class="nav-text">3.莫尔斯电码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-jsfuck"><span class="nav-number">4.</span> <span class="nav-text">4.jsfuck</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-UUENCODE"><span class="nav-number">5.</span> <span class="nav-text">5.UUENCODE</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-UNICODE"><span class="nav-number">6.</span> <span class="nav-text">6.UNICODE</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-base%E7%BC%96%E7%A0%81"><span class="nav-number"></span> <span class="nav-text">7.base编码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#8-%E4%B8%AD%E6%96%87%E7%94%B5%E7%A0%81"><span class="nav-number">1.</span> <span class="nav-text">8.中文电码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-Brainfuck-Ook"><span class="nav-number">2.</span> <span class="nav-text">9.Brainfuck&#x2F;Ook!</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-%E4%B8%8E%E4%BD%9B%E8%AE%BA%E7%A6%85"><span class="nav-number">3.</span> <span class="nav-text">10.与佛论禅</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-%E7%94%9F%E5%83%BB%E5%AD%97"><span class="nav-number">4.</span> <span class="nav-text">11.生僻字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12-%E7%A4%BE%E4%BC%9A%E4%B8%BB%E4%B9%89%E6%A0%B8%E5%BF%83%E4%BB%B7%E5%80%BC%E8%A7%82%E7%BC%96%E7%A0%81"><span class="nav-number">5.</span> <span class="nav-text">12.社会主义核心价值观编码</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-hex"><span class="nav-number">1.</span> <span class="nav-text">1.hex</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-url%E7%BC%96%E7%A0%81"><span class="nav-number">2.</span> <span class="nav-text">2.url编码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E8%8E%AB%E5%B0%94%E6%96%AF%E7%94%B5%E7%A0%81"><span class="nav-number">3.</span> <span class="nav-text">3.莫尔斯电码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-jsfuck"><span class="nav-number">4.</span> <span class="nav-text">4.jsfuck</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-UUENCODE"><span class="nav-number">5.</span> <span class="nav-text">5.UUENCODE</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-UNICODE"><span class="nav-number">6.</span> <span class="nav-text">6.UNICODE</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-base%E7%BC%96%E7%A0%81"><span class="nav-number"></span> <span class="nav-text">7.base编码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#8-%E4%B8%AD%E6%96%87%E7%94%B5%E7%A0%81"><span class="nav-number">1.</span> <span class="nav-text">8.中文电码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#9-Brainfuck-Ook"><span class="nav-number">2.</span> <span class="nav-text">9.Brainfuck&#x2F;Ook!</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#10-%E4%B8%8E%E4%BD%9B%E8%AE%BA%E7%A6%85"><span class="nav-number">3.</span> <span class="nav-text">10.与佛论禅</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#11-%E7%94%9F%E5%83%BB%E5%AD%97"><span class="nav-number">4.</span> <span class="nav-text">11.生僻字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#12-%E7%A4%BE%E4%BC%9A%E4%B8%BB%E4%B9%89%E6%A0%B8%E5%BF%83%E4%BB%B7%E5%80%BC%E8%A7%82%E7%BC%96%E7%A0%81"><span class="nav-number">5.</span> <span class="nav-text">12.社会主义核心价值观编码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#13-Ascii%E7%A0%81"><span class="nav-number">6.</span> <span class="nav-text">13.Ascii码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#14-shellcode%E7%BC%96%E7%A0%81"><span class="nav-number">7.</span> <span class="nav-text">14.shellcode编码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#15-Quoted-printable%E7%BC%96%E7%A0%81"><span class="nav-number">8.</span> <span class="nav-text">15.Quoted-printable编码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#16-XXencode%E7%BC%96%E7%A0%81"><span class="nav-number">9.</span> <span class="nav-text">16.XXencode编码</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
