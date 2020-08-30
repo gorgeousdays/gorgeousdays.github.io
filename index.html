@@ -177,6 +177,207 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/30/Crypto%E7%AC%94%E8%AE%B0-%E7%A7%BB%E4%BD%8D%E5%AF%86%E7%A0%81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="gorgeousdays">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/30/Crypto%E7%AC%94%E8%AE%B0-%E7%A7%BB%E4%BD%8D%E5%AF%86%E7%A0%81/" class="post-title-link" itemprop="url">Crypto学习笔记(移位密码)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-08-30 12:36:39 / 修改时间：12:38:34" itemprop="dateCreated datePublished" datetime="2020-08-30T12:36:39+08:00">2020-08-30</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Crypto%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">Crypto学习笔记</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="简单移位密码"><a href="#简单移位密码" class="headerlink" title="简单移位密码"></a>简单移位密码</h4><p>密文：lafgea{s_eyay_scyprt}o<br>密钥：3124<br>明文：flag{easy_easy_crypto}<br>解密代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">shift_decrypt</span>(<span class="params">c,k</span>):</span></span><br><span class="line">    l=len(k)</span><br><span class="line">    m=<span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,len(c),l):</span><br><span class="line">        tmp_m=[<span class="string">&quot;&quot;</span>]*l</span><br><span class="line">        <span class="keyword">if</span> i+l&gt;=len(c):</span><br><span class="line">            tmp_c=c[i:]</span><br><span class="line">            use=[]</span><br><span class="line">            <span class="keyword">for</span> kindex <span class="keyword">in</span> range(len(tmp_c)):</span><br><span class="line">                use.append(int(k[kindex])-l)</span><br><span class="line">            use.sort()</span><br><span class="line">            <span class="keyword">for</span> kindex <span class="keyword">in</span> range(len(tmp_c)):</span><br><span class="line">                tmp_m[kindex]=tmp_c[use.index(int(k[kindex])-l)]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            tmp_c=c[i:i+l]</span><br><span class="line">            <span class="keyword">for</span> kindex <span class="keyword">in</span> range(len(tmp_c)):</span><br><span class="line">                tmp_m[kindex]=tmp_c[int(k[kindex])<span class="number">-1</span>]</span><br><span class="line">        m+=<span class="string">&quot;&quot;</span>.join(tmp_m)</span><br><span class="line">    <span class="keyword">return</span> m</span><br><span class="line">c=<span class="string">&quot;lafgea&#123;s_eyay_scyprt&#125;o&quot;</span></span><br><span class="line">k=<span class="string">&quot;3124&quot;</span></span><br><span class="line"><span class="keyword">print</span> shift_decrypt(c,k)</span><br></pre></td></tr></table></figure>
+
+<h4 id="栅栏密码"><a href="#栅栏密码" class="headerlink" title="栅栏密码"></a>栅栏密码</h4><p>特点:把要加密的明文分成N个一组，然后把每组的第1个字连起来，形成一段无规律的话。 不过栅栏密码本身有一个潜规则，就是组成栅栏的字母一般不会太多。（一般不超过30个，也就是一、两句话）</p>
+<p>密文:TEOGSDYUTAENN HLNETAMSHVAED<br>先将密文分为两行<br>T E O G S D Y U T A E N N<br>H L N E T A M S H V A E D<br>再按上下上下的顺序组合成一句话<br>明文:THE LONGEST DAY MUST HAVE AN END</p>
+<p>解码：<a target="_blank" rel="noopener" href="https://www.qqxiuzi.cn/bianma/zhalanmima.php">https://www.qqxiuzi.cn/bianma/zhalanmima.php</a></p>
+<h4 id="曲路密码"><a href="#曲路密码" class="headerlink" title="曲路密码"></a>曲路密码</h4><p>曲路密码（Curve Cipher）是一种换位密码，需要事先双方约定密钥（也就是曲路路径）。下面给出一个例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">明文：The quick brown fox jumps over the lazy dog</span><br></pre></td></tr></table></figure>
+
+<p>填入 5 行 7 列表（事先约定填充的行列数）</p>
+<table>
+<thead>
+<tr>
+<th>T</th>
+<th>h</th>
+<th>e</th>
+<th>q</th>
+<th>u</th>
+<th>i</th>
+<th>c</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>k</td>
+<td>b</td>
+<td>r</td>
+<td>o</td>
+<td>w</td>
+<td>n</td>
+<td>f</td>
+</tr>
+<tr>
+<td>o</td>
+<td>x</td>
+<td>j</td>
+<td>u</td>
+<td>m</td>
+<td>p</td>
+<td>s</td>
+</tr>
+<tr>
+<td>o</td>
+<td>v</td>
+<td>e</td>
+<td>r</td>
+<td>t</td>
+<td>h</td>
+<td>e</td>
+</tr>
+<tr>
+<td>l</td>
+<td>a</td>
+<td>z</td>
+<td>y</td>
+<td>d</td>
+<td>o</td>
+<td>g</td>
+</tr>
+</tbody></table>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">密文：gesfc inpho dtmwu qoury zejre hbxva lookT</span><br></pre></td></tr></table></figure>
+
+<h4 id="列移位密码"><a href="#列移位密码" class="headerlink" title="列移位密码"></a>列移位密码</h4><p>明文 <code>The quick brown fox jumps over the lazy dog</code>，密钥 <code>how are u</code> </p>
+<p>密钥： <code>how are u</code>，按 <code>how are u</code> 在字母表中的出现的先后顺序进行编号，我们就有 a 为 1，e 为 2，h 为 3，o 为 4，r 为 5，u 为 6，w 为 7，所以先写出 a 列，其次 e 列，以此类推写出的结果便是密文：</p>
+<table>
+<thead>
+<tr>
+<th>h</th>
+<th>o</th>
+<th>w</th>
+<th>a</th>
+<th>r</th>
+<th>e</th>
+<th>u</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>3</td>
+<td>4</td>
+<td>7</td>
+<td>1</td>
+<td>5</td>
+<td>2</td>
+<td>6</td>
+</tr>
+<tr>
+<td>T</td>
+<td>h</td>
+<td>e</td>
+<td>q</td>
+<td>u</td>
+<td>i</td>
+<td>c</td>
+</tr>
+<tr>
+<td>k</td>
+<td>b</td>
+<td>r</td>
+<td>o</td>
+<td>w</td>
+<td>n</td>
+<td>f</td>
+</tr>
+<tr>
+<td>o</td>
+<td>x</td>
+<td>j</td>
+<td>u</td>
+<td>m</td>
+<td>p</td>
+<td>s</td>
+</tr>
+<tr>
+<td>o</td>
+<td>v</td>
+<td>e</td>
+<td>r</td>
+<td>t</td>
+<td>h</td>
+<td>e</td>
+</tr>
+<tr>
+<td>l</td>
+<td>a</td>
+<td>z</td>
+<td>y</td>
+<td>d</td>
+<td>o</td>
+<td>g</td>
+</tr>
+</tbody></table>
+<p>密文： <code>qoury inpho Tkool hbxva uwmtd cfseg erjez</code></p>
+<p>解码：<a target="_blank" rel="noopener" href="http://www.practicalcryptography.com/ciphers/classical-era/columnar-transposition/">http://www.practicalcryptography.com/ciphers/classical-era/columnar-transposition/</a> 行列数相等</p>
+<h4 id="云影密码"><a href="#云影密码" class="headerlink" title="云影密码"></a>云影密码</h4><p>特点：只有01248组成</p>
+<p>解密：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">c01248_decode</span>(<span class="params">c</span>):</span></span><br><span class="line">    l=c.split(<span class="string">&quot;0&quot;</span>)</span><br><span class="line">    origin = <span class="string">&#x27;abcdefghijklmnopqrstuvwxyz&#x27;</span></span><br><span class="line">    r = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> l:</span><br><span class="line">        tmp=<span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> num <span class="keyword">in</span> i:</span><br><span class="line">            tmp+=int(num)</span><br><span class="line">        r+=origin[tmp<span class="number">-1</span>]</span><br><span class="line">    <span class="keyword">return</span> r</span><br><span class="line"><span class="keyword">print</span> c01248_decode(<span class="string">&quot;8842101220480224404014224202480122&quot;</span>)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/27/Crypto-%E7%BC%96%E7%A0%81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1122,78 +1323,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/30/Some-problems-in-theme-change/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="gorgeousdays">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/30/Some-problems-in-theme-change/" class="post-title-link" itemprop="url">Some problems in theme change</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-07-30 21:23:11" itemprop="dateCreated datePublished" datetime="2020-07-30T21:23:11+08:00">2020-07-30</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-07-31 06:02:38" itemprop="dateModified" datetime="2020-07-31T06:02:38+08:00">2020-07-31</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>按照官方教程在尝试将主题更改为next时遇到问题</p>
-<p>hexo -s后出现如下情形 出现一堆代码</p>
-<p><img src="/2020/07/30/Some-problems-in-theme-change/1.png"></p>
-<p>经查 发现是next官网的教程github库长期未更新</p>
-<p>于是删除原先下载的next主题（ <a target="_blank" rel="noopener" href="https://github.com/iissnan/hexo-theme-next">https://github.com/iissnan/hexo-theme-next</a> ） </p>
-<p>下载新的next主题（<a target="_blank" rel="noopener" href="https://github.com/theme-next/hexo-theme-next">https://github.com/theme-next/hexo-theme-next</a> ）</p>
-<p>在删除原先的next主题中发现权限不够 参考下文</p>
-<p><strong><a target="_blank" rel="noopener" href="https://blog.csdn.net/grllery/article/details/80636447">https://blog.csdn.net/grllery/article/details/80636447</a></strong></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1265,7 +1394,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
