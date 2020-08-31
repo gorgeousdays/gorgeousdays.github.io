@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>Git笔记</title>
+      <link href="/2020/08/31/Git%E7%AC%94%E8%AE%B0/"/>
+      <url>/2020/08/31/Git%E7%AC%94%E8%AE%B0/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> 杂谈 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Crypto学习笔记(移位密码)</title>
       <link href="/2020/08/30/Crypto%E7%AC%94%E8%AE%B0-%E7%A7%BB%E4%BD%8D%E5%AF%86%E7%A0%81/"/>
       <url>/2020/08/30/Crypto%E7%AC%94%E8%AE%B0-%E7%A7%BB%E4%BD%8D%E5%AF%86%E7%A0%81/</url>
@@ -144,6 +163,12 @@
         <content type="html"><![CDATA[<p> Recently, I thought of a problem I encountered when I first started learning C + + .</p><p>What will happen if  <strong>cout</strong> combine with <strong><em>++</em></strong>  ？</p><p>I tried it and got the follow answer.</p><p><img src="/2020/08/17/A-c-problem/1.png"></p><p>I expected the output is 3455567 .However,this outputwas completely different from what I had expected.</p><p>Maybe this was because the Code editor. </p><p>I replaced the devcpp  with vs.</p><p>But nothing changed.</p><p>Maybe this was due to  Compiler.</p><p>I ran the codes on mac,now get the answer what i needed.  </p><p><img src="/2020/08/17/A-c-problem/2.png"></p><p>And i got the answer.</p><p> In the environment of windows 10 or 7 ,my Compiler was gcc 4.9.2 .and whatever use devc++ or vscode. The answer was same,3455567.</p><p>But,in the environment of Mac ,my Compiler was clang 11.0.3,and vs gave the answer 3455677.</p><p>Maybe the different answer was due to different Compiler.</p><p>But Why? </p><p>I didn’t get some useful message. I hope i can talk about this next time.</p>]]></content>
       
       
+      <categories>
+          
+          <category> 杂谈 </category>
+          
+      </categories>
+      
       
     </entry>
     
@@ -156,6 +181,12 @@
       
         <content type="html"><![CDATA[<p>Sometimes，we made some changes in local environment. But when we push our changes to remote server,nothing happened.</p><p>We have to use</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line"></span><br><span class="line">hexo g</span><br><span class="line"></span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure><p> <strong><em>hexo clean</em></strong> is used to clear cache file（ db.json ）and generated static files (public). </p><p> In some cases, especially after a theme change, you may need  to run the command if you find that your changes to the site are not  taking effect anyway. </p><p>If you meet some problem and you don’t know how to solve it. Just try</p><p><strong><em>hexo clean</em></strong>.</p>]]></content>
       
+      
+      <categories>
+          
+          <category> 杂谈 </category>
+          
+      </categories>
       
       
     </entry>
@@ -189,6 +220,12 @@
         <content type="html"><![CDATA[<p>按照官方教程在尝试将主题更改为next时遇到问题</p><p>hexo -s后出现如下情形 出现一堆代码</p><p><img src="/2020/07/30/Some-problems-in-theme-change/1.png"></p><p>经查 发现是next官网的教程github库长期未更新</p><p>于是删除原先下载的next主题（ <a href="https://github.com/iissnan/hexo-theme-next">https://github.com/iissnan/hexo-theme-next</a> ） </p><p>下载新的next主题（<a href="https://github.com/theme-next/hexo-theme-next">https://github.com/theme-next/hexo-theme-next</a> ）</p><p>在删除原先的next主题中发现权限不够 参考下文</p><p><strong><a href="https://blog.csdn.net/grllery/article/details/80636447">https://blog.csdn.net/grllery/article/details/80636447</a></strong></p>]]></content>
       
       
+      <categories>
+          
+          <category> 杂谈 </category>
+          
+      </categories>
+      
       
     </entry>
     
@@ -201,6 +238,12 @@
       
         <content type="html"><![CDATA[<h3 id="Hello-blog！"><a href="#Hello-blog！" class="headerlink" title="Hello blog！"></a>Hello blog！</h3>]]></content>
       
+      
+      <categories>
+          
+          <category> 杂谈 </category>
+          
+      </categories>
       
       
     </entry>
