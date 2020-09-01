@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>Crypto学习笔记(替换密码-图形替换)</title>
+      <link href="/2020/09/01/Crypto%E7%AC%94%E8%AE%B0-%E6%9B%BF%E6%8D%A2%E5%8A%A0%E5%AF%86-%E5%9B%BE%E5%BD%A2%E6%9B%BF%E6%8D%A2/"/>
+      <url>/2020/09/01/Crypto%E7%AC%94%E8%AE%B0-%E6%9B%BF%E6%8D%A2%E5%8A%A0%E5%AF%86-%E5%9B%BE%E5%BD%A2%E6%9B%BF%E6%8D%A2/</url>
+      
+        <content type="html"><![CDATA[<h4 id="猪圈密码"><a href="#猪圈密码" class="headerlink" title="猪圈密码"></a>猪圈密码</h4><p>特点：</p><p><img src="/2020/09/01/Crypto%E7%AC%94%E8%AE%B0-%E6%9B%BF%E6%8D%A2%E5%8A%A0%E5%AF%86-%E5%9B%BE%E5%BD%A2%E6%9B%BF%E6%8D%A2/1.png"></p><p>各字母对应位置的格子形状，就是对应符号</p><p>密码表:</p><p><img src="/2020/09/01/Crypto%E7%AC%94%E8%AE%B0-%E6%9B%BF%E6%8D%A2%E5%8A%A0%E5%AF%86-%E5%9B%BE%E5%BD%A2%E6%9B%BF%E6%8D%A2/2.png"></p><h5 id="圣党武士密码"><a href="#圣党武士密码" class="headerlink" title="圣党武士密码"></a>圣党武士密码</h5><p>猪圈密码的变种</p><h4 id><a href="#" class="headerlink" title></a><img src="/2020/09/01/Crypto%E7%AC%94%E8%AE%B0-%E6%9B%BF%E6%8D%A2%E5%8A%A0%E5%AF%86-%E5%9B%BE%E5%BD%A2%E6%9B%BF%E6%8D%A2/3.png"></h4><h4 id="夏多密码"><a href="#夏多密码" class="headerlink" title="夏多密码"></a>夏多密码</h4><p>类似指针钟表</p><p>I AM IN DANGER.SEND HELP(我有危险，速来增援)可以加密成</p><p><img src="/2020/09/01/Crypto%E7%AC%94%E8%AE%B0-%E6%9B%BF%E6%8D%A2%E5%8A%A0%E5%AF%86-%E5%9B%BE%E5%BD%A2%E6%9B%BF%E6%8D%A2/4.png"></p><h4 id="标准银河密码"><a href="#标准银河密码" class="headerlink" title="标准银河密码"></a>标准银河密码</h4><p><img src="/2020/09/01/Crypto%E7%AC%94%E8%AE%B0-%E6%9B%BF%E6%8D%A2%E5%8A%A0%E5%AF%86-%E5%9B%BE%E5%BD%A2%E6%9B%BF%E6%8D%A2/5.png"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Crypto学习笔记 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Crypto学习笔记(替换密码)</title>
       <link href="/2020/09/01/%E6%9B%BF%E6%8D%A2%E5%AF%86%E7%A0%81/"/>
       <url>/2020/09/01/%E6%9B%BF%E6%8D%A2%E5%AF%86%E7%A0%81/</url>
