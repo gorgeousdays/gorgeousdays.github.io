@@ -177,6 +177,90 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/02/RSA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="gorgeousdays">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/02/RSA/" class="post-title-link" itemprop="url">Crypto学习笔记(RSA)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-09-02 17:04:41 / 修改时间：17:06:40" itemprop="dateCreated datePublished" datetime="2020-09-02T17:04:41+08:00">2020-09-02</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Crypto%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">Crypto学习笔记</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="加密解密原理"><a href="#加密解密原理" class="headerlink" title="加密解密原理"></a>加密解密原理</h4><p>$$<br>加密 \qquad  c\equiv m^e \mod n \<br>解密 \qquad  m\equiv c^d \mod n<br>$$</p>
+<p>其中$m$为明文，$ c$为密文</p>
+<p>给定公钥KU $(e,n)$ 实现加密</p>
+<p>给定私钥KR $(d,n)$ 实现解密</p>
+<h4 id="加密过程"><a href="#加密过程" class="headerlink" title="加密过程"></a>加密过程</h4><p>1.寻找两个不等的质数$p，q$</p>
+<p>2.$n=pq$</p>
+<p>3.欧拉函数$\phi(n)=(p-1)(q-1)$   表示少于或等于n的数中与n互质的数的数目</p>
+<p>4.确定e     $1&lt;e&lt;\phi(n) $      $e与\phi(n)$互质      即$gcd(e,\phi(n)=1$</p>
+<p>5.确定d     $de \mod \phi(n)=1$    即 $de=k\phi(n)+1,k\ge1$</p>
+<h4 id="解密"><a href="#解密" class="headerlink" title="解密"></a>解密</h4><p>1.已知e，p，q求d</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d = gmpy2.invert(e, (p<span class="number">-1</span>)*(q<span class="number">-1</span>))</span><br></pre></td></tr></table></figure>
+
+<p>2.已知e，d，n求p，q</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random  </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gcd</span>(<span class="params">a, b</span>):</span>  </span><br><span class="line">   <span class="keyword">if</span> a &lt; b:  </span><br><span class="line">     a, b = b, a  </span><br><span class="line">   <span class="keyword">while</span> b != <span class="number">0</span>:  </span><br><span class="line">     temp = a % b  </span><br><span class="line">     a = b  </span><br><span class="line">     b = temp  </span><br><span class="line">   <span class="keyword">return</span> a  </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getpq</span>(<span class="params">n,e,d</span>):</span>  </span><br><span class="line">    p = <span class="number">1</span>  </span><br><span class="line">    q = <span class="number">1</span>  </span><br><span class="line">    <span class="keyword">while</span> p==<span class="number">1</span> <span class="keyword">and</span> q==<span class="number">1</span>:  </span><br><span class="line">        k = d * e - <span class="number">1</span>  </span><br><span class="line">        g = random.randint ( <span class="number">0</span> , n )  </span><br><span class="line">        <span class="keyword">while</span> p==<span class="number">1</span> <span class="keyword">and</span> q==<span class="number">1</span> <span class="keyword">and</span> k % <span class="number">2</span> == <span class="number">0</span>:  </span><br><span class="line">            k /= <span class="number">2</span>  </span><br><span class="line">            y = pow(g,k,n)  </span><br><span class="line">            <span class="keyword">if</span> y!=<span class="number">1</span> <span class="keyword">and</span> gcd(y<span class="number">-1</span>,n)&gt;<span class="number">1</span>:  </span><br><span class="line">                p = gcd(y<span class="number">-1</span>,n)  </span><br><span class="line">                q = n/p  </span><br><span class="line">    <span class="keyword">return</span> p,q  </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span>  </span><br><span class="line"> </span><br><span class="line">    n = <span class="number">0xa66791dc6988168de7ab77419bb7fb0c001c62710270075142942e19a8d8c51d053b3e3782a1de5dc5af4ebe99468170114a1dfe67cdc9a9af55d655620bbab</span>  </span><br><span class="line">    e =  <span class="number">0x10001</span></span><br><span class="line">    d =  <span class="number">0x123c5b61ba36edb1d3679904199a89ea80c09b9122e1400c09adcf7784676d01d23356a7d44d6bd8bd50e94bfc723fa87d8862b75177691c11d757692df8881</span></span><br><span class="line"></span><br><span class="line">    p,q = getpq(n,e,d)  </span><br><span class="line">    <span class="keyword">print</span> <span class="string">&quot;p: &quot;</span>+hex(p)</span><br><span class="line">    <span class="keyword">print</span> <span class="string">&quot;q: &quot;</span>+hex(q)  </span><br><span class="line">  </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:  </span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+
+<p>在线分解n为p，q</p>
+<p><a target="_blank" rel="noopener" href="http://www.factordb.com/index.php">http://www.factordb.com/index.php</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/01/Crypto%E7%AC%94%E8%AE%B0-%E6%9B%BF%E6%8D%A2%E5%8A%A0%E5%AF%86-%E5%9B%BE%E5%BD%A2%E6%9B%BF%E6%8D%A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1051,151 +1135,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/23/LaTeX%E5%9F%BA%E7%A1%80/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="gorgeousdays">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/23/LaTeX%E5%9F%BA%E7%A1%80/" class="post-title-link" itemprop="url">LaTeX基础</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-08-23 10:57:32" itemprop="dateCreated datePublished" datetime="2020-08-23T10:57:32+08:00">2020-08-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-25 23:30:32" itemprop="dateModified" datetime="2020-08-25T23:30:32+08:00">2020-08-25</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LaTeX%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">LaTeX学习笔记</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="1-LATEX相关文件扩展名与描述"><a href="#1-LATEX相关文件扩展名与描述" class="headerlink" title="1.LATEX相关文件扩展名与描述"></a>1.LATEX相关文件扩展名与描述</h4><table>
-<thead>
-<tr>
-<th>扩展名</th>
-<th align="left">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>.tex</code></td>
-<td align="left">TeX 源文档</td>
-</tr>
-<tr>
-<td><code>.sty</code></td>
-<td align="left">LaTeX 样式文件，使用 <code>\usepackage</code> 命令导入</td>
-</tr>
-<tr>
-<td><code>.dtx</code></td>
-<td align="left">Documented TeX。LaTeX <code>sty</code> 文档的分发形式</td>
-</tr>
-<tr>
-<td><code>.ins</code></td>
-<td align="left"><code>.dtx</code> 的安装文件，<code>latex foo.ins</code> 会生成所需的 sty 文档和帮助手册</td>
-</tr>
-<tr>
-<td><code>.cls</code></td>
-<td align="left">类文档，使用 <code>\documentclass</code> 命令导入</td>
-</tr>
-<tr>
-<td><code>.fd</code></td>
-<td align="left">字体描述文档</td>
-</tr>
-<tr>
-<td><code>.dvi</code></td>
-<td align="left">设备无关文件 <code>latex</code> 编译产生</td>
-</tr>
-<tr>
-<td><code>.pdf</code></td>
-<td align="left">pdf 文档</td>
-</tr>
-<tr>
-<td><code>.log</code></td>
-<td align="left">编译日志</td>
-</tr>
-<tr>
-<td><code>.toc</code></td>
-<td align="left">存放章节名称，在下一次编译时读入以产生目录</td>
-</tr>
-<tr>
-<td><code>.lof</code></td>
-<td align="left">类似于 <code>.toc</code> 产生插图目录</td>
-</tr>
-<tr>
-<td><code>.lot</code></td>
-<td align="left">产生表格目录</td>
-</tr>
-<tr>
-<td><code>.aux</code></td>
-<td align="left">存放各种标签引用信息，下次编译时读入以产生交叉参考</td>
-</tr>
-<tr>
-<td><code>.idx</code></td>
-<td align="left">存放索引词，用 <code>makeindex</code> 处理</td>
-</tr>
-<tr>
-<td><code>.ind</code></td>
-<td align="left">处理过的 <code>.idx </code>文档，下次编译时读入以产生索引</td>
-</tr>
-<tr>
-<td><code>.ilg</code></td>
-<td align="left"><code>makeindex</code> 的日志</td>
-</tr>
-</tbody></table>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1267,7 +1206,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
