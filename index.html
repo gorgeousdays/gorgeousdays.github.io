@@ -177,6 +177,118 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/08/lingo%E7%AC%94%E8%AE%B0-%E9%9B%86%E3%80%81%E6%95%B0%E6%8D%AE%E3%80%81%E5%88%9D%E5%A7%8B%E9%83%A8%E5%88%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="gorgeousdays">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/08/lingo%E7%AC%94%E8%AE%B0-%E9%9B%86%E3%80%81%E6%95%B0%E6%8D%AE%E3%80%81%E5%88%9D%E5%A7%8B%E9%83%A8%E5%88%86/" class="post-title-link" itemprop="url">lingo笔记-集、数据、初始部分</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-09-08 22:34:23 / 修改时间：22:37:08" itemprop="dateCreated datePublished" datetime="2020-09-08T22:34:23+08:00">2020-09-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Lingo/" itemprop="url" rel="index"><span itemprop="name">Lingo</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="1-集部分"><a href="#1-集部分" class="headerlink" title="1.集部分"></a>1.集部分</h4><h5 id="1-1-集的概念"><a href="#1-1-集的概念" class="headerlink" title="1.1 集的概念"></a>1.1 集的概念</h5><p><strong>集</strong>：由相联系的对象聚合而成，近似与其它语言中类的概念。Lingo包括两种类型的集：原始集(primitive set)和派生集(derived set)。</p>
+<p><strong>对象</strong>：集的成员。</p>
+<p><strong>属性</strong>：每个集成员之间一个或多个与之关联的特征。</p>
+<p>原始集:由一些最基本的对象组成的。</p>
+<p>派生集:用一个或多个其它集来定义的，也就是说，它的成员来自于其它已存在的集。</p>
+<h5 id="1-2-原始集的定义"><a href="#1-2-原始集的定义" class="headerlink" title="1.2 原始集的定义"></a>1.2 原始集的定义</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义原始集</span></span><br><span class="line">setname[/member_list/][:attribute_list]; <span class="comment">//[]表示内容可选</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//例子: </span></span><br><span class="line"><span class="comment">//使用集前需有集定义，一关键词“sets:”开始，“endsets”结束</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//1.显式罗列</span></span><br><span class="line">sets:</span><br><span class="line">students/John Jill, Rose Mike/: sex, age;</span><br><span class="line">endsets</span><br><span class="line">    </span><br><span class="line"><span class="comment">//2.隐式罗列 </span></span><br><span class="line">     <span class="comment">//格式</span></span><br><span class="line">     setname/member1..memberN/[: attribute_list];</span><br><span class="line">     <span class="comment">//例子</span></span><br><span class="line">     <span class="number">1.</span>Oct...JAN 生成各月</span><br><span class="line">     <span class="number">2.1</span>..<span class="number">.5</span> 生成<span class="number">1</span>到<span class="number">5</span></span><br><span class="line">     <span class="number">3.</span>car1...car10</span><br></pre></td></tr></table></figure>
+<h5 id="1-3-派生集的定义"><a href="#1-3-派生集的定义" class="headerlink" title="1.3 派生集的定义"></a>1.3 派生集的定义</h5><p><strong>稠密集</strong>：成员由父集成员所有的组合构成的派生集。为父集的笛卡尔积。</p>
+<p><strong>稀疏集</strong>：为父集成员所有组合构成的集合的一个子集的派生集。为父集笛卡尔积的子集，即稠密集的子集。可以通过<strong>显式罗列</strong>或者<strong>设置成员资格过滤器</strong>来生成。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义派生集</span></span><br><span class="line">setname(parent_set_list)[/member_list/][:attribute_list];</span><br><span class="line"></span><br><span class="line"><span class="comment">//例子:稠密集的生成</span></span><br><span class="line">sets:</span><br><span class="line">product/A B/;</span><br><span class="line">  machine/M N/;</span><br><span class="line">  week/<span class="number">1.</span><span class="number">.2</span>/;</span><br><span class="line">  allowed(product,machine,week):x; <span class="comment">//将会生成了三个父集的所有组合共八组作为 allowed 集的成员</span></span><br><span class="line">endsets   </span><br><span class="line">    </span><br><span class="line"><span class="comment">//稀疏集的生成 显式罗列   当集合元素过多时难以操作</span></span><br><span class="line">  allowed(product,machine,week)/A M <span class="number">1</span>,A N <span class="number">2</span>,B N <span class="number">1</span>/;</span><br><span class="line"></span><br><span class="line"><span class="comment">//稀疏集的生成 过滤器 竖线(|)为过滤器的判断开始  #eq#，#and#为逻辑运算符</span></span><br><span class="line"></span><br><span class="line">sets: </span><br><span class="line">  <span class="comment">//学生集：性别属性 sex，1 表示男性，0 表示女性；年龄属性 age. ;</span></span><br><span class="line">  students/John,Jill,Rose,Mike/:sex,age;</span><br><span class="line">  <span class="comment">//男学生和女学生的联系集：友好程度属性 friend，[0，1]之间的数。 ;</span></span><br><span class="line">  linkmf(students,students)|sex(&amp;<span class="number">1</span>) <span class="meta">#eq# 1 #and# sex(&amp;2) #eq# 0: friend;</span></span><br><span class="line">  <span class="comment">//男学生和女学生的友好程度大于 0.5 的集;</span></span><br><span class="line">  linkmf2(linkmf) | <span class="keyword">friend</span>(&amp;<span class="number">1</span>,&amp;<span class="number">2</span>) <span class="meta">#ge# 0.5 : x;</span></span><br><span class="line">endsets</span><br><span class="line">data: sex,age = <span class="number">1</span> <span class="number">16</span></span><br><span class="line">                <span class="number">0</span> <span class="number">14</span></span><br><span class="line">                <span class="number">0</span> <span class="number">17</span></span><br><span class="line">                <span class="number">0</span> <span class="number">13</span>;</span><br><span class="line"><span class="keyword">friend</span> = <span class="number">0.3</span> <span class="number">0.5</span> <span class="number">0.6</span>;</span><br><span class="line">enddata</span><br></pre></td></tr></table></figure>
+<h5 id="1-4-集与c中结构体的对比"><a href="#1-4-集与c中结构体的对比" class="headerlink" title="1.4 集与c中结构体的对比"></a>1.4 集与c中结构体的对比</h5><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>集</th>
+<th>结构体</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>setname</td>
+<td>结构体标签</td>
+</tr>
+<tr>
+<td>member_list</td>
+<td>结构体实例</td>
+</tr>
+<tr>
+<td>attribute_list</td>
+<td>结构体中变量定义</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h5 id="1-5-关于集的关系图"><a href="#1-5-关于集的关系图" class="headerlink" title="1.5 关于集的关系图"></a>1.5 关于集的关系图</h5><p><img src="/2020/09/08/lingo%E7%AC%94%E8%AE%B0-%E9%9B%86%E3%80%81%E6%95%B0%E6%8D%AE%E3%80%81%E5%88%9D%E5%A7%8B%E9%83%A8%E5%88%86/集.png" alt></p>
+<h4 id="2-数据部分"><a href="#2-数据部分" class="headerlink" title="2.数据部分"></a>2.数据部分</h4><h5 id="2-1-基本语法："><a href="#2-1-基本语法：" class="headerlink" title="2.1 基本语法："></a>2.1 基本语法：</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">object_list = value_list;  </span><br></pre></td></tr></table></figure>
+<p>对象列(object_list):包含要指定值的属性名、要设置集成员的集名，用逗号或空格隔开。一个对象列中至多有一个集名，而属性名可以有任意多。如果对象列中有多个属性名，那么它们的类型必须一致。如果对象列中有一个集名，那么对象列中所有的属性的类型就是这个集。</p>
+<p>数值列(value_list):给定对应对象列对象的值，用逗号或空格分隔，属性值必须等于集成员个数。</p>
+<h5 id="2-2-数据说明"><a href="#2-2-数据说明" class="headerlink" title="2.2 数据说明"></a>2.2 数据说明</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">sets:</span><br><span class="line">  set1/A,B,C/: X,Y;</span><br><span class="line">endsets</span><br><span class="line">data:</span><br><span class="line">  X=<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>;</span><br><span class="line">  Y=<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>;</span><br><span class="line">enddata</span><br><span class="line">    </span><br><span class="line"><span class="comment">//复合数据声明，作用效果同上</span></span><br><span class="line">sets:</span><br><span class="line">  set1/A,B,C/: X,Y;</span><br><span class="line">endsets</span><br><span class="line">data:</span><br><span class="line">  X,Y=<span class="number">1</span> <span class="number">4</span></span><br><span class="line">      <span class="number">2</span> <span class="number">5</span></span><br><span class="line">      <span class="number">3</span> <span class="number">6</span>;</span><br><span class="line">enddata</span><br></pre></td></tr></table></figure>
+<h5 id="2-3-数据部分值的设定"><a href="#2-3-数据部分值的设定" class="headerlink" title="2.3 数据部分值的设定"></a>2.3 数据部分值的设定</h5><p>参数:即一个在数据部分确定的标量变量。</p>
+<p>实时数据处理:有些数据在模型中值未定，需要在运行时输入，用 ? 表示值</p>
+<p>设定集中所有成员的属性为同一数组</p>
+<p>未知数值的设定:在求解时需要某些成员值为未知,采用设定未知值的方法,以相连逗号表示，逗号间可有空格</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//参数:</span></span><br><span class="line">data:</span><br><span class="line">  interest_rate = <span class="number">.085</span>;</span><br><span class="line">enddata</span><br><span class="line"><span class="comment">//可同时指定多个参数</span></span><br><span class="line">data:</span><br><span class="line">  interest_rate,inflation_rate = <span class="number">.085</span> <span class="number">.03</span>;</span><br><span class="line">enddata</span><br><span class="line"></span><br><span class="line"><span class="comment">//实时数据处理 在每一次求解模型时，Lingo会弹出对话框填入参数</span></span><br><span class="line">data:</span><br><span class="line">    interest_rate,inflation_rate = <span class="number">.085</span> ?;</span><br><span class="line">enddata</span><br><span class="line">    </span><br><span class="line"><span class="comment">//设定集中所有成员的属性</span></span><br><span class="line">sets:</span><br><span class="line">  days /MO,TU,WE,TH,FR,SA,SU/:needs,cost;</span><br><span class="line">endsets</span><br><span class="line">data:</span><br><span class="line">  needs cost= <span class="number">20</span> <span class="number">100</span>;  <span class="comment">//这将设定days集中MO,TU等全部成员的need属性为20，cost属性为100</span></span><br><span class="line">enddata</span><br><span class="line">    </span><br><span class="line"><span class="comment">//未知值的设定</span></span><br><span class="line">sets:</span><br><span class="line">  years/<span class="number">1.</span><span class="number">.5</span>/: capacity;</span><br><span class="line">endsets</span><br><span class="line">data:</span><br><span class="line">  capacity = ,<span class="number">34</span>,<span class="number">20</span>,,;</span><br><span class="line">enddata</span><br></pre></td></tr></table></figure>
+<h4 id="3-初始部分"><a href="#3-初始部分" class="headerlink" title="3.初始部分"></a>3.初始部分</h4><p>初始部分输入的值仅被作为Lingo求解过程中的初始点来用，只对非线性模型有用</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">init:</span><br><span class="line">  X, Y = <span class="number">0</span>, <span class="number">.1</span>;</span><br><span class="line">endinit</span><br><span class="line">Y=@<span class="built_in">log</span>(X);</span><br><span class="line">X^<span class="number">2</span>+Y^<span class="number">2</span>&lt;=<span class="number">1</span>;  <span class="comment">//求解该问题时，好的初始点会减小模型的求解时间</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/04/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -200,9 +312,24 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-09-04 21:54:58 / 修改时间：22:06:01" itemprop="dateCreated datePublished" datetime="2020-09-04T21:54:58+08:00">2020-09-04</time>
+              <time title="创建时间：2020-09-04 21:54:58" itemprop="dateCreated datePublished" datetime="2020-09-04T21:54:58+08:00">2020-09-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-08 22:35:38" itemprop="dateModified" datetime="2020-09-08T22:35:38+08:00">2020-09-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
             </span>
 
           
@@ -1064,77 +1191,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/26/LaTeX%E8%BE%93%E5%87%BA%E5%9B%BE%E8%A1%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="gorgeousdays">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/26/LaTeX%E8%BE%93%E5%87%BA%E5%9B%BE%E8%A1%A8/" class="post-title-link" itemprop="url">LaTeX输出图表</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-08-26 00:29:57 / 修改时间：00:32:44" itemprop="dateCreated datePublished" datetime="2020-08-26T00:29:57+08:00">2020-08-26</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LaTeX%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">LaTeX学习笔记</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="1-输出图片"><a href="#1-输出图片" class="headerlink" title="1.输出图片"></a>1.输出图片</h4><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%单张图片的输出</span></span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;figure&#125;</span><span class="string">[H]</span></span>  <span class="comment">%  H代图片就在当前位置 在某些情况下由于一页已经排不下，图片会自动调到其他地方，加上该参数可以避免</span></span><br><span class="line"><span class="tag">\<span class="name">centering</span></span>  <span class="comment">%  表示图片居中</span></span><br><span class="line"><span class="tag">\<span class="name">includegraphics</span><span class="string">[width=5in]</span><span class="string">&#123;1.png&#125;</span></span>  <span class="comment">% 图片宽度 可以用height参数控制高度  1.png表示图片位置，将图片至于figures文件夹下</span></span><br><span class="line"><span class="tag">\<span class="name">caption</span><span class="string">&#123;问题二流程图&#125;</span></span>  <span class="comment">%图片名称</span></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;figure&#125;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">%多张图片的输出(两张图片并排)</span></span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;figure&#125;</span><span class="string">[H]</span></span></span><br><span class="line">    <span class="tag">\<span class="name">begin</span><span class="string">&#123;minipage&#125;</span><span class="string">[t]</span><span class="string">&#123;0.5\linewidth&#125;</span></span></span><br><span class="line">        <span class="tag">\<span class="name">centering</span></span></span><br><span class="line">        <span class="tag">\<span class="name">includegraphics</span><span class="string">[width=3in]</span><span class="string">&#123;4.png&#125;</span></span></span><br><span class="line">        <span class="tag">\<span class="name">label</span><span class="string">&#123;fig:side:a&#125;</span></span> <span class="comment">%控制图片位置</span></span><br><span class="line">         <span class="comment">% \caption&#123;fig2&#125;为两张图分别加标题图片</span></span><br><span class="line">    <span class="tag">\<span class="name">end</span><span class="string">&#123;minipage&#125;</span></span><span class="comment">%</span></span><br><span class="line">    <span class="tag">\<span class="name">begin</span><span class="string">&#123;minipage&#125;</span><span class="string">[t]</span><span class="string">&#123;0.5\linewidth&#125;</span></span></span><br><span class="line">        <span class="tag">\<span class="name">centering</span></span></span><br><span class="line">        <span class="tag">\<span class="name">includegraphics</span><span class="string">[width=3in]</span><span class="string">&#123;5.png&#125;</span></span></span><br><span class="line">        <span class="tag">\<span class="name">label</span><span class="string">&#123;fig:side:b&#125;</span></span></span><br><span class="line">        <span class="comment">% \caption&#123;fig2&#125;为两张图分别加标题图片</span></span><br><span class="line">    <span class="tag">\<span class="name">end</span><span class="string">&#123;minipage&#125;</span></span><span class="comment">%</span></span><br><span class="line">    <span class="tag">\<span class="name">caption</span><span class="string">&#123;$\theta$角与$A_i$角关系示意图&#125;</span></span> <span class="comment">%两张图片共享一个题目</span></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;figure&#125;</span></span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h4 id="2-输出表格"><a href="#2-输出表格" class="headerlink" title="2.输出表格"></a>2.输出表格</h4><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% array用法  \hline表示水平线，而竖线可以使用|来表示</span></span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;array&#125;</span><span class="string">&#123;|c|c|&#125;</span></span> <span class="comment">%表示表格的宽度为2个字符</span></span><br><span class="line">        <span class="tag">\<span class="name">hline</span></span> </span><br><span class="line">        0 &amp; 1 <span class="tag">\<span class="name">\</span></span><span class="tag">\<span class="name">\</span></span><span class="tag">\<span class="name">hline</span></span></span><br><span class="line">        1 &amp; 0 <span class="tag">\<span class="name">\</span></span><span class="tag">\<span class="name">\</span></span><span class="tag">\<span class="name">hline</span></span></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;array&#125;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">% \quad和\hspace&#123;&#125;都是表示空格，但是空的个数不同</span></span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;array&#125;</span><span class="string">&#123;cc&#125;</span></span></span><br><span class="line">        (A)<span class="tag">\<span class="name">quad</span></span> 4 &amp; <span class="tag">\<span class="name">hspace</span><span class="string">&#123;4cm&#125;</span></span>(B)<span class="tag">\<span class="name">quad</span></span> 3<span class="tag">\<span class="name">\</span></span><span class="tag">\<span class="name">\</span></span></span><br><span class="line">        (B)<span class="tag">\<span class="name">quad</span></span> 2 &amp; <span class="tag">\<span class="name">hspace</span><span class="string">&#123;4cm&#125;</span></span>(D)<span class="tag">\<span class="name">quad</span></span> 1</span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;array&#125;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">%table用法</span></span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;table&#125;</span><span class="string">[htbp]</span></span></span><br><span class="line">    <span class="tag">\<span class="name">centering</span></span>  <span class="comment">% 显示位置为中间</span></span><br><span class="line">    <span class="tag">\<span class="name">caption</span><span class="string">&#123;standard table&#125;</span></span>  <span class="comment">% 表格标题</span></span><br><span class="line">    <span class="tag">\<span class="name">label</span><span class="string">&#123;table1&#125;</span></span>  <span class="comment">% 用于索引表格的标签</span></span><br><span class="line">    <span class="comment">%字母的个数对应列数，|代表分割线</span></span><br><span class="line">    <span class="comment">% l代表左对齐，c代表居中，r代表右对齐</span></span><br><span class="line">    <span class="tag">\<span class="name">begin</span><span class="string">&#123;tabular&#125;</span><span class="string">&#123;cccc&#125;</span></span>  </span><br><span class="line">        <span class="tag">\<span class="name">hline</span></span>  <span class="comment">% 表格的横线</span></span><br><span class="line">        &amp; &amp; &amp; <span class="tag">\<span class="name">\</span><span class="string">[-6pt]</span></span>  <span class="comment">%可以避免文字偏上 调整文字与上边界的距离</span></span><br><span class="line">        1&amp;2&amp;3&amp;4 <span class="tag">\<span class="name">\</span></span>  <span class="comment">% 表格中的内容，用&amp;分开，\\表示下一行</span></span><br><span class="line">        <span class="tag">\<span class="name">hline</span></span></span><br><span class="line">        &amp; &amp; &amp; <span class="tag">\<span class="name">\</span><span class="string">[-6pt]</span></span>  <span class="comment">%可以避免文字偏上 </span></span><br><span class="line">        0.1&amp;0.2&amp;0.3&amp;0.4 <span class="tag">\<span class="name">\</span></span></span><br><span class="line">        <span class="tag">\<span class="name">hline</span></span></span><br><span class="line">    <span class="tag">\<span class="name">end</span><span class="string">&#123;tabular&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;table&#125;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">%输出三线表格</span></span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;table&#125;</span><span class="string">[!htbp]</span></span></span><br><span class="line">  <span class="tag">\<span class="name">caption</span><span class="string">[标签名]</span><span class="string">&#123;中文标题&#125;</span></span></span><br><span class="line">  <span class="tag">\<span class="name">begin</span><span class="string">&#123;tabular&#125;</span><span class="string">&#123;cc...c&#125;</span></span></span><br><span class="line">    <span class="tag">\<span class="name">toprule</span><span class="string">[1.5pt]</span></span></span><br><span class="line">    表头第1个格 &amp; 表头第2个格 &amp; ... &amp; 表头第n个格 <span class="tag">\<span class="name">\</span></span></span><br><span class="line">    <span class="tag">\<span class="name">midrule</span><span class="string">[1pt]</span></span></span><br><span class="line">    表中数据(1,1) &amp; 表中数据(1,2) &amp; ... &amp; 表中数据(1,n)<span class="tag">\<span class="name">\</span></span></span><br><span class="line">    表中数据(2,1) &amp; 表中数据(2,2) &amp; ... &amp; 表中数据(2,n)<span class="tag">\<span class="name">\</span></span></span><br><span class="line">    ...................................................<span class="tag">\<span class="name">\</span></span></span><br><span class="line">    表中数据(m,1) &amp; 表中数据(m,2) &amp; ... &amp; 表中数据(m,n)<span class="tag">\<span class="name">\</span></span></span><br><span class="line">    <span class="tag">\<span class="name">bottomrule</span><span class="string">[1.5pt]</span></span></span><br><span class="line">  <span class="tag">\<span class="name">end</span><span class="string">&#123;tabular&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;table&#125;</span></span></span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1206,14 +1262,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">18</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
