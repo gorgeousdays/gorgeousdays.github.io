@@ -200,17 +200,23 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-08-26 00:29:57 / 修改时间：00:32:44" itemprop="dateCreated datePublished" datetime="2020-08-26T00:29:57+08:00">2020-08-26</time>
+              <time title="创建时间：2020-08-26 00:29:57" itemprop="dateCreated datePublished" datetime="2020-08-26T00:29:57+08:00">2020-08-26</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-08 22:41:04" itemprop="dateModified" datetime="2020-09-08T22:41:04+08:00">2020-09-08</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LaTeX%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">LaTeX学习笔记</span></a>
+                  <a href="/categories/LaTeX/" itemprop="url" rel="index"><span itemprop="name">LaTeX</span></a>
                 </span>
             </span>
 
@@ -226,9 +232,7 @@
 
       
           <h4 id="1-输出图片"><a href="#1-输出图片" class="headerlink" title="1.输出图片"></a>1.输出图片</h4><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%单张图片的输出</span></span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;figure&#125;</span><span class="string">[H]</span></span>  <span class="comment">%  H代图片就在当前位置 在某些情况下由于一页已经排不下，图片会自动调到其他地方，加上该参数可以避免</span></span><br><span class="line"><span class="tag">\<span class="name">centering</span></span>  <span class="comment">%  表示图片居中</span></span><br><span class="line"><span class="tag">\<span class="name">includegraphics</span><span class="string">[width=5in]</span><span class="string">&#123;1.png&#125;</span></span>  <span class="comment">% 图片宽度 可以用height参数控制高度  1.png表示图片位置，将图片至于figures文件夹下</span></span><br><span class="line"><span class="tag">\<span class="name">caption</span><span class="string">&#123;问题二流程图&#125;</span></span>  <span class="comment">%图片名称</span></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;figure&#125;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">%多张图片的输出(两张图片并排)</span></span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;figure&#125;</span><span class="string">[H]</span></span></span><br><span class="line">    <span class="tag">\<span class="name">begin</span><span class="string">&#123;minipage&#125;</span><span class="string">[t]</span><span class="string">&#123;0.5\linewidth&#125;</span></span></span><br><span class="line">        <span class="tag">\<span class="name">centering</span></span></span><br><span class="line">        <span class="tag">\<span class="name">includegraphics</span><span class="string">[width=3in]</span><span class="string">&#123;4.png&#125;</span></span></span><br><span class="line">        <span class="tag">\<span class="name">label</span><span class="string">&#123;fig:side:a&#125;</span></span> <span class="comment">%控制图片位置</span></span><br><span class="line">         <span class="comment">% \caption&#123;fig2&#125;为两张图分别加标题图片</span></span><br><span class="line">    <span class="tag">\<span class="name">end</span><span class="string">&#123;minipage&#125;</span></span><span class="comment">%</span></span><br><span class="line">    <span class="tag">\<span class="name">begin</span><span class="string">&#123;minipage&#125;</span><span class="string">[t]</span><span class="string">&#123;0.5\linewidth&#125;</span></span></span><br><span class="line">        <span class="tag">\<span class="name">centering</span></span></span><br><span class="line">        <span class="tag">\<span class="name">includegraphics</span><span class="string">[width=3in]</span><span class="string">&#123;5.png&#125;</span></span></span><br><span class="line">        <span class="tag">\<span class="name">label</span><span class="string">&#123;fig:side:b&#125;</span></span></span><br><span class="line">        <span class="comment">% \caption&#123;fig2&#125;为两张图分别加标题图片</span></span><br><span class="line">    <span class="tag">\<span class="name">end</span><span class="string">&#123;minipage&#125;</span></span><span class="comment">%</span></span><br><span class="line">    <span class="tag">\<span class="name">caption</span><span class="string">&#123;$\theta$角与$A_i$角关系示意图&#125;</span></span> <span class="comment">%两张图片共享一个题目</span></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;figure&#125;</span></span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
 <h4 id="2-输出表格"><a href="#2-输出表格" class="headerlink" title="2.输出表格"></a>2.输出表格</h4><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% array用法  \hline表示水平线，而竖线可以使用|来表示</span></span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;array&#125;</span><span class="string">&#123;|c|c|&#125;</span></span> <span class="comment">%表示表格的宽度为2个字符</span></span><br><span class="line">        <span class="tag">\<span class="name">hline</span></span> </span><br><span class="line">        0 &amp; 1 <span class="tag">\<span class="name">\</span></span><span class="tag">\<span class="name">\</span></span><span class="tag">\<span class="name">hline</span></span></span><br><span class="line">        1 &amp; 0 <span class="tag">\<span class="name">\</span></span><span class="tag">\<span class="name">\</span></span><span class="tag">\<span class="name">hline</span></span></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;array&#125;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">% \quad和\hspace&#123;&#125;都是表示空格，但是空的个数不同</span></span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;array&#125;</span><span class="string">&#123;cc&#125;</span></span></span><br><span class="line">        (A)<span class="tag">\<span class="name">quad</span></span> 4 &amp; <span class="tag">\<span class="name">hspace</span><span class="string">&#123;4cm&#125;</span></span>(B)<span class="tag">\<span class="name">quad</span></span> 3<span class="tag">\<span class="name">\</span></span><span class="tag">\<span class="name">\</span></span></span><br><span class="line">        (B)<span class="tag">\<span class="name">quad</span></span> 2 &amp; <span class="tag">\<span class="name">hspace</span><span class="string">&#123;4cm&#125;</span></span>(D)<span class="tag">\<span class="name">quad</span></span> 1</span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;array&#125;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">%table用法</span></span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;table&#125;</span><span class="string">[htbp]</span></span></span><br><span class="line">    <span class="tag">\<span class="name">centering</span></span>  <span class="comment">% 显示位置为中间</span></span><br><span class="line">    <span class="tag">\<span class="name">caption</span><span class="string">&#123;standard table&#125;</span></span>  <span class="comment">% 表格标题</span></span><br><span class="line">    <span class="tag">\<span class="name">label</span><span class="string">&#123;table1&#125;</span></span>  <span class="comment">% 用于索引表格的标签</span></span><br><span class="line">    <span class="comment">%字母的个数对应列数，|代表分割线</span></span><br><span class="line">    <span class="comment">% l代表左对齐，c代表居中，r代表右对齐</span></span><br><span class="line">    <span class="tag">\<span class="name">begin</span><span class="string">&#123;tabular&#125;</span><span class="string">&#123;cccc&#125;</span></span>  </span><br><span class="line">        <span class="tag">\<span class="name">hline</span></span>  <span class="comment">% 表格的横线</span></span><br><span class="line">        &amp; &amp; &amp; <span class="tag">\<span class="name">\</span><span class="string">[-6pt]</span></span>  <span class="comment">%可以避免文字偏上 调整文字与上边界的距离</span></span><br><span class="line">        1&amp;2&amp;3&amp;4 <span class="tag">\<span class="name">\</span></span>  <span class="comment">% 表格中的内容，用&amp;分开，\\表示下一行</span></span><br><span class="line">        <span class="tag">\<span class="name">hline</span></span></span><br><span class="line">        &amp; &amp; &amp; <span class="tag">\<span class="name">\</span><span class="string">[-6pt]</span></span>  <span class="comment">%可以避免文字偏上 </span></span><br><span class="line">        0.1&amp;0.2&amp;0.3&amp;0.4 <span class="tag">\<span class="name">\</span></span></span><br><span class="line">        <span class="tag">\<span class="name">hline</span></span></span><br><span class="line">    <span class="tag">\<span class="name">end</span><span class="string">&#123;tabular&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;table&#125;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">%输出三线表格</span></span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;table&#125;</span><span class="string">[!htbp]</span></span></span><br><span class="line">  <span class="tag">\<span class="name">caption</span><span class="string">[标签名]</span><span class="string">&#123;中文标题&#125;</span></span></span><br><span class="line">  <span class="tag">\<span class="name">begin</span><span class="string">&#123;tabular&#125;</span><span class="string">&#123;cc...c&#125;</span></span></span><br><span class="line">    <span class="tag">\<span class="name">toprule</span><span class="string">[1.5pt]</span></span></span><br><span class="line">    表头第1个格 &amp; 表头第2个格 &amp; ... &amp; 表头第n个格 <span class="tag">\<span class="name">\</span></span></span><br><span class="line">    <span class="tag">\<span class="name">midrule</span><span class="string">[1pt]</span></span></span><br><span class="line">    表中数据(1,1) &amp; 表中数据(1,2) &amp; ... &amp; 表中数据(1,n)<span class="tag">\<span class="name">\</span></span></span><br><span class="line">    表中数据(2,1) &amp; 表中数据(2,2) &amp; ... &amp; 表中数据(2,n)<span class="tag">\<span class="name">\</span></span></span><br><span class="line">    ...................................................<span class="tag">\<span class="name">\</span></span></span><br><span class="line">    表中数据(m,1) &amp; 表中数据(m,2) &amp; ... &amp; 表中数据(m,n)<span class="tag">\<span class="name">\</span></span></span><br><span class="line">    <span class="tag">\<span class="name">bottomrule</span><span class="string">[1.5pt]</span></span></span><br><span class="line">  <span class="tag">\<span class="name">end</span><span class="string">&#123;tabular&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;table&#125;</span></span></span><br></pre></td></tr></table></figure>
-
 
       
     </div>
@@ -279,7 +283,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-26 00:27:22" itemprop="dateModified" datetime="2020-08-26T00:27:22+08:00">2020-08-26</time>
+                <time title="修改时间：2020-09-08 22:41:01" itemprop="dateModified" datetime="2020-09-08T22:41:01+08:00">2020-09-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -287,7 +291,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LaTeX%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">LaTeX学习笔记</span></a>
+                  <a href="/categories/LaTeX/" itemprop="url" rel="index"><span itemprop="name">LaTeX</span></a>
                 </span>
             </span>
 
@@ -303,21 +307,13 @@
 
       
           <h4 id="1-无编号公式"><a href="#1-无编号公式" class="headerlink" title="1.无编号公式"></a>1.无编号公式</h4><h5 id="1-1-行内公式"><a href="#1-1-行内公式" class="headerlink" title="1.1 行内公式"></a>1.1 行内公式</h5><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">随机变量<span class="formula">$X$</span>的分布函数为<span class="formula">$F(x)$</span>，求出它的对应的密度函数<span class="formula">$f(x)$</span></span><br></pre></td></tr></table></figure>
-
 <h5 id="1-2-行间公式"><a href="#1-2-行间公式" class="headerlink" title="1.2 行间公式"></a>1.2 行间公式</h5><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">我们熟知的勾股定理是：<span class="formula">$$a^2 + b^2 = c^2$$</span></span><br></pre></td></tr></table></figure>
-
 <h4 id="2-有编号公式"><a href="#2-有编号公式" class="headerlink" title="2.有编号公式"></a>2.有编号公式</h4><h5 id="2-1-手动编号"><a href="#2-1-手动编号" class="headerlink" title="2.1 手动编号"></a>2.1 手动编号</h5><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="formula">$$a^2 + b^2 = c^2 <span class="tag">\<span class="name">tag</span><span class="string">&#123;1.1&#125;</span></span>$$</span></span><br><span class="line"><span class="formula">$$a^2 + b^2 = c^2 <span class="tag">\<span class="name">tag</span><span class="string">&#123;no.1&#125;</span></span>$$</span></span><br></pre></td></tr></table></figure>
-
 <h5 id="2-2自动编号"><a href="#2-2自动编号" class="headerlink" title="2.2自动编号"></a>2.2自动编号</h5><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;equation&#125;</span></span></span><br><span class="line">    a^2 + b^2 = c^2</span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;equation&#125;</span></span></span><br></pre></td></tr></table></figure>
-
 <h5 id="2-3-等式对齐"><a href="#2-3-等式对齐" class="headerlink" title="2.3 等式对齐"></a>2.3 等式对齐</h5><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%  使用align参数</span></span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;align&#125;</span></span></span><br><span class="line">    x +  y = 1<span class="tag">\<span class="name">\</span></span><span class="tag">\<span class="name">\</span></span></span><br><span class="line">    2x + y <span class="tag">\<span class="name">neq</span></span> 1<span class="tag">\<span class="name">\</span></span><span class="tag">\<span class="name">\</span></span></span><br><span class="line">    3x +4y <span class="tag">\<span class="name">leq</span></span> 2<span class="tag">\<span class="name">\</span></span><span class="tag">\<span class="name">\</span></span></span><br><span class="line">    4x <span class="tag">\<span class="name">geq</span></span> y</span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;align&#125;</span></span></span><br></pre></td></tr></table></figure>
-
 <h5 id="2-4-分开输入"><a href="#2-4-分开输入" class="headerlink" title="2.4 分开输入"></a>2.4 分开输入</h5><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;equation&#125;</span></span></span><br><span class="line">    <span class="tag">\<span class="name">begin</span><span class="string">&#123;split&#125;</span></span>  <span class="comment">%  使用split参数 当公式太长 可以分段输出</span></span><br><span class="line">        (x + y)(x + 4y) &amp; = x^2 + 4xy + xy + 4y^2<span class="tag">\<span class="name">\</span></span><span class="tag">\<span class="name">\</span></span></span><br><span class="line">                &amp; = x^2 +5xy + 4y^2</span><br><span class="line">    <span class="tag">\<span class="name">end</span><span class="string">&#123;split&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;equation&#125;</span></span></span><br></pre></td></tr></table></figure>
-
 <h5 id="2-5-分类输入"><a href="#2-5-分类输入" class="headerlink" title="2.5 分类输入"></a>2.5 分类输入</h5><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;equation&#125;</span></span></span><br><span class="line">    a_&#123;i1&#125;A_&#123;j1&#125; + a_&#123;i2&#125;A_&#123;j2&#125; + <span class="tag">\<span class="name">cdots</span></span> + a_&#123;in&#125;A_&#123;jn&#125; = </span><br><span class="line">    <span class="tag">\<span class="name">begin</span><span class="string">&#123;cases&#125;</span></span>  <span class="comment">%  cases参数可用于输出分段函数，即大括号公式</span></span><br><span class="line">        <span class="tag">\<span class="name">begin</span><span class="string">&#123;vmatrix&#125;</span></span>A<span class="tag">\<span class="name">end</span><span class="string">&#123;vmatrix&#125;</span></span>，&amp; i =j<span class="tag">\<span class="name">\</span></span><span class="tag">\<span class="name">\</span></span></span><br><span class="line">        0, &amp; i <span class="tag">\<span class="name">neq</span></span> j</span><br><span class="line">    <span class="tag">\<span class="name">end</span><span class="string">&#123;cases&#125;</span></span></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;equation&#125;</span></span></span><br><span class="line"><span class="comment">%  使用cases参数时只会对括号公式进行一次编号，但如果每个情况的公式都要有编号，可以使用numcases参数，但是要在专门的latex套件中调用cases宏包</span></span><br></pre></td></tr></table></figure>
-
 <h5 id="2-6-矩阵的输入"><a href="#2-6-矩阵的输入" class="headerlink" title="2.6 矩阵的输入"></a>2.6 矩阵的输入</h5><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%  无外边框</span></span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;array&#125;</span><span class="string">&#123;ccc&#125;</span></span></span><br><span class="line">    1 &amp; 0 &amp; 0<span class="tag">\<span class="name">\</span></span><span class="tag">\<span class="name">\</span></span></span><br><span class="line">    0 &amp; 1 &amp; 0<span class="tag">\<span class="name">\</span></span><span class="tag">\<span class="name">\</span></span></span><br><span class="line">    0 &amp; 0 &amp; 1<span class="tag">\<span class="name">\</span></span><span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;array&#125;</span></span>  </span><br><span class="line"><span class="comment">%  有外边框[ ]</span></span><br><span class="line"><span class="formula">$$</span></span><br><span class="line"><span class="formula"><span class="tag">\<span class="name">left</span><span class="string">[</span></span></span></span><br><span class="line"><span class="formula"><span class="tag"><span class="string">    \begin&#123;array&#125;&#123;ccc&#125;</span></span></span></span><br><span class="line"><span class="formula"><span class="tag"><span class="string">        1 &amp; 0 &amp; 0\\\\</span></span></span></span><br><span class="line"><span class="formula"><span class="tag"><span class="string">        0 &amp; 1 &amp; 0\\\\</span></span></span></span><br><span class="line"><span class="formula"><span class="tag"><span class="string">        0 &amp; 0 &amp; 1\\\\</span></span></span></span><br><span class="line"><span class="formula"><span class="tag"><span class="string">    \end&#123;array&#125;</span></span></span></span><br><span class="line"><span class="formula"><span class="tag"><span class="string">\right]</span></span></span></span><br><span class="line"><span class="formula">$$</span> </span><br><span class="line"><span class="comment">%  简化写法</span></span><br><span class="line"><span class="comment">%  带()的矩阵</span></span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;pmatrix&#125;</span></span></span><br><span class="line">    1 &amp; 0 &amp; 0<span class="tag">\<span class="name">\</span></span><span class="tag">\<span class="name">\</span></span></span><br><span class="line">    0 &amp; 1 &amp; 0<span class="tag">\<span class="name">\</span></span><span class="tag">\<span class="name">\</span></span></span><br><span class="line">    0 &amp; 0 &amp; 1<span class="tag">\<span class="name">\</span></span><span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;pmatrix&#125;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">%  带[]的矩阵</span></span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;bmatrix&#125;</span></span></span><br><span class="line">    1 &amp; 0 &amp; 0<span class="tag">\<span class="name">\</span></span><span class="tag">\<span class="name">\</span></span></span><br><span class="line">    0 &amp; 1 &amp; 0<span class="tag">\<span class="name">\</span></span><span class="tag">\<span class="name">\</span></span></span><br><span class="line">    0 &amp; 0 &amp; 1<span class="tag">\<span class="name">\</span></span><span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;bmatrix&#125;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">%  带||,即行列式</span></span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;vmatrix&#125;</span></span></span><br><span class="line">    1 &amp; 0 &amp; 0<span class="tag">\<span class="name">\</span></span><span class="tag">\<span class="name">\</span></span></span><br><span class="line">    0 &amp; 1 &amp; 0<span class="tag">\<span class="name">\</span></span><span class="tag">\<span class="name">\</span></span></span><br><span class="line">    0 &amp; 0 &amp; 1<span class="tag">\<span class="name">\</span></span><span class="tag">\<span class="name">\</span></span></span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;vmatrix&#125;</span></span></span><br></pre></td></tr></table></figure>
-
 
       
     </div>
@@ -368,7 +364,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-25 23:30:32" itemprop="dateModified" datetime="2020-08-25T23:30:32+08:00">2020-08-25</time>
+                <time title="修改时间：2020-09-08 22:40:56" itemprop="dateModified" datetime="2020-09-08T22:40:56+08:00">2020-09-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -376,7 +372,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LaTeX%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">LaTeX学习笔记</span></a>
+                  <a href="/categories/LaTeX/" itemprop="url" rel="index"><span itemprop="name">LaTeX</span></a>
                 </span>
             </span>
 
@@ -391,78 +387,82 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h4 id="1-LATEX相关文件扩展名与描述"><a href="#1-LATEX相关文件扩展名与描述" class="headerlink" title="1.LATEX相关文件扩展名与描述"></a>1.LATEX相关文件扩展名与描述</h4><table>
+          <h4 id="1-LATEX相关文件扩展名与描述"><a href="#1-LATEX相关文件扩展名与描述" class="headerlink" title="1.LATEX相关文件扩展名与描述"></a>1.LATEX相关文件扩展名与描述</h4><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>扩展名</th>
-<th align="left">描述</th>
+<th style="text-align:left">描述</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td><code>.tex</code></td>
-<td align="left">TeX 源文档</td>
+<td style="text-align:left">TeX 源文档</td>
 </tr>
 <tr>
 <td><code>.sty</code></td>
-<td align="left">LaTeX 样式文件，使用 <code>\usepackage</code> 命令导入</td>
+<td style="text-align:left">LaTeX 样式文件，使用 <code>\usepackage</code> 命令导入</td>
 </tr>
 <tr>
 <td><code>.dtx</code></td>
-<td align="left">Documented TeX。LaTeX <code>sty</code> 文档的分发形式</td>
+<td style="text-align:left">Documented TeX。LaTeX <code>sty</code> 文档的分发形式</td>
 </tr>
 <tr>
 <td><code>.ins</code></td>
-<td align="left"><code>.dtx</code> 的安装文件，<code>latex foo.ins</code> 会生成所需的 sty 文档和帮助手册</td>
+<td style="text-align:left"><code>.dtx</code> 的安装文件，<code>latex foo.ins</code> 会生成所需的 sty 文档和帮助手册</td>
 </tr>
 <tr>
 <td><code>.cls</code></td>
-<td align="left">类文档，使用 <code>\documentclass</code> 命令导入</td>
+<td style="text-align:left">类文档，使用 <code>\documentclass</code> 命令导入</td>
 </tr>
 <tr>
 <td><code>.fd</code></td>
-<td align="left">字体描述文档</td>
+<td style="text-align:left">字体描述文档</td>
 </tr>
 <tr>
 <td><code>.dvi</code></td>
-<td align="left">设备无关文件 <code>latex</code> 编译产生</td>
+<td style="text-align:left">设备无关文件 <code>latex</code> 编译产生</td>
 </tr>
 <tr>
 <td><code>.pdf</code></td>
-<td align="left">pdf 文档</td>
+<td style="text-align:left">pdf 文档</td>
 </tr>
 <tr>
 <td><code>.log</code></td>
-<td align="left">编译日志</td>
+<td style="text-align:left">编译日志</td>
 </tr>
 <tr>
 <td><code>.toc</code></td>
-<td align="left">存放章节名称，在下一次编译时读入以产生目录</td>
+<td style="text-align:left">存放章节名称，在下一次编译时读入以产生目录</td>
 </tr>
 <tr>
 <td><code>.lof</code></td>
-<td align="left">类似于 <code>.toc</code> 产生插图目录</td>
+<td style="text-align:left">类似于 <code>.toc</code> 产生插图目录</td>
 </tr>
 <tr>
 <td><code>.lot</code></td>
-<td align="left">产生表格目录</td>
+<td style="text-align:left">产生表格目录</td>
 </tr>
 <tr>
 <td><code>.aux</code></td>
-<td align="left">存放各种标签引用信息，下次编译时读入以产生交叉参考</td>
+<td style="text-align:left">存放各种标签引用信息，下次编译时读入以产生交叉参考</td>
 </tr>
 <tr>
 <td><code>.idx</code></td>
-<td align="left">存放索引词，用 <code>makeindex</code> 处理</td>
+<td style="text-align:left">存放索引词，用 <code>makeindex</code> 处理</td>
 </tr>
 <tr>
 <td><code>.ind</code></td>
-<td align="left">处理过的 <code>.idx </code>文档，下次编译时读入以产生索引</td>
+<td style="text-align:left">处理过的 <code>.idx</code>文档，下次编译时读入以产生索引</td>
 </tr>
 <tr>
 <td><code>.ilg</code></td>
-<td align="left"><code>makeindex</code> 的日志</td>
+<td style="text-align:left"><code>makeindex</code> 的日志</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 
       
     </div>
@@ -684,7 +684,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-26 19:06:49" itemprop="dateModified" datetime="2020-08-26T19:06:49+08:00">2020-08-26</time>
+                <time title="修改时间：2020-09-08 22:41:43" itemprop="dateModified" datetime="2020-09-08T22:41:43+08:00">2020-09-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -692,7 +692,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LaTeX%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">LaTeX学习笔记</span></a>
+                  <a href="/categories/LaTeX/" itemprop="url" rel="index"><span itemprop="name">LaTeX</span></a>
                 </span>
             </span>
 
@@ -709,27 +709,16 @@
       
           <p>We can build  level 3 title by the follow codes</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">\section&#123;level 1 title&#125;</span><br><span class="line">\subsection&#123;level 2 title&#125;</span><br><span class="line">\subsection&#123;level 3 title&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img src="/2020/08/02/how-to-build-level-3-title-in-latex/1.png"></p>
+<p><img src="/2020/08/02/how-to-build-level-3-title-in-latex/1.png" alt></p>
 <p>However,level 3 title is not what we want it show.</p>
 <p>We need to add a command in the introduction area.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\setcounter&#123;secnumdepth&#125;&#123;4&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img src="/2020/08/02/how-to-build-level-3-title-in-latex/2.png"></p>
+<p><img src="/2020/08/02/how-to-build-level-3-title-in-latex/2.png" alt></p>
 <h4 id="What-about-level-4-or-level-title"><a href="#What-about-level-4-or-level-title" class="headerlink" title="What about level 4 or level title?"></a>What about level 4 or level title?</h4><p>you can using command <strong><em>itemize</em></strong> <strong><em>enumerate</em></strong> <strong><em>description</em></strong> .</p>
 <h6 id="item"><a href="#item" class="headerlink" title="item"></a>item</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;itemize&#125;</span><br><span class="line">\item first        &#x2F;&#x2F;item[*]  will replace point by *.</span><br><span class="line">\item second</span><br><span class="line">\item third</span><br><span class="line">\item forth</span><br><span class="line">\end&#123;itemize&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img src="/2020/08/02/how-to-build-level-3-title-in-latex/3.png"></p>
+<p><img src="/2020/08/02/how-to-build-level-3-title-in-latex/3.png" alt></p>
 <h5 id="enumerate"><a href="#enumerate" class="headerlink" title="enumerate"></a>enumerate</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;enumerate&#125;[i)]  &#x2F;&#x2F;you can replace i by other parameters(such as 1), and it will show  differently.</span><br><span class="line">\item first</span><br><span class="line">\item second</span><br><span class="line">\item third</span><br><span class="line">\item forth</span><br><span class="line">\end&#123;enumerate&#125;</span><br></pre></td></tr></table></figure>
-
-
-
 <h5 id="description"><a href="#description" class="headerlink" title="description"></a>description</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;description&#125;</span><br><span class="line">\item[item a] first</span><br><span class="line">\item[item b] second</span><br><span class="line">\item[item c] third</span><br><span class="line">\item[item d] forth</span><br><span class="line">\end&#123;description&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
 <p>Besides,you can also change the title from by changing the parameters.</p>
 <p>That’s means you can the title what you want.</p>
 
