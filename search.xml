@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>The terminal has no output when I edit python with vscode</title>
+      <link href="/2020/09/15/problem/"/>
+      <url>/2020/09/15/problem/</url>
+      
+        <content type="html"><![CDATA[<p>Today I use vs to write python as usual.</p><p>But I had a serious problem .I couldn’t see any output in the vscode terminal.</p><p><img src="/2020/09/15/problem/1.png" alt></p><p>I try to modify the <strong>settings.json</strong> ，like others on the Internet.</p><p><img src="/2020/09/15/problem/2.png" alt></p><p>But it still doesn’t work.</p><p>Finally I found that <strong>python -u xxx.py</strong> can save my problem.</p><p><img src="/2020/09/15/problem/3.png" alt></p><p>This problem may be caused by buffer.</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 杂谈 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>记我的第一次国赛</title>
       <link href="/2020/09/14/%E8%AE%B0%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%9B%BD%E8%B5%9B/"/>
       <url>/2020/09/14/%E8%AE%B0%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E6%AC%A1%E5%9B%BD%E8%B5%9B/</url>
