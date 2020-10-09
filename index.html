@@ -693,7 +693,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-08 22:41:15" itemprop="dateModified" datetime="2020-09-08T22:41:15+08:00">2020-09-08</time>
+                <time title="修改时间：2020-09-22 09:54:33" itemprop="dateModified" datetime="2020-09-22T09:54:33+08:00">2020-09-22</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -724,7 +724,7 @@
 <h4 id="加密过程"><a href="#加密过程" class="headerlink" title="加密过程"></a>加密过程</h4><p>1.寻找两个不等的质数$p，q$</p>
 <p>2.$n=pq$</p>
 <p>3.欧拉函数$\phi(n)=(p-1)(q-1)$   表示少于或等于n的数中与n互质的数的数目</p>
-<p>4.确定e     $1&lt;e&lt;\phi(n) $      $e与\phi(n)$互质      即$gcd(e,\phi(n)=1$</p>
+<p>4.确定e     $1&lt;e&lt;\phi(n) $      $e与\phi(n)$互质      即$gcd(e,\phi(n))=1$</p>
 <p>5.确定d     $de \mod \phi(n)=1$    即 $de=k\phi(n)+1,k\ge1$</p>
 <h4 id="解密"><a href="#解密" class="headerlink" title="解密"></a>解密</h4><p>1.已知e，p，q求d</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d = gmpy2.invert(e, (p<span class="number">-1</span>)*(q<span class="number">-1</span>))</span><br></pre></td></tr></table></figure>
