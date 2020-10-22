@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>IA-32寄存器</title>
+      <link href="/2020/10/22/IA-32%E5%AF%84%E5%AD%98%E5%99%A8/"/>
+      <url>/2020/10/22/IA-32%E5%AF%84%E5%AD%98%E5%99%A8/</url>
+      
+        <content type="html"><![CDATA[<h4 id="通用寄存器"><a href="#通用寄存器" class="headerlink" title="通用寄存器"></a>通用寄存器</h4><p>General Purpose Registers，32位，8个</p><div class="table-container"><table><thead><tr><th>寄存器</th><th>名称</th><th>访问低16位</th><th>访问低16位的8位</th><th>访问低16位的高8位</th></tr></thead><tbody><tr><td>EAX</td><td>(针对操作数和结果数据的)累加器</td><td>AX</td><td>AH</td><td>AL</td></tr><tr><td>EBX</td><td>(DS段中的数据指针)基址寄存器</td><td>BX</td><td>BH</td><td>BL</td></tr><tr><td>ECX</td><td>(字符串和循环操作的)计数器</td><td>CX</td><td>CH</td><td>CL</td></tr><tr><td>EDX</td><td>(I/O指针)数据寄存器</td><td>DX</td><td>DH</td><td>DL</td></tr></tbody></table></div><p>以上寄存器常用于算术运算(ADD,SUB,XOR,OR等)</p><p>ECX用于循环计数 每执行一次循环 ECX减一</p><p>EAX一般用于函数返回值</p><div class="table-container"><table><thead><tr><th>寄存器</th><th>名称</th><th>访问低16位</th></tr></thead><tbody><tr><td>EBP</td><td>(SS段中栈内数据指针)扩展基址指针寄存器</td><td>BP</td></tr><tr><td>ESI</td><td>(字符串操作源指针)源变址寄存器</td><td>SI</td></tr><tr><td>EDI</td><td>(字符串操作目标指针)目的变址寄存器</td><td>DI</td></tr><tr><td>ESP</td><td>(SS段中栈指针)栈指针寄存器</td><td>SP</td></tr></tbody></table></div><p>ESP指示栈顶地址 某些指令(PUSH POP CALL RET)可以直接用来操作ESP</p><p>EBP表示栈区域的基地址，函数被调用时保存ESP的值，函数返回时在把值返回给ESP，保证栈不会奔溃。</p><p>ESI和EDI与特定指令(LODS STOS REP MOVS等)一起使用，主要用于内存复制。 </p><h4 id="段寄存器"><a href="#段寄存器" class="headerlink" title="段寄存器"></a>段寄存器</h4><p>段(Segment):内存保护技术 将内存划分为多个区段，并为每个区段赋予起始地址、范围、访问权限等，以保护内存。除此之外，它还同分页技术(Paging)一起用于将虚拟内存变更为实际物理内存。段内存记录在SDT(Segment Descriptor Table,段描述符表)中，而段寄存器就持有这些SDT的索引(index)。</p><p>每个段寄存器的大小为16位，即2个字节</p><div class="table-container"><table><thead><tr><th>寄存器</th><th>名称</th><th>作用</th></tr></thead><tbody><tr><td>CS</td><td>Code Segment,代码段寄存器</td><td>存放应用程序代码所在段的段基址</td></tr><tr><td>SS</td><td>Stack Segment,栈段寄存器</td><td>存放栈段的段基址</td></tr><tr><td>DS</td><td>Data Segment,数据段寄存器</td><td>存放数据段的段基址</td></tr><tr><td>ES</td><td>Extra(Data) Segment,附加(数据)段寄存器</td><td>存放程序使用的附加数据段的段基址</td></tr><tr><td>FS</td><td>Data Segment,数据段寄存器</td><td>存放程序使用的附加数据段的段基址</td></tr><tr><td>GS</td><td>Data Segment,数据段寄存器</td><td>存放程序使用的附加数据段的段基址</td></tr></tbody></table></div><p>FS寄存器用于计算SEH(Structured Exception Handler,结构化异常处理机制)、TEB(Thread Environment Block,线程环境块)、PEB(Process Environment Block，进程环境块)等地址。</p><h4 id="程序状态与控制寄存器"><a href="#程序状态与控制寄存器" class="headerlink" title="程序状态与控制寄存器"></a>程序状态与控制寄存器</h4><p>EFLAGS：Flag Register,标志寄存器 32位(4个字节) 由原16位FLAGS寄存器扩展而来。</p><p>32个位元每个位都有意义，每位的值为0或1代表On/Off或True/False。</p><p><strong>几个重要的标志：</strong></p><p>ZF(Zero Flag,零标志 第6位) 若运算结果为0，则其值为1(True)，否则为0(False)</p><p>OF(Overflow Flag,溢出标志 第11位) 有符号整数(signed integer)溢出时,OF值被置为1。此外，MSB(Most Signigicant Bit,最高有效位)改变时，其值也被设为1.</p><p>CF(Carry Flag,进位标志 第0位) 无符号整数(unsigned integer)溢出时,其值也被置为1</p><h4 id="指令指针寄存器"><a href="#指令指针寄存器" class="headerlink" title="指令指针寄存器"></a>指令指针寄存器</h4><p>EIP:Instruction Pointer,指令指针寄存器 32位(4个字节) 由原16位寄存器IP扩展而来。</p><p>EIP保存着CPU要执行的指令地址。程序运行时，CPU会读取EIP中一条指令的地址，传送指令到指令缓冲区后，EIP寄存器的值自动增加，增加的大小即是读取指令的字节大小。这样，CPU每次执行完一条指令，就会通过EIP寄存器读取并执行下一条指令。</p><p>不同直接修改EIP的值，但可以通过JMP,Jcc,CALL,RET等指令间接修改。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 逆向 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>SQL注入学习</title>
       <link href="/2020/10/19/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/"/>
       <url>/2020/10/19/sql%E6%B3%A8%E5%85%A5%E5%9F%BA%E7%A1%80/</url>
