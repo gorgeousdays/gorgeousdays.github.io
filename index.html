@@ -177,6 +177,108 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/29/%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="gorgeousdays">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/29/%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/" class="post-title-link" itemprop="url">流量分析</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-11-29 21:34:01 / 修改时间：21:34:48" itemprop="dateCreated datePublished" datetime="2020-11-29T21:34:01+08:00">2020-11-29</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9D%82%E8%B0%88/" itemprop="url" rel="index"><span itemprop="name">杂谈</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="Wireshark常用过滤指令"><a href="#Wireshark常用过滤指令" class="headerlink" title="Wireshark常用过滤指令"></a>Wireshark常用过滤指令</h4><p>过滤IP：<code>ip.src eq x.x.x.x or ip.dst eq x.x.x.x</code></p>
+<p>•过滤端口：<code>tcp.port eq 80 or udp.port eq 80</code></p>
+<p>•过滤协议：<code>tcp/udp/http/tls/ssl/icmp/ftp/dns/ip</code></p>
+<p>•http过滤模式：</p>
+<p>​     •<code>http.request.method == “GET”</code></p>
+<p>​     •<code>http.request.method == “POST”</code></p>
+<p>​     •<code>http.request.uri == “[路由地址]”</code></p>
+<p>​     •<code>[协议] contains “[关键字]”</code></p>
+<h4 id="Crunch"><a href="#Crunch" class="headerlink" title="Crunch"></a>Crunch</h4><p>Crunch是一种创建密码字典工具，按照指定的规则生成密码字典，可以灵活的制定自己的字典文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Usage: crunch [options]</span><br><span class="line"></span><br><span class="line">crunch &lt;min-len&gt; &lt;max-len&gt; [&lt;charset string&gt;] [options]</span><br><span class="line"></span><br><span class="line"> min-len  设定最小字符串长度</span><br><span class="line"> max-len  设定最大字符串长度</span><br><span class="line"> </span><br><span class="line"> options</span><br><span class="line"> -o password.txt 指定输出文件的名称，例如password.txt</span><br><span class="line"></span><br><span class="line">-t 命令</span><br><span class="line"></span><br><span class="line">-t @,%^ 指定模式，</span><br><span class="line"></span><br><span class="line">@ 插入小写字母</span><br><span class="line">, 插入大写字母</span><br><span class="line">% 插入数字</span><br><span class="line">^ 插入特殊符号</span><br></pre></td></tr></table></figure>
+<p>Crunch命令详解 以及使用方法</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42025840/article/details/81125584">https://blog.csdn.net/qq_42025840/article/details/81125584</a></p>
+<h4 id="鼠标流量"><a href="#鼠标流量" class="headerlink" title="鼠标流量"></a>鼠标流量</h4><p>在kali下提取得到 <code>usbdata.txt</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tshark   -r usb2.pcap  -T fields -e usb.capdata  &gt;  usbdata.txt</span><br></pre></td></tr></table></figure>
+<p>然后将16进制的<code>usbdata.txt</code>转化为坐标</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python  usb.py  &gt;  xy.txt</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#usb.py</span></span><br><span class="line">nums = []</span><br><span class="line">keys = open(<span class="string">&#x27;usbdata.txt&#x27;</span>,<span class="string">&#x27;r&#x27;</span>)</span><br><span class="line">posx = <span class="number">0</span></span><br><span class="line">posy = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> keys:</span><br><span class="line">    <span class="keyword">if</span> len(line) != <span class="number">12</span> :</span><br><span class="line">         <span class="keyword">continue</span></span><br><span class="line">    x = int(line[<span class="number">3</span>:<span class="number">5</span>],<span class="number">16</span>)</span><br><span class="line">    y = int(line[<span class="number">6</span>:<span class="number">8</span>],<span class="number">16</span>)</span><br><span class="line">    <span class="keyword">if</span> x &gt; <span class="number">127</span> :</span><br><span class="line">        x -= <span class="number">256</span></span><br><span class="line">    <span class="keyword">if</span> y &gt; <span class="number">127</span> :</span><br><span class="line">        y -= <span class="number">256</span></span><br><span class="line">    posx += x</span><br><span class="line">    posy += y</span><br><span class="line">    btn_flag = int(line[<span class="number">0</span>:<span class="number">2</span>],<span class="number">16</span>) </span><br><span class="line">    <span class="keyword">if</span> btn_flag == <span class="number">2</span> :                     <span class="comment"># 1 for left , 2 for right , 0 for nothing</span></span><br><span class="line">        <span class="keyword">print</span> posx , posy</span><br><span class="line">keys.close()</span><br></pre></td></tr></table></figure>
+<p>进入gnuplot工具，将xy.txt中的坐标转图片</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gnuplot                   &#x2F;&#x2F;进入gunplot工具</span><br><span class="line">plot  &quot;xy.txt&quot;            &#x2F;&#x2F;把xy.txt文本里的坐标转化为图片</span><br></pre></td></tr></table></figure>
+<h4 id="键盘流量"><a href="#键盘流量" class="headerlink" title="键盘流量"></a>键盘流量</h4><h5 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h5><p>在kali下提取得到<code>usbdata.txt</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tshark -r usb.pcap -T fields -e usb.capdata &gt; usbdata.txt</span><br></pre></td></tr></table></figure>
+<p>对生成<code>flag.txt</code>去空行后执行下面脚本</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">normalKeys = &#123;<span class="string">&quot;04&quot;</span>:<span class="string">&quot;a&quot;</span>, <span class="string">&quot;05&quot;</span>:<span class="string">&quot;b&quot;</span>, <span class="string">&quot;06&quot;</span>:<span class="string">&quot;c&quot;</span>, <span class="string">&quot;07&quot;</span>:<span class="string">&quot;d&quot;</span>, <span class="string">&quot;08&quot;</span>:<span class="string">&quot;e&quot;</span>, <span class="string">&quot;09&quot;</span>:<span class="string">&quot;f&quot;</span>, <span class="string">&quot;0a&quot;</span>:<span class="string">&quot;g&quot;</span>, <span class="string">&quot;0b&quot;</span>:<span class="string">&quot;h&quot;</span>, <span class="string">&quot;0c&quot;</span>:<span class="string">&quot;i&quot;</span>, <span class="string">&quot;0d&quot;</span>:<span class="string">&quot;j&quot;</span>, <span class="string">&quot;0e&quot;</span>:<span class="string">&quot;k&quot;</span>, <span class="string">&quot;0f&quot;</span>:<span class="string">&quot;l&quot;</span>, <span class="string">&quot;10&quot;</span>:<span class="string">&quot;m&quot;</span>, <span class="string">&quot;11&quot;</span>:<span class="string">&quot;n&quot;</span>, <span class="string">&quot;12&quot;</span>:<span class="string">&quot;o&quot;</span>, <span class="string">&quot;13&quot;</span>:<span class="string">&quot;p&quot;</span>, <span class="string">&quot;14&quot;</span>:<span class="string">&quot;q&quot;</span>, <span class="string">&quot;15&quot;</span>:<span class="string">&quot;r&quot;</span>, <span class="string">&quot;16&quot;</span>:<span class="string">&quot;s&quot;</span>, <span class="string">&quot;17&quot;</span>:<span class="string">&quot;t&quot;</span>, <span class="string">&quot;18&quot;</span>:<span class="string">&quot;u&quot;</span>, <span class="string">&quot;19&quot;</span>:<span class="string">&quot;v&quot;</span>, <span class="string">&quot;1a&quot;</span>:<span class="string">&quot;w&quot;</span>, <span class="string">&quot;1b&quot;</span>:<span class="string">&quot;x&quot;</span>, <span class="string">&quot;1c&quot;</span>:<span class="string">&quot;y&quot;</span>, <span class="string">&quot;1d&quot;</span>:<span class="string">&quot;z&quot;</span>,<span class="string">&quot;1e&quot;</span>:<span class="string">&quot;1&quot;</span>, <span class="string">&quot;1f&quot;</span>:<span class="string">&quot;2&quot;</span>, <span class="string">&quot;20&quot;</span>:<span class="string">&quot;3&quot;</span>, <span class="string">&quot;21&quot;</span>:<span class="string">&quot;4&quot;</span>, <span class="string">&quot;22&quot;</span>:<span class="string">&quot;5&quot;</span>, <span class="string">&quot;23&quot;</span>:<span class="string">&quot;6&quot;</span>,<span class="string">&quot;24&quot;</span>:<span class="string">&quot;7&quot;</span>,<span class="string">&quot;25&quot;</span>:<span class="string">&quot;8&quot;</span>,<span class="string">&quot;26&quot;</span>:<span class="string">&quot;9&quot;</span>,<span class="string">&quot;27&quot;</span>:<span class="string">&quot;0&quot;</span>,<span class="string">&quot;28&quot;</span>:<span class="string">&quot;&lt;RET&gt;&quot;</span>,<span class="string">&quot;29&quot;</span>:<span class="string">&quot;&lt;ESC&gt;&quot;</span>,<span class="string">&quot;2a&quot;</span>:<span class="string">&quot;&lt;DEL&gt;&quot;</span>, <span class="string">&quot;2b&quot;</span>:<span class="string">&quot;\t&quot;</span>,<span class="string">&quot;2c&quot;</span>:<span class="string">&quot;&lt;SPACE&gt;&quot;</span>,<span class="string">&quot;2d&quot;</span>:<span class="string">&quot;-&quot;</span>,<span class="string">&quot;2e&quot;</span>:<span class="string">&quot;=&quot;</span>,<span class="string">&quot;2f&quot;</span>:<span class="string">&quot;[&quot;</span>,<span class="string">&quot;30&quot;</span>:<span class="string">&quot;]&quot;</span>,<span class="string">&quot;31&quot;</span>:<span class="string">&quot;\\&quot;</span>,<span class="string">&quot;32&quot;</span>:<span class="string">&quot;&lt;NON&gt;&quot;</span>,<span class="string">&quot;33&quot;</span>:<span class="string">&quot;;&quot;</span>,<span class="string">&quot;34&quot;</span>:<span class="string">&quot;&#x27;&quot;</span>,<span class="string">&quot;35&quot;</span>:<span class="string">&quot;&lt;GA&gt;&quot;</span>,<span class="string">&quot;36&quot;</span>:<span class="string">&quot;,&quot;</span>,<span class="string">&quot;37&quot;</span>:<span class="string">&quot;.&quot;</span>,<span class="string">&quot;38&quot;</span>:<span class="string">&quot;/&quot;</span>,<span class="string">&quot;39&quot;</span>:<span class="string">&quot;&lt;CAP&gt;&quot;</span>,<span class="string">&quot;3a&quot;</span>:<span class="string">&quot;&lt;F1&gt;&quot;</span>,<span class="string">&quot;3b&quot;</span>:<span class="string">&quot;&lt;F2&gt;&quot;</span>, <span class="string">&quot;3c&quot;</span>:<span class="string">&quot;&lt;F3&gt;&quot;</span>,<span class="string">&quot;3d&quot;</span>:<span class="string">&quot;&lt;F4&gt;&quot;</span>,<span class="string">&quot;3e&quot;</span>:<span class="string">&quot;&lt;F5&gt;&quot;</span>,<span class="string">&quot;3f&quot;</span>:<span class="string">&quot;&lt;F6&gt;&quot;</span>,<span class="string">&quot;40&quot;</span>:<span class="string">&quot;&lt;F7&gt;&quot;</span>,<span class="string">&quot;41&quot;</span>:<span class="string">&quot;&lt;F8&gt;&quot;</span>,<span class="string">&quot;42&quot;</span>:<span class="string">&quot;&lt;F9&gt;&quot;</span>,<span class="string">&quot;43&quot;</span>:<span class="string">&quot;&lt;F10&gt;&quot;</span>,<span class="string">&quot;44&quot;</span>:<span class="string">&quot;&lt;F11&gt;&quot;</span>,<span class="string">&quot;45&quot;</span>:<span class="string">&quot;&lt;F12&gt;&quot;</span>&#125;</span><br><span class="line">shiftKeys = &#123;<span class="string">&quot;04&quot;</span>:<span class="string">&quot;A&quot;</span>, <span class="string">&quot;05&quot;</span>:<span class="string">&quot;B&quot;</span>, <span class="string">&quot;06&quot;</span>:<span class="string">&quot;C&quot;</span>, <span class="string">&quot;07&quot;</span>:<span class="string">&quot;D&quot;</span>, <span class="string">&quot;08&quot;</span>:<span class="string">&quot;E&quot;</span>, <span class="string">&quot;09&quot;</span>:<span class="string">&quot;F&quot;</span>, <span class="string">&quot;0a&quot;</span>:<span class="string">&quot;G&quot;</span>, <span class="string">&quot;0b&quot;</span>:<span class="string">&quot;H&quot;</span>, <span class="string">&quot;0c&quot;</span>:<span class="string">&quot;I&quot;</span>, <span class="string">&quot;0d&quot;</span>:<span class="string">&quot;J&quot;</span>, <span class="string">&quot;0e&quot;</span>:<span class="string">&quot;K&quot;</span>, <span class="string">&quot;0f&quot;</span>:<span class="string">&quot;L&quot;</span>, <span class="string">&quot;10&quot;</span>:<span class="string">&quot;M&quot;</span>, <span class="string">&quot;11&quot;</span>:<span class="string">&quot;N&quot;</span>, <span class="string">&quot;12&quot;</span>:<span class="string">&quot;O&quot;</span>, <span class="string">&quot;13&quot;</span>:<span class="string">&quot;P&quot;</span>, <span class="string">&quot;14&quot;</span>:<span class="string">&quot;Q&quot;</span>, <span class="string">&quot;15&quot;</span>:<span class="string">&quot;R&quot;</span>, <span class="string">&quot;16&quot;</span>:<span class="string">&quot;S&quot;</span>, <span class="string">&quot;17&quot;</span>:<span class="string">&quot;T&quot;</span>, <span class="string">&quot;18&quot;</span>:<span class="string">&quot;U&quot;</span>, <span class="string">&quot;19&quot;</span>:<span class="string">&quot;V&quot;</span>, <span class="string">&quot;1a&quot;</span>:<span class="string">&quot;W&quot;</span>, <span class="string">&quot;1b&quot;</span>:<span class="string">&quot;X&quot;</span>, <span class="string">&quot;1c&quot;</span>:<span class="string">&quot;Y&quot;</span>, <span class="string">&quot;1d&quot;</span>:<span class="string">&quot;Z&quot;</span>,<span class="string">&quot;1e&quot;</span>:<span class="string">&quot;!&quot;</span>, <span class="string">&quot;1f&quot;</span>:<span class="string">&quot;@&quot;</span>, <span class="string">&quot;20&quot;</span>:<span class="string">&quot;#&quot;</span>, <span class="string">&quot;21&quot;</span>:<span class="string">&quot;$&quot;</span>, <span class="string">&quot;22&quot;</span>:<span class="string">&quot;%&quot;</span>, <span class="string">&quot;23&quot;</span>:<span class="string">&quot;^&quot;</span>,<span class="string">&quot;24&quot;</span>:<span class="string">&quot;&amp;&quot;</span>,<span class="string">&quot;25&quot;</span>:<span class="string">&quot;*&quot;</span>,<span class="string">&quot;26&quot;</span>:<span class="string">&quot;(&quot;</span>,<span class="string">&quot;27&quot;</span>:<span class="string">&quot;)&quot;</span>,<span class="string">&quot;28&quot;</span>:<span class="string">&quot;&lt;RET&gt;&quot;</span>,<span class="string">&quot;29&quot;</span>:<span class="string">&quot;&lt;ESC&gt;&quot;</span>,<span class="string">&quot;2a&quot;</span>:<span class="string">&quot;&lt;DEL&gt;&quot;</span>, <span class="string">&quot;2b&quot;</span>:<span class="string">&quot;\t&quot;</span>,<span class="string">&quot;2c&quot;</span>:<span class="string">&quot;&lt;SPACE&gt;&quot;</span>,<span class="string">&quot;2d&quot;</span>:<span class="string">&quot;_&quot;</span>,<span class="string">&quot;2e&quot;</span>:<span class="string">&quot;+&quot;</span>,<span class="string">&quot;2f&quot;</span>:<span class="string">&quot;&#123;&quot;</span>,<span class="string">&quot;30&quot;</span>:<span class="string">&quot;&#125;&quot;</span>,<span class="string">&quot;31&quot;</span>:<span class="string">&quot;|&quot;</span>,<span class="string">&quot;32&quot;</span>:<span class="string">&quot;&lt;NON&gt;&quot;</span>,<span class="string">&quot;33&quot;</span>:<span class="string">&quot;\&quot;&quot;</span>,<span class="string">&quot;34&quot;</span>:<span class="string">&quot;:&quot;</span>,<span class="string">&quot;35&quot;</span>:<span class="string">&quot;&lt;GA&gt;&quot;</span>,<span class="string">&quot;36&quot;</span>:<span class="string">&quot;&lt;&quot;</span>,<span class="string">&quot;37&quot;</span>:<span class="string">&quot;&gt;&quot;</span>,<span class="string">&quot;38&quot;</span>:<span class="string">&quot;?&quot;</span>,<span class="string">&quot;39&quot;</span>:<span class="string">&quot;&lt;CAP&gt;&quot;</span>,<span class="string">&quot;3a&quot;</span>:<span class="string">&quot;&lt;F1&gt;&quot;</span>,<span class="string">&quot;3b&quot;</span>:<span class="string">&quot;&lt;F2&gt;&quot;</span>, <span class="string">&quot;3c&quot;</span>:<span class="string">&quot;&lt;F3&gt;&quot;</span>,<span class="string">&quot;3d&quot;</span>:<span class="string">&quot;&lt;F4&gt;&quot;</span>,<span class="string">&quot;3e&quot;</span>:<span class="string">&quot;&lt;F5&gt;&quot;</span>,<span class="string">&quot;3f&quot;</span>:<span class="string">&quot;&lt;F6&gt;&quot;</span>,<span class="string">&quot;40&quot;</span>:<span class="string">&quot;&lt;F7&gt;&quot;</span>,<span class="string">&quot;41&quot;</span>:<span class="string">&quot;&lt;F8&gt;&quot;</span>,<span class="string">&quot;42&quot;</span>:<span class="string">&quot;&lt;F9&gt;&quot;</span>,<span class="string">&quot;43&quot;</span>:<span class="string">&quot;&lt;F10&gt;&quot;</span>,<span class="string">&quot;44&quot;</span>:<span class="string">&quot;&lt;F11&gt;&quot;</span>,<span class="string">&quot;45&quot;</span>:<span class="string">&quot;&lt;F12&gt;&quot;</span>&#125;</span><br><span class="line">output = []</span><br><span class="line">keys = open(<span class="string">&#x27;usbdata.txt&#x27;</span>)</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> keys:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">if</span> line[<span class="number">0</span>]!=<span class="string">&#x27;0&#x27;</span> <span class="keyword">or</span> (line[<span class="number">1</span>]!=<span class="string">&#x27;0&#x27;</span> <span class="keyword">and</span> line[<span class="number">1</span>]!=<span class="string">&#x27;2&#x27;</span>) <span class="keyword">or</span> line[<span class="number">3</span>]!=<span class="string">&#x27;0&#x27;</span> <span class="keyword">or</span> line[<span class="number">4</span>]!=<span class="string">&#x27;0&#x27;</span> <span class="keyword">or</span> line[<span class="number">9</span>]!=<span class="string">&#x27;0&#x27;</span> <span class="keyword">or</span> line[<span class="number">10</span>]!=<span class="string">&#x27;0&#x27;</span> <span class="keyword">or</span> line[<span class="number">12</span>]!=<span class="string">&#x27;0&#x27;</span> <span class="keyword">or</span> line[<span class="number">13</span>]!=<span class="string">&#x27;0&#x27;</span> <span class="keyword">or</span> line[<span class="number">15</span>]!=<span class="string">&#x27;0&#x27;</span> <span class="keyword">or</span> line[<span class="number">16</span>]!=<span class="string">&#x27;0&#x27;</span> <span class="keyword">or</span> line[<span class="number">18</span>]!=<span class="string">&#x27;0&#x27;</span> <span class="keyword">or</span> line[<span class="number">19</span>]!=<span class="string">&#x27;0&#x27;</span> <span class="keyword">or</span> line[<span class="number">21</span>]!=<span class="string">&#x27;0&#x27;</span> <span class="keyword">or</span> line[<span class="number">22</span>]!=<span class="string">&#x27;0&#x27;</span> <span class="keyword">or</span> line[<span class="number">6</span>:<span class="number">8</span>]==<span class="string">&quot;00&quot;</span>:</span><br><span class="line">             <span class="keyword">continue</span></span><br><span class="line">        <span class="keyword">if</span> line[<span class="number">6</span>:<span class="number">8</span>] <span class="keyword">in</span> normalKeys.keys():</span><br><span class="line">            output += [[normalKeys[line[<span class="number">6</span>:<span class="number">8</span>]]],[shiftKeys[line[<span class="number">6</span>:<span class="number">8</span>]]]][line[<span class="number">1</span>]==<span class="string">&#x27;2&#x27;</span>]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            output += [<span class="string">&#x27;[unknown]&#x27;</span>]</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">keys.close()</span><br><span class="line"></span><br><span class="line">flag=<span class="number">0</span></span><br><span class="line">print(<span class="string">&quot;&quot;</span>.join(output))</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(output)):</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        a=output.index(<span class="string">&#x27;&lt;DEL&gt;&#x27;</span>)</span><br><span class="line">        <span class="keyword">del</span> output[a]</span><br><span class="line">        <span class="keyword">del</span> output[a<span class="number">-1</span>]</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(output)):</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="keyword">if</span> output[i]==<span class="string">&quot;&lt;CAP&gt;&quot;</span>:</span><br><span class="line">            flag+=<span class="number">1</span></span><br><span class="line">            output.pop(i)</span><br><span class="line">            <span class="keyword">if</span> flag==<span class="number">2</span>:</span><br><span class="line">                flag=<span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> flag!=<span class="number">0</span>:</span><br><span class="line">            output[i]=output[i].upper()</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"><span class="keyword">print</span> (<span class="string">&#x27;output :&#x27;</span> + <span class="string">&quot;&quot;</span>.join(output))</span><br></pre></td></tr></table></figure>
+<h5 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h5><p>在kali下运行UsbKeyboardDataHacker一步到位</p>
+<p>下载地址:<a target="_blank" rel="noopener" href="https://github.com/WangYihang/UsbKeyboardDataHacker">https://github.com/WangYihang/UsbKeyboardDataHacker</a></p>
+<h4 id="Bugku-想蹭网先解开密码"><a href="#Bugku-想蹭网先解开密码" class="headerlink" title="Bugku[想蹭网先解开密码]"></a>Bugku[想蹭网先解开密码]</h4><p>Wireshark过滤eapol协议的包，发现通过握手包可以对密码实现暴力破解</p>
+<p>在kali中使用Crunch工具生成密码字典</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">crunch 11 11 -t 1391040%%%% -o password.txt</span><br></pre></td></tr></table></figure>
+<p>使用aircrack -ng工具进行破解 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">aircrack-ng wifi.cap -w password.txt</span><br></pre></td></tr></table></figure>
+<p>-w后面接的是字典</p>
+<p>得到flag</p>
+<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_45555226/article/details/102810474">https://blog.csdn.net/qq_45555226/article/details/102810474</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44108455/article/details/108179086">https://blog.csdn.net/qq_44108455/article/details/108179086</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42025840/article/details/81125584">https://blog.csdn.net/qq_42025840/article/details/81125584</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/15/%E4%B8%AD%E5%9B%BD%E5%89%A9%E4%BD%99%E5%AE%9A%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1193,124 +1295,6 @@ M_2=\frac{2a^3bC^2-b^4+C_1b}{aC_1-a^4C_2+2ab^3}=\frac{b}{a}\frac{C_1+2a^3C_2-b^3
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/08/lingo%E7%AC%94%E8%AE%B0-%E9%9B%86%E3%80%81%E6%95%B0%E6%8D%AE%E3%80%81%E5%88%9D%E5%A7%8B%E9%83%A8%E5%88%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="gorgeousdays">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/09/08/lingo%E7%AC%94%E8%AE%B0-%E9%9B%86%E3%80%81%E6%95%B0%E6%8D%AE%E3%80%81%E5%88%9D%E5%A7%8B%E9%83%A8%E5%88%86/" class="post-title-link" itemprop="url">Lingo笔记(集部分、数据部分与初始部分)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-09-08 22:34:23" itemprop="dateCreated datePublished" datetime="2020-09-08T22:34:23+08:00">2020-09-08</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-09 20:18:32" itemprop="dateModified" datetime="2020-09-09T20:18:32+08:00">2020-09-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Lingo/" itemprop="url" rel="index"><span itemprop="name">Lingo</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="1-集部分"><a href="#1-集部分" class="headerlink" title="1.集部分"></a>1.集部分</h4><h5 id="1-1-集的概念"><a href="#1-1-集的概念" class="headerlink" title="1.1 集的概念"></a>1.1 集的概念</h5><p><strong>集</strong>：由相联系的对象聚合而成，近似与其它语言中类的概念。Lingo包括两种类型的集：原始集(primitive set)和派生集(derived set)。</p>
-<p><strong>对象</strong>：集的成员。</p>
-<p><strong>属性</strong>：每个集成员之间一个或多个与之关联的特征。</p>
-<p>原始集:由一些最基本的对象组成的。</p>
-<p>派生集:用一个或多个其它集来定义的，也就是说，它的成员来自于其它已存在的集。</p>
-<h5 id="1-2-原始集的定义"><a href="#1-2-原始集的定义" class="headerlink" title="1.2 原始集的定义"></a>1.2 原始集的定义</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义原始集</span></span><br><span class="line">setname[/member_list/][:attribute_list]; <span class="comment">//[]表示内容可选</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//例子: </span></span><br><span class="line"><span class="comment">//使用集前需有集定义，一关键词“sets:”开始，“endsets”结束</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//1.显式罗列</span></span><br><span class="line">sets:</span><br><span class="line">students/John Jill, Rose Mike/: sex, age;</span><br><span class="line">endsets</span><br><span class="line">    </span><br><span class="line"><span class="comment">//2.隐式罗列 </span></span><br><span class="line">     <span class="comment">//格式</span></span><br><span class="line">     setname/member1..memberN/[: attribute_list];</span><br><span class="line">     <span class="comment">//例子</span></span><br><span class="line">     <span class="number">1.</span>Oct...JAN 生成各月</span><br><span class="line">     <span class="number">2.1</span>..<span class="number">.5</span> 生成<span class="number">1</span>到<span class="number">5</span></span><br><span class="line">     <span class="number">3.</span>car1...car10</span><br></pre></td></tr></table></figure>
-<h5 id="1-3-派生集的定义"><a href="#1-3-派生集的定义" class="headerlink" title="1.3 派生集的定义"></a>1.3 派生集的定义</h5><p><strong>稠密集</strong>：成员由父集成员所有的组合构成的派生集。为父集的笛卡尔积。</p>
-<p><strong>稀疏集</strong>：为父集成员所有组合构成的集合的一个子集的派生集。为父集笛卡尔积的子集，即稠密集的子集。可以通过<strong>显式罗列</strong>或者<strong>设置成员资格过滤器</strong>来生成。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义派生集</span></span><br><span class="line">setname(parent_set_list)[/member_list/][:attribute_list];</span><br><span class="line"></span><br><span class="line"><span class="comment">//例子:稠密集的生成</span></span><br><span class="line">sets:</span><br><span class="line">product/A B/;</span><br><span class="line">  machine/M N/;</span><br><span class="line">  week/<span class="number">1.</span><span class="number">.2</span>/;</span><br><span class="line">  allowed(product,machine,week):x; <span class="comment">//将会生成了三个父集的所有组合共八组作为 allowed 集的成员</span></span><br><span class="line">endsets   </span><br><span class="line">    </span><br><span class="line"><span class="comment">//稀疏集的生成 显式罗列   当集合元素过多时难以操作</span></span><br><span class="line">  allowed(product,machine,week)/A M <span class="number">1</span>,A N <span class="number">2</span>,B N <span class="number">1</span>/;</span><br><span class="line"></span><br><span class="line"><span class="comment">//稀疏集的生成 过滤器 竖线(|)为过滤器的判断开始  #eq#，#and#为逻辑运算符</span></span><br><span class="line"></span><br><span class="line">sets: </span><br><span class="line">  <span class="comment">//学生集：性别属性 sex，1 表示男性，0 表示女性；年龄属性 age. ;</span></span><br><span class="line">  students/John,Jill,Rose,Mike/:sex,age;</span><br><span class="line">  <span class="comment">//男学生和女学生的联系集：友好程度属性 friend，[0，1]之间的数。 ;</span></span><br><span class="line">  linkmf(students,students)|sex(&amp;<span class="number">1</span>) <span class="meta">#eq# 1 #and# sex(&amp;2) #eq# 0: friend;</span></span><br><span class="line">  <span class="comment">//男学生和女学生的友好程度大于 0.5 的集;</span></span><br><span class="line">  linkmf2(linkmf) | <span class="keyword">friend</span>(&amp;<span class="number">1</span>,&amp;<span class="number">2</span>) <span class="meta">#ge# 0.5 : x;</span></span><br><span class="line">endsets</span><br><span class="line">data: sex,age = <span class="number">1</span> <span class="number">16</span></span><br><span class="line">                <span class="number">0</span> <span class="number">14</span></span><br><span class="line">                <span class="number">0</span> <span class="number">17</span></span><br><span class="line">                <span class="number">0</span> <span class="number">13</span>;</span><br><span class="line"><span class="keyword">friend</span> = <span class="number">0.3</span> <span class="number">0.5</span> <span class="number">0.6</span>;</span><br><span class="line">enddata</span><br></pre></td></tr></table></figure>
-<h5 id="1-4-集与c中结构体的对比"><a href="#1-4-集与c中结构体的对比" class="headerlink" title="1.4 集与c中结构体的对比"></a>1.4 集与c中结构体的对比</h5><div class="table-container">
-<table>
-<thead>
-<tr>
-<th>集</th>
-<th>结构体</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>setname</td>
-<td>结构体标签</td>
-</tr>
-<tr>
-<td>member_list</td>
-<td>结构体实例</td>
-</tr>
-<tr>
-<td>attribute_list</td>
-<td>结构体中变量定义</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h5 id="1-5-关于集的关系图"><a href="#1-5-关于集的关系图" class="headerlink" title="1.5 关于集的关系图"></a>1.5 关于集的关系图</h5><p><img src="/2020/09/08/lingo%E7%AC%94%E8%AE%B0-%E9%9B%86%E3%80%81%E6%95%B0%E6%8D%AE%E3%80%81%E5%88%9D%E5%A7%8B%E9%83%A8%E5%88%86/集.png" alt></p>
-<h4 id="2-数据部分"><a href="#2-数据部分" class="headerlink" title="2.数据部分"></a>2.数据部分</h4><h5 id="2-1-基本语法："><a href="#2-1-基本语法：" class="headerlink" title="2.1 基本语法："></a>2.1 基本语法：</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">object_list = value_list;  </span><br></pre></td></tr></table></figure>
-<p>对象列(object_list):包含要指定值的属性名、要设置集成员的集名，用逗号或空格隔开。一个对象列中至多有一个集名，而属性名可以有任意多。如果对象列中有多个属性名，那么它们的类型必须一致。如果对象列中有一个集名，那么对象列中所有的属性的类型就是这个集。</p>
-<p>数值列(value_list):给定对应对象列对象的值，用逗号或空格分隔，属性值必须等于集成员个数。</p>
-<h5 id="2-2-数据说明"><a href="#2-2-数据说明" class="headerlink" title="2.2 数据说明"></a>2.2 数据说明</h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">sets:</span><br><span class="line">  set1/A,B,C/: X,Y;</span><br><span class="line">endsets</span><br><span class="line">data:</span><br><span class="line">  X=<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>;</span><br><span class="line">  Y=<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>;</span><br><span class="line">enddata</span><br><span class="line">    </span><br><span class="line"><span class="comment">//复合数据声明，作用效果同上</span></span><br><span class="line">sets:</span><br><span class="line">  set1/A,B,C/: X,Y;</span><br><span class="line">endsets</span><br><span class="line">data:</span><br><span class="line">  X,Y=<span class="number">1</span> <span class="number">4</span></span><br><span class="line">      <span class="number">2</span> <span class="number">5</span></span><br><span class="line">      <span class="number">3</span> <span class="number">6</span>;</span><br><span class="line">enddata</span><br></pre></td></tr></table></figure>
-<h5 id="2-3-数据部分值的设定"><a href="#2-3-数据部分值的设定" class="headerlink" title="2.3 数据部分值的设定"></a>2.3 数据部分值的设定</h5><p>参数:即一个在数据部分确定的标量变量。</p>
-<p>实时数据处理:有些数据在模型中值未定，需要在运行时输入，用 ? 表示值</p>
-<p>设定集中所有成员的属性为同一数组</p>
-<p>未知数值的设定:在求解时需要某些成员值为未知,采用设定未知值的方法,以相连逗号表示，逗号间可有空格</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//参数:</span></span><br><span class="line">data:</span><br><span class="line">  interest_rate = <span class="number">.085</span>;</span><br><span class="line">enddata</span><br><span class="line"><span class="comment">//可同时指定多个参数</span></span><br><span class="line">data:</span><br><span class="line">  interest_rate,inflation_rate = <span class="number">.085</span> <span class="number">.03</span>;</span><br><span class="line">enddata</span><br><span class="line"></span><br><span class="line"><span class="comment">//实时数据处理 在每一次求解模型时，Lingo会弹出对话框填入参数</span></span><br><span class="line">data:</span><br><span class="line">    interest_rate,inflation_rate = <span class="number">.085</span> ?;</span><br><span class="line">enddata</span><br><span class="line">    </span><br><span class="line"><span class="comment">//设定集中所有成员的属性</span></span><br><span class="line">sets:</span><br><span class="line">  days /MO,TU,WE,TH,FR,SA,SU/:needs,cost;</span><br><span class="line">endsets</span><br><span class="line">data:</span><br><span class="line">  needs cost= <span class="number">20</span> <span class="number">100</span>;  <span class="comment">//这将设定days集中MO,TU等全部成员的need属性为20，cost属性为100</span></span><br><span class="line">enddata</span><br><span class="line">    </span><br><span class="line"><span class="comment">//未知值的设定</span></span><br><span class="line">sets:</span><br><span class="line">  years/<span class="number">1.</span><span class="number">.5</span>/: capacity;</span><br><span class="line">endsets</span><br><span class="line">data:</span><br><span class="line">  capacity = ,<span class="number">34</span>,<span class="number">20</span>,,;</span><br><span class="line">enddata</span><br></pre></td></tr></table></figure>
-<h4 id="3-初始部分"><a href="#3-初始部分" class="headerlink" title="3.初始部分"></a>3.初始部分</h4><p>初始部分输入的值仅被作为Lingo求解过程中的初始点来用，只对非线性模型有用</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">init:</span><br><span class="line">  X, Y = <span class="number">0</span>, <span class="number">.1</span>;</span><br><span class="line">endinit</span><br><span class="line">Y=@<span class="built_in">log</span>(X);</span><br><span class="line">X^<span class="number">2</span>+Y^<span class="number">2</span>&lt;=<span class="number">1</span>;  <span class="comment">//求解该问题时，好的初始点会减小模型的求解时间</span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1382,7 +1366,7 @@ M_2=\frac{2a^3bC^2-b^4+C_1b}{aC_1-a^4C_2+2ab^3}=\frac{b}{a}\frac{C_1+2a^3C_2-b^3
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
