@@ -177,6 +177,100 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/09/lingo%E7%AC%94%E8%AE%B0-lingo%E5%87%BD%E6%95%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="gorgeousdays">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/09/lingo%E7%AC%94%E8%AE%B0-lingo%E5%87%BD%E6%95%B0/" class="post-title-link" itemprop="url">Lingo函数</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-09-09 20:17:05 / 修改时间：20:18:26" itemprop="dateCreated datePublished" datetime="2020-09-09T20:17:05+08:00">2020-09-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Lingo/" itemprop="url" rel="index"><span itemprop="name">Lingo</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="1-基本运算符"><a href="#1-基本运算符" class="headerlink" title="1.基本运算符"></a>1.基本运算符</h4><h5 id="1-1算数运算符"><a href="#1-1算数运算符" class="headerlink" title="1.1算数运算符"></a>1.1算数运算符</h5><p>-(取反)  ^  *  /  +  -</p>
+<h5 id="1-2-逻辑运算符"><a href="#1-2-逻辑运算符" class="headerlink" title="1.2.逻辑运算符"></a>1.2.逻辑运算符</h5><p>返回true或false</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">优先级排列</span><br><span class="line"><span class="meta">#not#  一元运算符,否定操作数的逻辑值</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#eq#   两个运算数相等返回ture 不等返回flase</span></span><br><span class="line"><span class="meta">#ne#   ≠</span></span><br><span class="line"><span class="meta">#gt#   &gt;</span></span><br><span class="line"><span class="meta">#ge#   ≥</span></span><br><span class="line"><span class="meta">#lt#   &lt;   </span></span><br><span class="line"><span class="meta">#le#   ≤</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#and#  都为true返回true</span></span><br><span class="line"><span class="meta">#or#   都为false返回false，其余情况返回true</span></span><br></pre></td></tr></table></figure>
+<h5 id="1-3-关系运算符"><a href="#1-3-关系运算符" class="headerlink" title="1.3 关系运算符"></a>1.3 关系运算符</h5><p>Lingo有三种关系运算符：“=”、“&lt;=”和“&gt;=”。</p>
+<p>Lingo中还能用“&lt;”表示小于等于关系，“&gt;”表示大于等于关系。但Lingo并不严格支持大于与小于关系，于是，为了A&lt;B成立，可以将其变为小于等于表达式$A+\xi\le B$,其中$\xi$为一个很小的正数，它的值依赖于模型中A小于B多少算不等。</p>
+<h5 id="1-4-运算符优先级排列"><a href="#1-4-运算符优先级排列" class="headerlink" title="1.4 运算符优先级排列"></a>1.4 运算符优先级排列</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#not# -(取反)</span><br><span class="line">^</span><br><span class="line">* &#x2F;</span><br><span class="line">+ -</span><br><span class="line">#eq# #ne# #gt# #ge# #lt# #le#</span><br><span class="line">#and# #or#</span><br><span class="line">&lt;&#x3D; &#x3D; &gt;&#x3D;</span><br></pre></td></tr></table></figure>
+<h4 id="2-数学函数"><a href="#2-数学函数" class="headerlink" title="2.数学函数"></a>2.数学函数</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">abs</span>(x) @<span class="built_in">sin</span>(x) @<span class="built_in">cos</span>(x) @<span class="built_in">tan</span>(x) mod(x,y) <span class="built_in">pow</span>(x,y) <span class="built_in">sqrt</span>(x)</span><br><span class="line">@<span class="built_in">exp</span>(x) <span class="comment">//返回常数e的x次方</span></span><br><span class="line">@<span class="built_in">log</span>(x) <span class="comment">//返回x的自然对数</span></span><br><span class="line">@lgm(x) <span class="comment">//返回x的gamma函数的自然对数</span></span><br><span class="line">@sign(x) <span class="comment">//如果 x&lt;0 返回-1；否则，返回 1</span></span><br><span class="line">@<span class="built_in">floor</span>(x) <span class="comment">//取整。当 x&gt;=0 时，返回不超过 x 的最大整数；当 x&lt;0时，返回不低于 x 的最大整数。</span></span><br><span class="line">@smax(x1,x2...xn) <span class="comment">//最大值</span></span><br><span class="line">@smin(x1,x2...xn) <span class="comment">//最小值</span></span><br></pre></td></tr></table></figure>
+<h4 id="3-金融函数"><a href="#3-金融函数" class="headerlink" title="3.金融函数"></a>3.金融函数</h4><h5 id="3-1-fpa-I-n"><a href="#3-1-fpa-I-n" class="headerlink" title="3.1 @fpa(I,n)"></a>3.1 @fpa(I,n)</h5><p>返回一个净现值，其单位时间利率为I，连续支付n个时间段，该支付所对应的净现值。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">贷款金额 <span class="number">50000</span> 元，贷款年利率 <span class="number">5.31</span>%，采取分期付款方式（每年年末还固定金额，直至还清）。问拟贷款 <span class="number">10</span> 年，每年需偿还多少元？</span><br><span class="line"></span><br><span class="line"><span class="number">50000</span> = x * @fpa(<span class="number">.0531</span>,<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line">解得X=<span class="number">6573.069</span></span><br></pre></td></tr></table></figure>
+<h5 id="3-2-fpl-I-n"><a href="#3-2-fpl-I-n" class="headerlink" title="3.2 @fpl(I,n)"></a>3.2 @fpl(I,n)</h5><p>返回一个净现值，单位时段利率为 I，第 n 个时段支付单位费用。</p>
+<script type="math/tex; mode=display">
+两函数关系:\quad@fpa(I,n)=\sum_{k=1}^n@fpl(I,k)</script><h4 id="4-概率函数"><a href="#4-概率函数" class="headerlink" title="4.概率函数"></a>4.概率函数</h4><p>@pbn(p,n,x)  二项分布的累积分布函数。当 n 和（或）x 不是整数时，用线性插值法进行计算。</p>
+<p>@pcx(n,x) </p>
+<p>@peb(a,x)</p>
+<p>……</p>
+<h4 id="5-变量界定函数"><a href="#5-变量界定函数" class="headerlink" title="5.变量界定函数"></a>5.变量界定函数</h4><p>变量界定函数对变量的取值范围附加限制</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//通常情况下Lingo规定变量非负，可以通过@free和@bnd取消该设定</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@bin(x) 限制x为<span class="number">0</span>或<span class="number">1</span></span><br><span class="line">@bnd(L,x,U) 限制L≤x≤U</span><br><span class="line">@<span class="built_in">free</span>(x) 取消对变量x的默认下界为<span class="number">0</span>的限制，即x可以取任意实数</span><br><span class="line">@gin(x) 限制x为整数</span><br></pre></td></tr></table></figure>
+<h4 id="6-集操作函数"><a href="#6-集操作函数" class="headerlink" title="6.集操作函数"></a>6.集操作函数</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>． </span><br><span class="line">   @in(set_name,primitive_index_1 [,primitive_index_2,„])   </span><br><span class="line">   如果元素位于指定集中，返回<span class="number">1</span>；否则返回<span class="number">0</span></span><br><span class="line">eg.    </span><br><span class="line">   I为全集，B为I的子集，C为B的补集</span><br><span class="line">   sets:</span><br><span class="line">      I/x1..x4/;</span><br><span class="line">      B(I)/x2/;</span><br><span class="line">      C(I)|<span class="meta">#not#@in(B,&amp;1):;</span></span><br><span class="line">   endsets</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span></span><br><span class="line">   @index([set_name,] primitive_set_element)    </span><br><span class="line">   返回在集中原始集成员的索引。如果 set_name被忽略，那么 Lingo 将返回与 所给参数匹配的第一个原始集成员的索引。</span><br><span class="line">   如果找不到，则报错。</span><br><span class="line">eg.</span><br><span class="line">   确定(B,Y)属于派生集S3</span><br><span class="line">   sets:</span><br><span class="line">      S1/A B C/;</span><br><span class="line">      S2/X Y Z/;</span><br><span class="line">      S3(S1,S2)/A X, A Z, B Y, C X/;</span><br><span class="line">   endsets</span><br><span class="line">   X=@in(S3,@index(S1,B),@index(S2,Y)); 返回<span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="number">3.</span></span><br><span class="line">    @wrap(index,limit)</span><br><span class="line">    该函数返回j=index-k*limit。相当于index模limit，如果取模结果不等于<span class="number">0</span>，就返回该结果，否则返回limit。</span><br><span class="line">    参考: https:<span class="comment">//www.docin.com/p-1185198022.html  </span></span><br><span class="line">       </span><br><span class="line"><span class="number">4.</span>  </span><br><span class="line">    @size(set_name)  </span><br><span class="line">    返回集set_name中的成员个数</span><br><span class="line">       </span><br></pre></td></tr></table></figure>
+<h4 id="7-集循环函数"><a href="#7-集循环函数" class="headerlink" title="7.集循环函数"></a>7.集循环函数</h4><h5 id="7-1-基本语法"><a href="#7-1-基本语法" class="headerlink" title="7.1 基本语法"></a>7.1 基本语法</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">@function(setname[(set_index_list)[|conditional_qualifier]]:expression_list);</span><br><span class="line">其中function为以下四个函数</span><br><span class="line"></span><br><span class="line">1.@for</span><br><span class="line">  model:</span><br><span class="line">  sets:</span><br><span class="line">    number&#x2F;1..5&#x2F;:x;</span><br><span class="line">  endsets</span><br><span class="line">    @for(number(I): x(I)&#x3D;I^2);</span><br><span class="line">  end</span><br><span class="line">  </span><br><span class="line">2.@sum</span><br><span class="line">  model:</span><br><span class="line">  data:</span><br><span class="line">    N&#x3D;6;</span><br><span class="line">  enddata</span><br><span class="line">  sets:</span><br><span class="line">    number&#x2F;1..N&#x2F;:x;</span><br><span class="line">  endsets</span><br><span class="line">  data:</span><br><span class="line">    x &#x3D; 5 1 3 4 6 10;</span><br><span class="line">  enddata</span><br><span class="line">    s&#x3D;@sum(number(I) | I #le# 5: x);</span><br><span class="line">  end</span><br><span class="line"></span><br><span class="line">3.@min和@max 返回指定的集成员的一个表达式的最小值或最大值</span><br><span class="line">  model:</span><br><span class="line">  data:</span><br><span class="line">    N&#x3D;6;</span><br><span class="line">  enddata</span><br><span class="line">  sets:</span><br><span class="line">    number&#x2F;1..N&#x2F;:x;</span><br><span class="line">  endsets</span><br><span class="line">  data:</span><br><span class="line">    x &#x3D; 5 1 3 4 6 10;</span><br><span class="line">  enddata</span><br><span class="line">    minv&#x3D;@min(number(I) | I #le# 5: x);</span><br><span class="line">    maxv&#x3D;@max(number(I) | I #ge# N-2: x);</span><br><span class="line">  end</span><br></pre></td></tr></table></figure>
+<h4 id="8-输入和输出函数"><a href="#8-输入和输出函数" class="headerlink" title="8.输入和输出函数"></a>8.输入和输出函数</h4><p>@flie 从外部文件中输入数据  </p>
+<p>@text  输出操作</p>
+<p>@ole 是从 EXCEL 中引入或输出数据的接口函数</p>
+<p>@ranged(variable_or_row_name)</p>
+<p>@rangeu(variable_or_row_name)</p>
+<p>@status()</p>
+<p>@dual</p>
+<h4 id="9-辅助函数"><a href="#9-辅助函数" class="headerlink" title="9.辅助函数"></a>9.辅助函数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">1.</span><br><span class="line">  @if(logical_condition,true_result,false_result)</span><br><span class="line">  如果逻辑表达式为true，则返回true_result,否则返回false_result</span><br><span class="line">eg.</span><br><span class="line">  model:</span><br><span class="line">    min&#x3D;fx+fy;</span><br><span class="line">    fx&#x3D;@if(x #gt# 0, 100,0)+2*x;</span><br><span class="line">    fy&#x3D;@if(y #gt# 0,60,0)+3*y;</span><br><span class="line">    x+y&gt;&#x3D;30;</span><br><span class="line">  end</span><br><span class="line">  </span><br><span class="line">2.</span><br><span class="line">  @warn(’text’,logical_condition)</span><br><span class="line">  如果逻辑表达式为true，则产生内容为text的消息框</span><br><span class="line">eg.</span><br><span class="line">  model:</span><br><span class="line">    x&#x3D;1;</span><br><span class="line">    @warn(&#39;x 是正数&#39;,x #gt# 0); </span><br><span class="line">  end</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/08/lingo%E7%AC%94%E8%AE%B0-%E9%9B%86%E3%80%81%E6%95%B0%E6%8D%AE%E3%80%81%E5%88%9D%E5%A7%8B%E9%83%A8%E5%88%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1067,170 +1161,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/26/LaTeX%E4%B8%AD%E5%B8%B8%E7%94%A8%E5%AD%97%E7%AC%A6%E4%B8%8E%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E8%BE%93%E5%85%A5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="gorgeousdays">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/26/LaTeX%E4%B8%AD%E5%B8%B8%E7%94%A8%E5%AD%97%E7%AC%A6%E4%B8%8E%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E8%BE%93%E5%85%A5/" class="post-title-link" itemprop="url">LaTeX中常用字符与运算符的输入</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-08-26 19:10:37" itemprop="dateCreated datePublished" datetime="2020-08-26T19:10:37+08:00">2020-08-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-11-24 01:03:37" itemprop="dateModified" datetime="2020-11-24T01:03:37+08:00">2020-11-24</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LaTeX/" itemprop="url" rel="index"><span itemprop="name">LaTeX</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="1-保留字符"><a href="#1-保留字符" class="headerlink" title="1.保留字符"></a>1.保留字符</h4><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% # $ % ^ &amp; _ &#123; &#125; ~ \</span></span><br><span class="line"><span class="comment">% 对于上述保留字符 采用转义字符“\”来实现输出 </span></span><br></pre></td></tr></table></figure>
-<h4 id="2-希腊字母"><a href="#2-希腊字母" class="headerlink" title="2.希腊字母"></a>2.希腊字母</h4><div class="table-container">
-<table>
-<thead>
-<tr>
-<th>希腊字母小写、大写</th>
-<th>LaTeX形式</th>
-<th>希腊字母小写、大写</th>
-<th>LaTeX形式</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>α   <strong><em>A</em></strong></td>
-<td>\alpha A</td>
-<td>μ  <strong><em>N</em></strong></td>
-<td>\mu N</td>
-</tr>
-<tr>
-<td>β  <strong><em>B</em></strong></td>
-<td>\beta B</td>
-<td>ξ  Ξ</td>
-<td>\xi \Xi</td>
-</tr>
-<tr>
-<td>γ  Γ</td>
-<td>\gamma \Gamma</td>
-<td><strong>o</strong> <strong><em>O</em></strong></td>
-<td>o O</td>
-</tr>
-<tr>
-<td>δ  Δ</td>
-<td>\delta \ Delta</td>
-<td>π  Π</td>
-<td>\pi  \Pi</td>
-</tr>
-<tr>
-<td>ϵ  ε  <strong><em>E</em></strong></td>
-<td>\epsilon E</td>
-<td>ρ  ϱ  <strong><em>P</em></strong></td>
-<td>\rho P</td>
-</tr>
-<tr>
-<td>ζ  <strong><em>Z</em></strong></td>
-<td>\zeta Z</td>
-<td>σ  Σ</td>
-<td>\sigma \Sigma</td>
-</tr>
-<tr>
-<td>η  <strong><em>H</em></strong></td>
-<td>\eta H</td>
-<td>τ  <strong><em>T</em></strong></td>
-<td>\tau T</td>
-</tr>
-<tr>
-<td>θ  ϑ  Θ</td>
-<td>\theta \Theta</td>
-<td>υ  Υ</td>
-<td>\upsilon \Upsilon</td>
-</tr>
-<tr>
-<td>ι  <strong><em>I</em></strong></td>
-<td>\iota I</td>
-<td>ϕ  φ  Φ</td>
-<td>\phi \Phi</td>
-</tr>
-<tr>
-<td>κ  <strong><em>K</em></strong></td>
-<td>\kappa K</td>
-<td>χ   <strong><em>X</em></strong></td>
-<td>\chi X</td>
-</tr>
-<tr>
-<td>λ  Λ</td>
-<td>\lambda \Lambda</td>
-<td>ψ  Ψ</td>
-<td>\psi \Psi</td>
-</tr>
-<tr>
-<td>μ  <strong><em>M</em></strong></td>
-<td>\mu M</td>
-<td>ω  Ω</td>
-<td>\omega  \Omega</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h4 id="3-集合相关"><a href="#3-集合相关" class="headerlink" title="3.集合相关"></a>3.集合相关</h4><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">mathbb</span><span class="string">&#123;R&#125;</span></span> <span class="comment">%特殊集合符号R 还有\mathbb&#123;z&#125;和\mathbb&#123;N&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">subset</span></span>  <span class="comment">%真包含⊂  \supset表示反方向⊃</span></span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">subseteq</span></span>  <span class="comment">%包含 ⊆</span></span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">in</span></span>  <span class="comment">%属于∈  %\notin表示不属于</span></span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">cap</span></span>  <span class="comment">%交集  ∩</span></span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">cup</span></span>  <span class="comment">%并集  ∪</span></span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">mid</span></span>  <span class="comment">% |</span></span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">neg</span></span>  <span class="comment">%集合中非  ¬</span></span><br></pre></td></tr></table></figure>
-<h4 id="4-二元运算符"><a href="#4-二元运算符" class="headerlink" title="4.二元运算符"></a>4.二元运算符</h4><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">\<span class="name">ge</span></span> <span class="comment">%  ≥</span></span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">le</span></span> <span class="comment">%  ≤</span></span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">equiv</span></span> <span class="comment">%  ≡</span></span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">approx</span></span>  <span class="comment">%  ≈</span></span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">cdot</span></span>  <span class="comment">%  ⋅</span></span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">pm</span></span>  <span class="comment">%  ±</span></span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">div</span></span>  <span class="comment">%  ÷</span></span><br><span class="line"></span><br><span class="line"><span class="tag">\<span class="name">frac</span><span class="string">&#123;&#125;</span><span class="string">&#123;&#125;</span></span> <span class="comment">%分数运算</span></span><br></pre></td></tr></table></figure>
-<h4 id="5-大尺寸运算符"><a href="#5-大尺寸运算符" class="headerlink" title="5.大尺寸运算符"></a>5.大尺寸运算符</h4><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%\sum求和符合  \prod求积符号</span></span><br><span class="line"><span class="tag">\<span class="name">begin</span><span class="string">&#123;equation&#125;</span></span></span><br><span class="line">    p = <span class="tag">\<span class="name">sum</span></span>_&#123;n=1&#125;^Na_n </span><br><span class="line"><span class="tag">\<span class="name">end</span><span class="string">&#123;equation&#125;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">%\int表示积分符号</span></span><br><span class="line"><span class="formula">$ <span class="tag">\<span class="name">int</span></span>_&#123;1&#125;^&#123;<span class="tag">\<span class="name">infty</span></span>&#125; $</span> <span class="comment">%\infty表示无穷</span></span><br><span class="line"><span class="formula">$ <span class="tag">\<span class="name">int</span></span>_&#123;E&#125; fdx $</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%\lim表示极限符号</span></span><br><span class="line"><span class="formula">$ <span class="tag">\<span class="name">lim</span></span>_&#123;n<span class="tag">\<span class="name">to</span></span> 0&#125; $</span></span><br><span class="line"><span class="formula">$ <span class="tag">\<span class="name">lim</span></span><span class="tag">\<span class="name">limits</span></span>_&#123;n<span class="tag">\<span class="name">to</span></span> <span class="tag">\<span class="name">infty</span></span>&#125;<span class="tag">\<span class="name">int</span></span>_&#123;E&#125;f_n dx <span class="tag">\<span class="name">geq</span></span> <span class="tag">\<span class="name">int</span></span>_&#123;E&#125;gdx $</span></span><br></pre></td></tr></table></figure>
-<h4 id="6-其它符号"><a href="#6-其它符号" class="headerlink" title="6.其它符号"></a>6.其它符号</h4><figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%箭头符号</span></span><br><span class="line"><span class="tag">\<span class="name">leftarrow</span></span>  <span class="comment">%  往左箭头 或者用\gets</span></span><br><span class="line"><span class="tag">\<span class="name">rightarrow</span></span>  <span class="comment">%  往右箭头 或者用\to</span></span><br><span class="line"><span class="tag">\<span class="name">longleftarrow</span></span>  <span class="comment">%  往右加长箭头</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%下列点的输出可用于矩阵</span></span><br><span class="line"><span class="tag">\<span class="name">dots</span></span>  <span class="comment">%  三点横向排列 或者用\cdots</span></span><br><span class="line"><span class="tag">\<span class="name">vdots</span></span>  <span class="comment">%  三点竖向排列</span></span><br><span class="line"><span class="tag">\<span class="name">ddots</span></span>  <span class="comment">%  三点斜向排列</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%下列符号用于证明</span></span><br><span class="line"><span class="tag">\<span class="name">forall</span></span>  <span class="comment">%    任意∀</span></span><br><span class="line"><span class="tag">\<span class="name">exists</span></span>  <span class="comment">%    存在∃</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%导数相关</span></span><br><span class="line"><span class="tag">\<span class="name">partial</span></span> x  <span class="comment">%  偏导符号</span></span><br><span class="line"><span class="tag">\<span class="name">mathrm</span><span class="string">&#123;d&#125;</span></span> x  <span class="comment">%  求导符号</span></span><br><span class="line">x^&#123;’&#125;  <span class="comment">%  撇形式的求导符号</span></span><br><span class="line"><span class="tag">\<span class="name">dot</span></span> x  <span class="comment">%  点形式的求导符号 \ddot表示2个点 \dddot表示三个点 几个d就是几个点</span></span><br><span class="line"><span class="tag">\<span class="name">nabla</span></span> f  <span class="comment">%  全微分算子</span></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1302,7 +1232,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

