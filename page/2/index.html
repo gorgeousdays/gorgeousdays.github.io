@@ -177,6 +177,193 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/11/OD%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="gorgeousdays">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/10/11/OD%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C/" class="post-title-link" itemprop="url">OD基础操作</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-10-11 22:23:29 / 修改时间：22:24:43" itemprop="dateCreated datePublished" datetime="2020-10-11T22:23:29+08:00">2020-10-11</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%80%86%E5%90%91/" itemprop="url" rel="index"><span itemprop="name">逆向</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="OD基本指令"><a href="#OD基本指令" class="headerlink" title="OD基本指令"></a>OD基本指令</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>快捷键</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restart</td>
+<td>Ctrl+F2</td>
+<td>重新开始调试</td>
+</tr>
+<tr>
+<td>Step Into</td>
+<td>F7</td>
+<td>执行一行OP code，若遇CALL 将进入函数代码内部</td>
+</tr>
+<tr>
+<td>Step over</td>
+<td>F8</td>
+<td>执行一行OP code，若遇CALL尽执行函数自身，不跟随</td>
+</tr>
+<tr>
+<td>Execute till Return</td>
+<td>Ctrl+F9</td>
+<td>一直在函数代码内部运行，直到遇到RETN，跳出函数</td>
+</tr>
+<tr>
+<td>Go to</td>
+<td>Ctrl+G</td>
+<td>移动到指定地址(运行时不可用)</td>
+</tr>
+<tr>
+<td>Execute till Cursor</td>
+<td>F4</td>
+<td>执行到光标位置，即直接转到要调试的地址</td>
+</tr>
+<tr>
+<td>Comment</td>
+<td>;</td>
+<td>添加注释</td>
+</tr>
+<tr>
+<td>Label</td>
+<td>:</td>
+<td>添加标签</td>
+</tr>
+<tr>
+<td>Set/Reset BreakPoint</td>
+<td>F2</td>
+<td>设置/取消断点</td>
+</tr>
+<tr>
+<td>Run</td>
+<td>F9</td>
+<td>运行(若设置了端点，则执行至断点处)</td>
+</tr>
+<tr>
+<td>Show the current EIP</td>
+<td>*</td>
+<td>显示当前EIP位置</td>
+</tr>
+<tr>
+<td>Show the previous Cursor</td>
+<td>-</td>
+<td>显示上一个光标的位置</td>
+</tr>
+<tr>
+<td>Preview CALL/JMP address</td>
+<td>Enter</td>
+<td>若光标处有CALL/JMP指令，则跟踪并显示相关地址(运行时不可用)</td>
+</tr>
+<tr>
+<td>Edit data</td>
+<td>Ctrl+E</td>
+<td>编辑数据</td>
+</tr>
+<tr>
+<td>Assemble</td>
+<td>Space</td>
+<td>编写汇编代码</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="汇编指令"><a href="#汇编指令" class="headerlink" title="汇编指令"></a>汇编指令</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>指令</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CALL xxx</td>
+<td>调用xxx处的函数</td>
+</tr>
+<tr>
+<td>JMP xxx</td>
+<td>调整至xxx地址处</td>
+</tr>
+<tr>
+<td>PUSH xxx</td>
+<td>保持xxx到栈</td>
+</tr>
+<tr>
+<td>RETN</td>
+<td>跳转到栈中保持的地址</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="快速查找指定代码"><a href="#快速查找指定代码" class="headerlink" title="快速查找指定代码"></a>快速查找指定代码</h4><p>1.代码执行法</p>
+<p>2.字符串检索法</p>
+<p>3.API检索法(1):在调用代码中设断点</p>
+<p>4.API检索法(2):在API代码中设断点</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/15/problem/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1077,91 +1264,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/30/Crypto%E7%AC%94%E8%AE%B0-%E7%A7%BB%E4%BD%8D%E5%AF%86%E7%A0%81/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="gorgeousdays">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/30/Crypto%E7%AC%94%E8%AE%B0-%E7%A7%BB%E4%BD%8D%E5%AF%86%E7%A0%81/" class="post-title-link" itemprop="url">Crypto学习笔记(移位密码)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-08-30 12:36:39" itemprop="dateCreated datePublished" datetime="2020-08-30T12:36:39+08:00">2020-08-30</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-08 22:40:31" itemprop="dateModified" datetime="2020-09-08T22:40:31+08:00">2020-09-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Crypto/" itemprop="url" rel="index"><span itemprop="name">Crypto</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="简单移位密码"><a href="#简单移位密码" class="headerlink" title="简单移位密码"></a>简单移位密码</h4><p>密文：lafgea{s_eyay_scyprt}o<br>密钥：3124<br>明文：flag{easy_easy_crypto}<br>解密代码</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">shift_decrypt</span>(<span class="params">c,k</span>):</span></span><br><span class="line">    l=len(k)</span><br><span class="line">    m=<span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,len(c),l):</span><br><span class="line">        tmp_m=[<span class="string">&quot;&quot;</span>]*l</span><br><span class="line">        <span class="keyword">if</span> i+l&gt;=len(c):</span><br><span class="line">            tmp_c=c[i:]</span><br><span class="line">            use=[]</span><br><span class="line">            <span class="keyword">for</span> kindex <span class="keyword">in</span> range(len(tmp_c)):</span><br><span class="line">                use.append(int(k[kindex])-l)</span><br><span class="line">            use.sort()</span><br><span class="line">            <span class="keyword">for</span> kindex <span class="keyword">in</span> range(len(tmp_c)):</span><br><span class="line">                tmp_m[kindex]=tmp_c[use.index(int(k[kindex])-l)]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            tmp_c=c[i:i+l]</span><br><span class="line">            <span class="keyword">for</span> kindex <span class="keyword">in</span> range(len(tmp_c)):</span><br><span class="line">                tmp_m[kindex]=tmp_c[int(k[kindex])<span class="number">-1</span>]</span><br><span class="line">        m+=<span class="string">&quot;&quot;</span>.join(tmp_m)</span><br><span class="line">    <span class="keyword">return</span> m</span><br><span class="line">c=<span class="string">&quot;lafgea&#123;s_eyay_scyprt&#125;o&quot;</span></span><br><span class="line">k=<span class="string">&quot;3124&quot;</span></span><br><span class="line"><span class="keyword">print</span> shift_decrypt(c,k)</span><br></pre></td></tr></table></figure>
-<h4 id="栅栏密码"><a href="#栅栏密码" class="headerlink" title="栅栏密码"></a>栅栏密码</h4><p>特点:把要加密的明文分成N个一组，然后把每组的第1个字连起来，形成一段无规律的话。 不过栅栏密码本身有一个潜规则，就是组成栅栏的字母一般不会太多。（一般不超过30个，也就是一、两句话）</p>
-<p>密文:TEOGSDYUTAENN HLNETAMSHVAED<br>先将密文分为两行<br>T E O G S D Y U T A E N N<br>H L N E T A M S H V A E D<br>再按上下上下的顺序组合成一句话<br>明文:THE LONGEST DAY MUST HAVE AN END</p>
-<p>解码：<a target="_blank" rel="noopener" href="https://www.qqxiuzi.cn/bianma/zhalanmima.php">https://www.qqxiuzi.cn/bianma/zhalanmima.php</a></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/08/30/Crypto%E7%AC%94%E8%AE%B0-%E7%A7%BB%E4%BD%8D%E5%AF%86%E7%A0%81/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1233,7 +1335,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">31</span>
+          <span class="site-state-item-count">32</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
