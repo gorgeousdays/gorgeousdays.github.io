@@ -177,6 +177,96 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/17/A-c-problem/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="gorgeousdays">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/17/A-c-problem/" class="post-title-link" itemprop="url">A c++ problem</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-17 23:38:11" itemprop="dateCreated datePublished" datetime="2020-08-17T23:38:11+08:00">2020-08-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-08 22:50:13" itemprop="dateModified" datetime="2020-09-08T22:50:13+08:00">2020-09-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9D%82%E8%B0%88/" itemprop="url" rel="index"><span itemprop="name">杂谈</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p> Recently, I thought of a problem I encountered when I first started learning C + + .</p>
+<p>What will happen if  <strong>cout</strong> combine with <strong><em>++</em></strong>  ？</p>
+<p>I tried it and got the following answer.</p>
+<p><img src="/2020/08/17/A-c-problem/1.png" alt></p>
+<p>I expected the output is 3455567 .However,this outputwas completely different from what I had expected.</p>
+<p>Maybe this was because the Code editor. </p>
+<p>I replaced the devcpp  with vs.</p>
+<p>But nothing changed.</p>
+<p>Maybe this was due to  Compiler.</p>
+<p>I ran the codes on mac,now get the answer what i needed.  </p>
+<p><img src="/2020/08/17/A-c-problem/2.png" alt></p>
+<p>And i got the answer.</p>
+<p> In the environment of windows 10 or 7 ,my Compiler was gcc 4.9.2 .and whatever use devc++ or vscode. The answer was same,3455567.</p>
+<p>But,in the environment of Mac ,my Compiler was clang 11.0.3,and vs gave the answer 3455677.</p>
+<p>Maybe the different answer was due to different Compiler.</p>
+<p>But Why? </p>
+<p>I didn’t get some useful message. I hope i can talk about this next time.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/03/hexo-Local-change-and-remote-server-change/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -565,7 +655,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-count">35</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

