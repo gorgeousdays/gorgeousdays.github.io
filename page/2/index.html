@@ -177,6 +177,108 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/08/RSA%E5%9F%BA%E6%9C%AC%E6%94%BB%E5%87%BB%E8%84%9A%E6%9C%AC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="gorgeousdays">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/08/RSA%E5%9F%BA%E6%9C%AC%E6%94%BB%E5%87%BB%E8%84%9A%E6%9C%AC/" class="post-title-link" itemprop="url">Crypto学习笔记(RSA攻击脚本实现)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-11-08 23:52:12" itemprop="dateCreated datePublished" datetime="2020-11-08T23:52:12+08:00">2020-11-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-11-15 12:41:28" itemprop="dateModified" datetime="2020-11-15T12:41:28+08:00">2020-11-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Crypto/" itemprop="url" rel="index"><span itemprop="name">Crypto</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="gmpy2相关函数"><a href="#gmpy2相关函数" class="headerlink" title="gmpy2相关函数"></a>gmpy2相关函数</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line">gmpy2.mpz(n)<span class="comment">#初始化一个大整数</span></span><br><span class="line">gmpy2.mpfr(x)<span class="comment"># 初始化一个高精度浮点数x</span></span><br><span class="line">d = gmpy2.invert(e,n) <span class="comment"># 求逆元，de = 1 mod n</span></span><br><span class="line">C = gmpy2.powmod(M,e,n)<span class="comment"># 幂取模，结果是 C = (M^e) mod n</span></span><br><span class="line">gmpy2.is_prime(n) <span class="comment">#素性检测</span></span><br><span class="line">gmpy2.gcd(a,b) <span class="comment">#欧几里得算法，最大公约数</span></span><br><span class="line">gmpy2.gcdext(a,b) <span class="comment">#扩展欧几里得算法</span></span><br><span class="line">gmpy2.iroot(x,n) <span class="comment">#x开n次根 返回的第一个值表示开方后结果 第二个值表示是否能开尽</span></span><br></pre></td></tr></table></figure>
+<h4 id="各方信息"><a href="#各方信息" class="headerlink" title="各方信息"></a>各方信息</h4><p>通信者A(解密方):掌握全部数据  p、q、公钥(n，e)、密文c </p>
+<p>通信者B(加密方): 公钥(e，n)、密文c、明文m</p>
+<p>攻击者C:公钥(e，n）、密文c</p>
+<p>通信者A通过p、q计算得到d然后根据私钥（e，n）解出明文m</p>
+<h4 id="解密者角度"><a href="#解密者角度" class="headerlink" title="解密者角度"></a>解密者角度</h4><h5 id="1-已知p、q、e求d"><a href="#1-已知p、q、e求d" class="headerlink" title="1.已知p、q、e求d"></a>1.已知p、q、e求d</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> libnum</span><br><span class="line">p = <span class="number">473398607161</span></span><br><span class="line">q = <span class="number">4511491</span></span><br><span class="line">e = <span class="number">17</span></span><br><span class="line">d = libnum.modular.invmod(e, (p<span class="number">-1</span>)*(q<span class="number">-1</span>))</span><br><span class="line">print(d)</span><br><span class="line"></span><br><span class="line"><span class="comment">##通过primefac也可以实现求d 不过prime只支持python2环境</span></span><br><span class="line"><span class="keyword">import</span> primefac</span><br><span class="line">d=prime.modinv(e,(p<span class="number">-1</span>)*(q<span class="number">-1</span>))%((p<span class="number">-1</span>)*(q<span class="number">-1</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">##通过gmpy2也可以实现求d</span></span><br><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line"><span class="comment">#其中gmpy2.mpz()函数起初始化大整数的作用</span></span><br><span class="line">p=gmpy2.mpz($p) </span><br><span class="line">q=gmpy2.mpz($q)</span><br><span class="line">e=gmpy2.mpz($e)</span><br><span class="line">d=gmpy2.invert(e,(p<span class="number">-1</span>)*(q<span class="number">-1</span>))</span><br><span class="line">print(d)</span><br></pre></td></tr></table></figure>
+<h4 id="攻击者角度"><a href="#攻击者角度" class="headerlink" title="攻击者角度"></a>攻击者角度</h4><p>攻击者与解密者的信息差距往往就是p、q，其目标往往是获取密文m</p>
+<h5 id="模数分解"><a href="#模数分解" class="headerlink" title="模数分解"></a>模数分解</h5><p>1 对于n比较小(256bit)的情况，可以通过yafu直接模数分解n，通过p、q、e求得d，而后</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> long_to bytes</span><br><span class="line">m=pow(c,d,n)</span><br><span class="line">print(long_to_bytes(m))</span><br><span class="line"><span class="comment">#long_to_bytes实现将m转化为字符串</span></span><br></pre></td></tr></table></figure>
+<p>2 yafu的分解同时集成了<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Fermat&#39;s_factorization_method">费马分解</a>和<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Pollard&#39;s_rho_algorithm">Pollard_rho分解</a>，所以有的时候即使n的长度是1024bit，也会由于其中一个素因子太小或两个因子相差不大成功分解。</p>
+<p>3 公约数模数分解</p>
+<p>进行两次通信会产生两个n，如果通信者A在两次通信中生成的大素数有一个是相同的，那攻击者C就可以对两次的n进行公约数计算从而得到n</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">p&#x3D;gmpy2.gcd(n1,n2)</span><br><span class="line">q1&#x3D;n1&#x2F;p</span><br><span class="line">q2&#x3D;n2&#x2F;p</span><br></pre></td></tr></table></figure>
+<h5 id="小指数明文爆破"><a href="#小指数明文爆破" class="headerlink" title="小指数明文爆破"></a>小指数明文爆破</h5><p>加密方B得到A的公钥(n，e)，如果e比较小，则会$m^e&lt;n$,则$c=m^e$ 此时直接对c开e次方就得到m，但有时候并不是这么极端 但可能$m^e$也没有超过n太多，于是可以爆破出m</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> long_to_bytes, bytes_to_long, getPrime, isPrime</span><br><span class="line">n = <span class="number">47966708183289639962501363163761864399454241691014467172805658518368423135168025285144721028476297179341434450931955275325060173656301959484440112740411109153032840150659</span></span><br><span class="line">e = <span class="number">3</span></span><br><span class="line">c = <span class="number">10968126341413081941567552025256642365567988931403833266852196599058668508079150528128483441934584299102782386592369069626088211004467782012298322278772376088171342152839</span></span><br><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line">i = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> <span class="number">1</span>:</span><br><span class="line">  <span class="keyword">if</span> (gmpy2.iroot(c + i * n, <span class="number">3</span>)[<span class="number">1</span>] == <span class="number">1</span>):<span class="comment">#第二个参数[1]判断能否开尽</span></span><br><span class="line">    print(long_to_bytes(gmpy2.iroot(c + i * n, <span class="number">3</span>)[<span class="number">0</span>]))<span class="comment">#第一个参数[0]表示开方后得到的数</span></span><br><span class="line">    <span class="keyword">break</span></span><br><span class="line">  i = i + <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<h5 id="选择密文攻击"><a href="#选择密文攻击" class="headerlink" title="选择密文攻击"></a>选择密文攻击</h5><p>攻击方可以对任意密文解密，除了C。那可以先求出C在N上的逆元$C^{-1}$,然后求$C^{-1}$的明文$M^{‘}$,$M^{‘}$即为明文M的逆元。</p>
+<h5 id="LLL-attack"><a href="#LLL-attack" class="headerlink" title="LLL-attack"></a>LLL-attack</h5><p>e太小，m部分泄露或者p泄露三分之二的情况下使用。用于LLLattack的<a target="_blank" rel="noopener" href="https://github.com/mimoo/RSA-and-LLL-attacks">sage代码</a>。</p>
+<h5 id="Wiener-Attack-amp-Boneh-Durfee-Attack"><a href="#Wiener-Attack-amp-Boneh-Durfee-Attack" class="headerlink" title="Wiener Attack &amp; Boneh Durfee Attack"></a>Wiener Attack &amp; Boneh Durfee Attack</h5><p>一般e很大，远超65537，就基本可以确定是Wiener Attack。可以采用<a target="_blank" rel="noopener" href="https://github.com/pablocelayes/rsa-wiener-attack">维纳攻击脚本</a>。</p>
+<h5 id="共模攻击"><a href="#共模攻击" class="headerlink" title="共模攻击"></a>共模攻击</h5><p>A在两次通信中采用相同的n，B对相同的m进行加密。采用以下脚本解密</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> long_to_bytes,bytes_to_long,getPrime,isPrime</span><br><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">same_n_attack</span>(<span class="params">n,e1,e2,c1,c2</span>):</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">egcd</span>(<span class="params">a, b</span>):</span></span><br><span class="line">        x, lastX = <span class="number">0</span>, <span class="number">1</span></span><br><span class="line">        y, lastY = <span class="number">1</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> (b != <span class="number">0</span>):</span><br><span class="line">            q = a // b   <span class="comment">#整除</span></span><br><span class="line">            a, b = b, a % b</span><br><span class="line">            x, lastX = lastX - q * x, x</span><br><span class="line">            y, lastY = lastY - q * y, y</span><br><span class="line">        <span class="keyword">return</span> (lastX, lastY)</span><br><span class="line"></span><br><span class="line">    s = egcd(e1, e2)</span><br><span class="line">    s1 = s[<span class="number">0</span>]</span><br><span class="line">    s2 = s[<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">if</span> s1&lt;<span class="number">0</span>:</span><br><span class="line">        s1 = - s1</span><br><span class="line">        c1 = gmpy2.invert(c1, n)</span><br><span class="line">        <span class="keyword">if</span> c1&lt;<span class="number">0</span>:</span><br><span class="line">            c1+=n</span><br><span class="line">    <span class="keyword">elif</span> s2&lt;<span class="number">0</span>:</span><br><span class="line">        s2 = - s2</span><br><span class="line">        c2 = gmpy2.invert(c2, n)</span><br><span class="line">        <span class="keyword">if</span> c2&lt;<span class="number">0</span>:</span><br><span class="line">            c2+=n</span><br><span class="line">    m=(pow(c1,s1,n)*pow(c2,s2,n)) % n</span><br><span class="line">    <span class="keyword">return</span> m</span><br><span class="line">n1=<span class="number">21660190931013270559487983141966347279666044468572000325628282578595119101840917794617733535995976710097702806131277006786522442555607842485975616689297559583352413160087163656851019769465637856967511819803473940154712516380580146620018921406354668604523723340895843009899397618067679200188650754096242296166060735958270930743173912010852467114047301529983496669250671342730804149428700280401481421735184899965468191802844285699985370238528163505674350380528600143880619512293622576854525700785474101747293316814980311297382429844950643977825771268757304088259531258222093667847468898823367251824316888563269155865061</span></span><br><span class="line">e1=<span class="number">65537</span></span><br><span class="line">c1=<span class="number">11623242520063564721509699039034210329314238234068836130756457335142671659158578379060500554276831657322012285562047706736377103534543565179660863796496071187533860896148153856845638989384429658963134915230898572173720454271369543435708994457280819363318783413033774014447450648051500214508699056865320506104733203716242071136228269326451412159760818676814129428252523248822316633339393821052614033884661649376604245744651142959498917235138077366818109892738298251161767344501687113868331134288984466294415889635863660753717476594011236542159800099371872396181448655448842148998667568104710807411358117939831241620315</span></span><br><span class="line">n2=<span class="number">21660190931013270559487983141966347279666044468572000325628282578595119101840917794617733535995976710097702806131277006786522442555607842485975616689297559583352413160087163656851019769465637856967511819803473940154712516380580146620018921406354668604523723340895843009899397618067679200188650754096242296166060735958270930743173912010852467114047301529983496669250671342730804149428700280401481421735184899965468191802844285699985370238528163505674350380528600143880619512293622576854525700785474101747293316814980311297382429844950643977825771268757304088259531258222093667847468898823367251824316888563269155865061</span></span><br><span class="line">e2=<span class="number">70001</span></span><br><span class="line">c2=<span class="number">8180690717251057689732022736872836938270075717486355807317876695012318283159440935866297644561407238807004565510263413544530421072353735781284166685919420305808123063907272925594909852212249704923889776430284878600408776341129645414000647100303326242514023325498519509077311907161849407990649396330146146728447312754091670139159346316264091798623764434932753276554781692238428057951593104821823029665203821775755835076337570281155689527215367647821372680421305939449511621244288104229290161484649056505784641486376741409443450331991557221540050574024894427139331416236263783977068315294198184169154352536388685040531</span></span><br><span class="line"><span class="keyword">print</span> (long_to_bytes(same_n_attack(n1,e1,e2,c1,c2)))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h5 id="广播攻击"><a href="#广播攻击" class="headerlink" title="广播攻击"></a>广播攻击</h5><p>加密的过程中e较小，且这几次加密过程中 ，加密信息相同，即</p>
+<script type="math/tex; mode=display">
+c_1\equiv m^e\mod n_1\\c_2\equiv m^e\mod n_2\\c_3\equiv m^e\mod n_3</script><p>那么通过<a href="[https://zh.wikipedia.org/zh-hans/%E4%B8%AD%E5%9B%BD%E5%89%A9%E4%BD%99%E5%AE%9A%E7%90%86](https://zh.wikipedia.org/zh-hans/中国剩余定理">中国剩余定理</a>)，计算$c_x\equiv m^3\mod n_1n_2n_3$,然后对$c_x$开e次方根得到m</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> gmpy2 <span class="keyword">import</span> iroot</span><br><span class="line"><span class="keyword">from</span> gmpy2 <span class="keyword">import</span> invert</span><br><span class="line">n1 = <span class="number">24451423288348328116705189839080049401203825573696682939697089229515670854259668024738917571672083091736391032222439276176190670330149788177234868093407333559601300076140811141390059132774991537248278852195374559377914946861163565102316087142050792987559132773464700849304645152015574005517342653095585568809642839372678062663523564820583166717521739237792276166111668361172039147292768193129632684171172002382830408379067354719706121993642173739213280355600134781117773160460528207346288478815871296055864733062408148349209845936379646848651625713969508821074528754713838207135211670970387019665490891554278609420811</span></span><br><span class="line">e1 = <span class="number">3</span></span><br><span class="line">c1 = <span class="number">15739875616514630953136118518167425336566344729401649295136386816279793948062937416837879973892217898183001604612634670589995445217883630705454669275572015747596408894160611264926362963690714019483949272102316017165459832305673786710006588680357259384309205799575411881386856841704490851908762197421112221154073096284400634344102924080733996136266689995846872435464641531701655540246069568899209408835603371228683787516867834686720338208876553150308049787749151860312456421834317148300953317025532490631516416557696361667176077040251336722246089493549323185006889559952252279223464226121335279699764156011687694705461</span></span><br><span class="line"></span><br><span class="line">n2 = <span class="number">26371477190418742303888775088555323015207366776923126851773114394065723645672368088814181502360410900641156468215436455676418853504498893778165004679238083105115284038962860549618453609620564211541961829192628570279313244745190283361932206525212450405965917102560591225166296026203946023621569117063731896380036557814205848678875929376998512733964346619930409595564029979283595842765495546420008144195139735377286287069524605209733051251754274764107934939709473307270046001810101986138988618191726147463699979330655595693169524011001045064479429960522005088680268206848597198271413010280267566035795254656463702698823</span></span><br><span class="line">e2 = <span class="number">3</span></span><br><span class="line">c2 = <span class="number">24491112204092744341358638089215970530809389175921723500286573918429636398447936137595118862398236862698779775682952162653546124550629784165964386769387726103595283121496975198529062258433280603856760220088192538482626338903512801906921311030654216689591936509151350395249697750541120735732723071144598196884071338084546259983640953398715738096470608250955118848652845310318107343620885777444921011193265422744126912733993340865179850073221405567439254502574578925781409459433294016640150862732200176452820665011738329510188452740687455054869063245100602567671645540401390791588456748406543904714454899841545079587056</span></span><br><span class="line"></span><br><span class="line">n3 = <span class="number">27487047904330959883767333331462030929928491213958156653308086307319240141800614908094361257431882391215313284438555713825838241511527538964789800420812050047003596770148880871768715848882256199410164419506052779212555843479717842656396150794330441002831153507102960164073640832600708150242550799365929109808430251649175060381698677302608174255794872628187783088414186634174367531662043643358473337581486905937469115169466276315070659112396585619309358563546478189304744220858913259592690589213905377550443295883410708775472142360727764158039142452443204569417848208594378792577246174638639911159712430937128321437067</span></span><br><span class="line">e3 = <span class="number">3</span></span><br><span class="line">c3 = <span class="number">1657721854648476317520442150896650605711954769246991233391881094037826060908691858031485703087740392488258133124921363936766424042899719887649974751632127107022899794941279627494196541358161346953558285922698679387524282160943205189313406083166270966025941354796192171615197811422473937679394910921908268579426452496116103480709293429547721026538860977229195889575005308631157579567095561669277297494272383133948347665024419752146336618756926080138955963546588675787675378048078021878779569010236088293191739741596470893703755598233769968042607918446569365734945861279726941898996019192367675358423090129022372729450</span></span><br><span class="line">m1, m2, m3 = invert(n2 * n3, n1), invert(n1 * n3, n2), invert(n1 * n2, n3)</span><br><span class="line">x = (c1 * (m1 % n1) * n2 * n3 + c2 * (m2 % n2) * n1 * n3 + c3 * (m3 % n3) * n2 * n1) % (n1 * n2 * n3)</span><br><span class="line"><span class="comment"># print(x)</span></span><br><span class="line">m, n = iroot(x, e1)</span><br><span class="line">print(m)</span><br></pre></td></tr></table></figure>
+<h5 id="相关消息攻击"><a href="#相关消息攻击" class="headerlink" title="相关消息攻击"></a>相关消息攻击</h5><p>加密者B使用同一公钥对两个具有某种线性关系的消息m1,m2进行加密 得到c1,c2。</p>
+<p>假设模数为N，两种之间的线性关系为$M_1=a*M_2+b$，则当e=3时，则有</p>
+<script type="math/tex; mode=display">
+M_2=\frac{2a^3bC^2-b^4+C_1b}{aC_1-a^4C_2+2ab^3}=\frac{b}{a}\frac{C_1+2a^3C_2-b^3}{C_1-a^3C_2+2b^3}</script><p>Python代码如下:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">relate_message_attack</span>(<span class="params">a,b,c1,c2,n</span>):</span></span><br><span class="line">    b3=gmpy2.powmod(b,<span class="number">3</span>,n)</span><br><span class="line">    part1=b*(c1+<span class="number">2</span>*c2-b3)%n</span><br><span class="line">    part2=a*(c1-c2+<span class="number">2</span>*b3)%n</span><br><span class="line">    part2=gmpy2.invert(part2,n)</span><br><span class="line">    <span class="keyword">return</span> part1*part2%n</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/03/xss%E6%B3%A8%E5%85%A5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1244,100 +1346,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/02/RSA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="gorgeousdays">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/09/02/RSA/" class="post-title-link" itemprop="url">Crypto学习笔记(浅谈RSA)</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-09-02 17:04:41" itemprop="dateCreated datePublished" datetime="2020-09-02T17:04:41+08:00">2020-09-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-11-08 11:33:41" itemprop="dateModified" datetime="2020-11-08T11:33:41+08:00">2020-11-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Crypto/" itemprop="url" rel="index"><span itemprop="name">Crypto</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>通信技术是为了实现信息的传输，但为了实现信息传输的安全性，则需要对信息进行加密。$RSA$就是当下的主流加密方式。</p>
-<p>凯撒密码是一种对称加密，加密解密使用了同种规则，即<strong>明文+密钥-&gt;密文 密文-密钥-&gt;明文</strong> 。在整个过程中传输的密钥是不变的，通信双方都需要知道密钥，这就会增大了传输过程中密钥泄露的风险。而$RSA$是一种非对称加密 加密解密采用了不同规则，即 <strong>明文+公钥-&gt;密文 密文+私钥-&gt;明文</strong>。公钥是公开的，而私钥则只要保留在信息的接受者手中，这就一定程度保证了信息传输的安全性。</p>
-<h4 id="加密解密原理"><a href="#加密解密原理" class="headerlink" title="加密解密原理"></a>加密解密原理</h4><script type="math/tex; mode=display">
-加密 \qquad  c\equiv m^e \mod n \\\\
-解密 \qquad  m\equiv c^d \mod n</script><p>其中$m$为明文  $c$为密文</p>
-<p>给定公钥$KU (e,n)$ 实现加密 给定私钥$KR (d,n)$ 实现解密</p>
-<h4 id="加密过程"><a href="#加密过程" class="headerlink" title="加密过程"></a>加密过程</h4><p>1.寻找两个不等的质数$p$,$ q$</p>
-<p>2.$n=pq$</p>
-<p>3.欧拉函数$\phi(n)=(p-1)(q-1)$  <strong><em>表示小于等于n的数中与n互质的数的数目</em></strong></p>
-<p>4.确定e     $1&lt;e&lt;\phi(n) $      $e与\phi(n)$互质      即$gcd(e,\phi(n))=1$</p>
-<p>5.确定d     $de \mod \phi(n)=1$    即 $de=k\phi(n)+1,k\ge1$</p>
-<h4 id="简单分析"><a href="#简单分析" class="headerlink" title="简单分析"></a>简单分析</h4><p>整个加密过程的安全性在于 找到两个很大的质数相乘得到的一个数很容易，但要将一个很大的数分解为两个质数则基本不可能实现。至少在量子计算机出现之前，2048位的$RSA$加密极其安全。</p>
-<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><p><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2013/06/rsa_algorithm_part_one.html">http://www.ruanyifeng.com/blog/2013/06/rsa_algorithm_part_one.html</a></p>
-<p><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/2446#toc-5">https://xz.aliyun.com/t/2446#toc-5</a></p>
-<h4 id="分解n"><a href="#分解n" class="headerlink" title="分解n"></a>分解n</h4><h5 id="在线分解"><a href="#在线分解" class="headerlink" title="在线分解"></a>在线分解</h5><h5 id="http-factordb-com"><a href="#http-factordb-com" class="headerlink" title="http://factordb.com"></a><a target="_blank" rel="noopener" href="http://factordb.com">http://factordb.com</a></h5><h5 id="yafu分解"><a href="#yafu分解" class="headerlink" title="yafu分解"></a>yafu分解</h5><p>yafu​下载地址 <a target="_blank" rel="noopener" href="https://sourceforge.net/projects/yafu/">https://sourceforge.net/projects/yafu/</a></p>
-<p>启动<code>yafu-x64.exe</code>键入<code>factor($n)</code>,结果将保存在<code>factor.log</code>文件中</p>
-<p>或者<code>cd</code>到根目录下，执行</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yafu-x64.exe factor(<span class="variable">$n</span>)</span><br></pre></td></tr></table></figure>
-<p>其中$n$为模数。</p>
-<p>yafu分解从文件读取，将n置于1.txt中，注意最后需要换行</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yafu-x64 &quot;factor(@)&quot; -batchfile 1.txt</span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1409,7 +1417,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1533,61 +1541,6 @@
   
 
   
-      
-
-<script>
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      loader: {
-          load: ['[tex]/mhchem'],
-        source: {
-          '[tex]/amsCd': '[tex]/amscd',
-          '[tex]/AMScd': '[tex]/amscd'
-        }
-      },
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-          packages: {'[+]': ['mhchem']},
-        tags: 'ams'
-      },
-      options: {
-        renderActions: {
-          findScript: [10, doc => {
-            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-              const display = !!node.type.match(/; *mode=display/);
-              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-              const text = document.createTextNode('');
-              node.parentNode.replaceChild(text, node);
-              math.start = {node: text, delim: '', n: 0};
-              math.end = {node: text, delim: '', n: 0};
-              doc.math.push(math);
-            });
-          }, '', false],
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              let target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
-    };
-    (function () {
-      var script = document.createElement('script');
-      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
-      script.defer = true;
-      document.head.appendChild(script);
-    })();
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
-
-    
 
   
 

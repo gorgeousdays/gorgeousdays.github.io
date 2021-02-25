@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>在Ubuntu下搭建pwn环境</title>
+      <link href="/2021/02/25/%E5%9C%A8Ubuntu%E4%B8%8B%E6%90%AD%E5%BB%BApwn%E7%8E%AF%E5%A2%83/"/>
+      <url>/2021/02/25/%E5%9C%A8Ubuntu%E4%B8%8B%E6%90%AD%E5%BB%BApwn%E7%8E%AF%E5%A2%83/</url>
+      
+        <content type="html"><![CDATA[<p>在Ubuntu20.0.4下安装pwntools</p><h3 id="换源"><a href="#换源" class="headerlink" title="换源"></a>换源</h3><p>备份源</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo cp /etc/apt/sources.list /etc/apt/sources_init.list</span><br></pre></td></tr></table></figure><p>更换源 </p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit /etc/apt/sources.list</span><br></pre></td></tr></table></figure><p>删除上述文件全部内容，添加阿里源</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#添加阿里源</span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic main restricted universe multiverse</span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-security main restricted universe multiverse</span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-updates main restricted universe multiverse</span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-proposed main restricted universe multiverse</span><br><span class="line">deb http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-backports main restricted universe multiverse</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic main restricted universe multiverse</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-security main restricted universe multiverse</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-updates main restricted universe multiverse</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-proposed main restricted universe multiverse</span><br><span class="line">deb-src http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;ubuntu&#x2F; bionic-backports main restricted universe multiverse</span><br></pre></td></tr></table></figure><p>更新源</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure><p>更新软件</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get upgrade</span><br></pre></td></tr></table></figure><h3 id="安装pwntools"><a href="#安装pwntools" class="headerlink" title="安装pwntools"></a>安装pwntools</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#安装pip3</span></span><br><span class="line">sudo apt install python3-pip</span><br><span class="line"><span class="comment">#升级pip3</span></span><br><span class="line">pip3 install --upgrade pip</span><br><span class="line"><span class="comment">#安装pythondev</span></span><br><span class="line">sudo apt-get install python-dev</span><br><span class="line">pip3 install setuptools</span><br><span class="line">pip3 install pwntools</span><br></pre></td></tr></table></figure><h3 id="Problems"><a href="#Problems" class="headerlink" title="Problems"></a>Problems</h3><ol><li><code>python test.py</code>报错<code>No module named pwn</code>    应采用<code>python3</code></li><li>构造<code>payload</code>时采用<code>p64</code>函数在<code>python2</code>下可以通过编译 但<code>python3</code>报错<code>TypeError</code> 使用<code>str()</code>强制转化或者<code>.decode(&quot;Ascii&quot;)</code>均有问题 应采用<code>p64(xxx).decode(&quot;iso-8859-1&quot;)</code></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> 杂谈 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>大道至简</title>
       <link href="/2021/02/16/%E5%A4%A7%E9%81%93%E8%87%B3%E7%AE%80/"/>
       <url>/2021/02/16/%E5%A4%A7%E9%81%93%E8%87%B3%E7%AE%80/</url>
@@ -13,7 +32,7 @@
       
       <categories>
           
-          <category> 杂谈 </category>
+          <category> 随便写点东西 </category>
           
       </categories>
       

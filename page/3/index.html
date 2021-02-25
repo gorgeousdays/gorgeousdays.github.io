@@ -177,6 +177,100 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/02/RSA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="gorgeousdays">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/02/RSA/" class="post-title-link" itemprop="url">Crypto学习笔记(浅谈RSA)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-09-02 17:04:41" itemprop="dateCreated datePublished" datetime="2020-09-02T17:04:41+08:00">2020-09-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-11-08 11:33:41" itemprop="dateModified" datetime="2020-11-08T11:33:41+08:00">2020-11-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Crypto/" itemprop="url" rel="index"><span itemprop="name">Crypto</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>通信技术是为了实现信息的传输，但为了实现信息传输的安全性，则需要对信息进行加密。$RSA$就是当下的主流加密方式。</p>
+<p>凯撒密码是一种对称加密，加密解密使用了同种规则，即<strong>明文+密钥-&gt;密文 密文-密钥-&gt;明文</strong> 。在整个过程中传输的密钥是不变的，通信双方都需要知道密钥，这就会增大了传输过程中密钥泄露的风险。而$RSA$是一种非对称加密 加密解密采用了不同规则，即 <strong>明文+公钥-&gt;密文 密文+私钥-&gt;明文</strong>。公钥是公开的，而私钥则只要保留在信息的接受者手中，这就一定程度保证了信息传输的安全性。</p>
+<h4 id="加密解密原理"><a href="#加密解密原理" class="headerlink" title="加密解密原理"></a>加密解密原理</h4><script type="math/tex; mode=display">
+加密 \qquad  c\equiv m^e \mod n \\\\
+解密 \qquad  m\equiv c^d \mod n</script><p>其中$m$为明文  $c$为密文</p>
+<p>给定公钥$KU (e,n)$ 实现加密 给定私钥$KR (d,n)$ 实现解密</p>
+<h4 id="加密过程"><a href="#加密过程" class="headerlink" title="加密过程"></a>加密过程</h4><p>1.寻找两个不等的质数$p$,$ q$</p>
+<p>2.$n=pq$</p>
+<p>3.欧拉函数$\phi(n)=(p-1)(q-1)$  <strong><em>表示小于等于n的数中与n互质的数的数目</em></strong></p>
+<p>4.确定e     $1&lt;e&lt;\phi(n) $      $e与\phi(n)$互质      即$gcd(e,\phi(n))=1$</p>
+<p>5.确定d     $de \mod \phi(n)=1$    即 $de=k\phi(n)+1,k\ge1$</p>
+<h4 id="简单分析"><a href="#简单分析" class="headerlink" title="简单分析"></a>简单分析</h4><p>整个加密过程的安全性在于 找到两个很大的质数相乘得到的一个数很容易，但要将一个很大的数分解为两个质数则基本不可能实现。至少在量子计算机出现之前，2048位的$RSA$加密极其安全。</p>
+<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><p><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2013/06/rsa_algorithm_part_one.html">http://www.ruanyifeng.com/blog/2013/06/rsa_algorithm_part_one.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/2446#toc-5">https://xz.aliyun.com/t/2446#toc-5</a></p>
+<h4 id="分解n"><a href="#分解n" class="headerlink" title="分解n"></a>分解n</h4><h5 id="在线分解"><a href="#在线分解" class="headerlink" title="在线分解"></a>在线分解</h5><h5 id="http-factordb-com"><a href="#http-factordb-com" class="headerlink" title="http://factordb.com"></a><a target="_blank" rel="noopener" href="http://factordb.com">http://factordb.com</a></h5><h5 id="yafu分解"><a href="#yafu分解" class="headerlink" title="yafu分解"></a>yafu分解</h5><p>yafu​下载地址 <a target="_blank" rel="noopener" href="https://sourceforge.net/projects/yafu/">https://sourceforge.net/projects/yafu/</a></p>
+<p>启动<code>yafu-x64.exe</code>键入<code>factor($n)</code>,结果将保存在<code>factor.log</code>文件中</p>
+<p>或者<code>cd</code>到根目录下，执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yafu-x64.exe factor(<span class="variable">$n</span>)</span><br></pre></td></tr></table></figure>
+<p>其中$n$为模数。</p>
+<p>yafu分解从文件读取，将n置于1.txt中，注意最后需要换行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yafu-x64 &quot;factor(@)&quot; -batchfile 1.txt</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/09/01/Crypto%E7%AC%94%E8%AE%B0-%E6%9B%BF%E6%8D%A2%E5%8A%A0%E5%AF%86-%E5%9B%BE%E5%BD%A2%E6%9B%BF%E6%8D%A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1072,155 +1166,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/23/LaTeX%E5%9F%BA%E7%A1%80/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="gorgeousdays">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/23/LaTeX%E5%9F%BA%E7%A1%80/" class="post-title-link" itemprop="url">LaTeX基础</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-08-23 10:57:32" itemprop="dateCreated datePublished" datetime="2020-08-23T10:57:32+08:00">2020-08-23</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-09-08 22:40:56" itemprop="dateModified" datetime="2020-09-08T22:40:56+08:00">2020-09-08</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LaTeX/" itemprop="url" rel="index"><span itemprop="name">LaTeX</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="1-LATEX相关文件扩展名与描述"><a href="#1-LATEX相关文件扩展名与描述" class="headerlink" title="1.LATEX相关文件扩展名与描述"></a>1.LATEX相关文件扩展名与描述</h4><div class="table-container">
-<table>
-<thead>
-<tr>
-<th>扩展名</th>
-<th style="text-align:left">描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>.tex</code></td>
-<td style="text-align:left">TeX 源文档</td>
-</tr>
-<tr>
-<td><code>.sty</code></td>
-<td style="text-align:left">LaTeX 样式文件，使用 <code>\usepackage</code> 命令导入</td>
-</tr>
-<tr>
-<td><code>.dtx</code></td>
-<td style="text-align:left">Documented TeX。LaTeX <code>sty</code> 文档的分发形式</td>
-</tr>
-<tr>
-<td><code>.ins</code></td>
-<td style="text-align:left"><code>.dtx</code> 的安装文件，<code>latex foo.ins</code> 会生成所需的 sty 文档和帮助手册</td>
-</tr>
-<tr>
-<td><code>.cls</code></td>
-<td style="text-align:left">类文档，使用 <code>\documentclass</code> 命令导入</td>
-</tr>
-<tr>
-<td><code>.fd</code></td>
-<td style="text-align:left">字体描述文档</td>
-</tr>
-<tr>
-<td><code>.dvi</code></td>
-<td style="text-align:left">设备无关文件 <code>latex</code> 编译产生</td>
-</tr>
-<tr>
-<td><code>.pdf</code></td>
-<td style="text-align:left">pdf 文档</td>
-</tr>
-<tr>
-<td><code>.log</code></td>
-<td style="text-align:left">编译日志</td>
-</tr>
-<tr>
-<td><code>.toc</code></td>
-<td style="text-align:left">存放章节名称，在下一次编译时读入以产生目录</td>
-</tr>
-<tr>
-<td><code>.lof</code></td>
-<td style="text-align:left">类似于 <code>.toc</code> 产生插图目录</td>
-</tr>
-<tr>
-<td><code>.lot</code></td>
-<td style="text-align:left">产生表格目录</td>
-</tr>
-<tr>
-<td><code>.aux</code></td>
-<td style="text-align:left">存放各种标签引用信息，下次编译时读入以产生交叉参考</td>
-</tr>
-<tr>
-<td><code>.idx</code></td>
-<td style="text-align:left">存放索引词，用 <code>makeindex</code> 处理</td>
-</tr>
-<tr>
-<td><code>.ind</code></td>
-<td style="text-align:left">处理过的 <code>.idx</code>文档，下次编译时读入以产生索引</td>
-</tr>
-<tr>
-<td><code>.ilg</code></td>
-<td style="text-align:left"><code>makeindex</code> 的日志</td>
-</tr>
-</tbody>
-</table>
-</div>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1292,7 +1237,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1416,6 +1361,61 @@
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+          load: ['[tex]/mhchem'],
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
