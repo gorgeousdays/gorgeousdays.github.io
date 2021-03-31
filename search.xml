@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>安装notion-enhance后无法打开软件</title>
+      <link href="/2021/03/31/%E5%AE%89%E8%A3%85notion-enhance%E5%90%8E%E6%97%A0%E6%B3%95%E6%89%93%E5%BC%80%E8%BD%AF%E4%BB%B6/"/>
+      <url>/2021/03/31/%E5%AE%89%E8%A3%85notion-enhance%E5%90%8E%E6%97%A0%E6%B3%95%E6%89%93%E5%BC%80%E8%BD%AF%E4%BB%B6/</url>
+      
+        <content type="html"><![CDATA[<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>在安装完notion-enhance后notion软件出现无法打开的问题。</p><h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>notion版本较高，notion-enhance还不能较好适配</p><h3 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h3><p>在github上发现同样有人遇到相同的问题并pull request。</p><p>解决措施为对notion-enhance文件中部分代码进行替换。</p><ul><li><p>替换<code>notion-enhancer/mods/core/client.js</code> 的108行为 <code>!document.querySelector(&#39;.notion-topbar &gt; div[style*=&quot;display: flex&quot;]&#39;)</code></p></li><li><p>在<code>notion-enhancer/mods/core/createWindow.js</code>的第19行中添加一下代码</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">__exports.getIndexUrl = <span class="built_in">require</span>(<span class="string">`<span class="subst">$&#123;helpers</span></span></span><br><span class="line"><span class="string"><span class="subst">    .getNotionResources()</span></span></span><br><span class="line"><span class="string"><span class="subst">    .replace(<span class="regexp">/\\/g</span>, <span class="string">&#x27;/&#x27;</span>)&#125;</span>/app/helpers/urlHelpers.js`</span>).getIndexUrl;</span><br></pre></td></tr></table></figure></li><li><p>结束已打开的notion进程后重启软件即可</p></li></ul><h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p><a href="https://www.notion.so/hack-notion-enhancer-v0-10-2-to-work-with-notion-s-v2-0-13-app-a4ab1267e67b4126b6448641ca4a0041">https://www.notion.so/hack-notion-enhancer-v0-10-2-to-work-with-notion-s-v2-0-13-app-a4ab1267e67b4126b6448641ca4a0041</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 杂谈 </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>双系统安装过程中遇到的问题</title>
       <link href="/2021/03/11/%E5%8F%8C%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/"/>
       <url>/2021/03/11/%E5%8F%8C%E7%B3%BB%E7%BB%9F%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/</url>
